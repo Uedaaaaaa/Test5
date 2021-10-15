@@ -45,9 +45,13 @@ public class DiceRollAction : MonoBehaviour
     [SerializeField]
     private GameObject ConfettiEffect;
 
+    //GameManagerのScript
+    private GameManager manager;
+
     // Start is called before the first frame update
     void Start()
     {
+        manager = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameManager>();
         JumpPosY = this.gameObject.transform.position.y;
 
         for (int i = 0; i < 6;++i)
@@ -56,6 +60,7 @@ public class DiceRollAction : MonoBehaviour
         }
     }
 
+    
     // Update is called once per frame
     void Update()
     {
@@ -113,6 +118,7 @@ public class DiceRollAction : MonoBehaviour
                 JumpFlg = true;
                 JumpPosY = this.gameObject.transform.position.y;
                 DiceNo = Random.Range(1, 7);
+                manager.SetDiceNo(DiceNo);
                 for(int i = 0;i < 6; ++i)
                 {
                     DiceSideRenderers[i].material = DiceMats[DiceNo - 1];
