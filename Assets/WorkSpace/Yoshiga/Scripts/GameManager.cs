@@ -33,11 +33,7 @@ public class GameManager : MonoBehaviour
     {
         for(int i = 0;i < characters.Length; ++i)
         {
-<<<<<<< Updated upstream
-            characters[i].
-=======
 
->>>>>>> Stashed changes
         }
     }
 
