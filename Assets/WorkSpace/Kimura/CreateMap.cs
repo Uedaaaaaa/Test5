@@ -13,8 +13,9 @@ public class CreateMap : MonoBehaviour
     Quaternion Right = Quaternion.Euler(0, 90, 0);
     Quaternion None = Quaternion.Euler(0, 0, 0);
     int SquareID = 0;
-    //SquareData squareData;
-
+    GameObject[] MapObject = new GameObject[64];
+    SquareData[] squareData = new SquareData[64];
+    Move move = Move.None;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,13 +39,30 @@ public class CreateMap : MonoBehaviour
             {
                 //オブジェクトの向きをセット
                 Quaternion Set;
+                move = Move.None;
                 if(j == 0)
                 {
                     Set = Left;
+                    if(i == 0)
+                    {
+                        move = Move.Right;
+                    }
+                    else if(i == MapData.Length -1)
+                    {
+                        move = Move.Up;
+                    }
                 }
                 else if(j == MapData[i].Length-1)
                 {
                     Set = Right;
+                    if(i == 0)
+                    {
+                        move = Move.Down;
+                    }
+                    if(i == MapData.Length -1)
+                    {
+                        move = Move.Left;
+                    }
                 }
                 else
                 {
@@ -57,44 +75,36 @@ public class CreateMap : MonoBehaviour
                     switch(MapData[i][j])
                     {
                         case 1:
-                            Instantiate(HalloweenPrehub,
-                                new Vector3(-20 * (MapData[i].Length-1 - j), 0, 20 * (MapData.Length-1 - i)), Set);
+                            MapObject[SquareID] = HalloweenPrehub;
                             //squareData = HalloweenPrehub.GetComponent<SquareData>();
                             break;
                         case 2:
-                            Instantiate(MinusPrehub,
-                                new Vector3(-20 * (MapData[i].Length-1 - j), 0, 20 * (MapData.Length-1 - i)), Set);
+                            MapObject[SquareID] = MinusPrehub;
                             //squareData = MinusPrehub.GetComponent<SquareData>();
                             break;
                         case 3:
-                            Instantiate(PlusPrehub,
-                                new Vector3(-20 * (MapData[i].Length-1 - j), 0, 20 * (MapData.Length-1 - i)), Set);
+                            MapObject[SquareID] = PlusPrehub;
                             //squareData = PlusPrehub.GetComponent<SquareData>();
                             break;
                         case 4:
-                            Instantiate(QuizPrehub,
-                                new Vector3(-20 * (MapData[i].Length-1 - j), 0, 20 * (MapData.Length-1 - i)), Set);
+                            MapObject[SquareID] = QuizPrehub;
                             //squareData = QuizPrehub.GetComponent<SquareData>();
                             break;
                     }
+                    Instantiate(MapObject[SquareID],
+                                new Vector3(-20 * (MapData[i].Length - 1 - j), 0, 20 * (MapData.Length - 1 - i)), Set);
+                    MapObject[SquareID].transform.parent = this.transform;
+                    squareData[SquareID] = MapObject[SquareID].GetComponent<SquareData>();
+                    squareData[SquareID].MapID = SquareID;
+                    squareData[SquareID].MyMove = move;
+                    //((MapData[i].Length - 1) - j) + ((MapData.Length - 1) - i);
+                }
+                else
+                {
+                    MapObject[SquareID] = null;
                 }
                 //squareData.MapID = SquareID + 1;
                 //squareData.MyMove = Move.None;
-                switch(SquareID)
-                {
-                    case 0:
-                        //squareData.MyMove = Move.Left;
-                        break;
-                    case 7:
-                        //squareData.MyMove = Move.Up;
-                        break;
-                    case 56:
-                        //squareData.MyMove = Move.Down;
-                        break;
-                    case 63:
-                        //squareData.MyMove = Move.Right;
-                        break;
-                }
                 SquareID++;
             }
         }

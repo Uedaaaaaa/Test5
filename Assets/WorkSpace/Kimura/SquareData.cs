@@ -14,8 +14,8 @@ public enum Move
 
 public class SquareData : MonoBehaviour
 {
-    public int MapID;//マップ生成時にセットされる自身のID
-    public Move MyMove;
+    public int MapID = 0;//マップ生成時にセットされる自身のID
+    public Move MyMove = Move.None;
     // Start is called before the first frame update
     void Start()
     {
