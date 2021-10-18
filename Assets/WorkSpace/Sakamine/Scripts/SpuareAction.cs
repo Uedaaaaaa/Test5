@@ -25,6 +25,11 @@ public class SpuareAction : MonoBehaviour
         [Header("Sizeにテキストの数を入力")]
         public List<EventData> eventData;
     }
+    [System.Serializable]
+    public class QuizEvent : Event
+    {
+
+    }
     [Header("Sizeにイベントの個数を入力")]
     [SerializeField] List<Event> plusEvent = new List<Event>();
     [SerializeField] List<Event> minusEvent = new List<Event>();
@@ -84,7 +89,11 @@ public class SpuareAction : MonoBehaviour
     {
         if (!PlusFlg)
         {
-            DoEvent(plusEvent);
+            StartCoroutine("Novel", plusEvent[EventRand].eventData[EventCount].Message);
+            imgEventChara.sprite = plusEvent[EventRand].eventData[EventCount].SpriteEventChara;
+            txtPlayerName.text = plusEvent[EventRand].eventData[EventCount].PlayerName;
+            EventRand = Random.Range(0, plusEvent.Count - 1);
+            SetUI();
             PlusFlg = true;
         }
         if(Input.GetKeyDown(KeyCode.Return))
@@ -101,7 +110,7 @@ public class SpuareAction : MonoBehaviour
                 else
                 {
                     EventCount++;
-                    StartCoroutine("Novel", plusEvent);
+                    StartCoroutine("Novel", plusEvent[EventRand].eventData[EventCount].Message);
                     //キャラ画像が設定されてるなら変更
                     if (plusEvent[EventRand].eventData[EventCount].SpriteEventChara != null)
                     {
@@ -123,7 +132,11 @@ public class SpuareAction : MonoBehaviour
     {
         if (!MinusFlg)
         {
-            DoEvent(minusEvent);
+            StartCoroutine("Novel", minusEvent[EventRand].eventData[EventCount].Message);
+            imgEventChara.sprite = minusEvent[EventRand].eventData[EventCount].SpriteEventChara;
+            txtPlayerName.text = minusEvent[EventRand].eventData[EventCount].PlayerName;
+            EventRand = Random.Range(0, minusEvent.Count - 1);
+            SetUI();
             MinusFlg = true;
         }
         if (Input.GetKeyDown(KeyCode.Return))
@@ -141,7 +154,7 @@ public class SpuareAction : MonoBehaviour
                 else
                 {
                     EventCount++;
-                    StartCoroutine("Novel", minusEvent);
+                    StartCoroutine("Novel", minusEvent[EventRand].eventData[EventCount].Message);
                     //キャラ画像が設定されてるなら変更
                     if (minusEvent[EventRand].eventData[EventCount].SpriteEventChara != null)
                     {
@@ -171,28 +184,24 @@ public class SpuareAction : MonoBehaviour
         EventCount = 0;
     }
     //1文字ずつ表示する処理
-    IEnumerator Novel(List<Event> eventName)
+    IEnumerator Novel(string NowMessage)
     {
         int messageCount = 0; //現在表示中の文字数
         txtMessage.text = ""; //テキストのリセット
-        while (eventName[EventRand].eventData[EventCount].Message.Length > messageCount)//文字をすべて表示していない場合ループ
+        while (NowMessage.Length > messageCount)//文字をすべて表示していない場合ループ
         {
-            txtMessage.text += eventName[EventRand].eventData[EventCount].Message[messageCount];//一文字追加
+            txtMessage.text += NowMessage[messageCount];//一文字追加
             messageCount++;//現在の文字数
             yield return new WaitForSeconds(NovelSpeed);//任意の時間待つ
         }
         NextTextFlg = true;
     }
-    //イベント最初の処理
-    void DoEvent(List<Event> eventName)
+    //UIを表示
+    void SetUI()
     {
-        StartCoroutine("Novel", eventName);
-        imgEventChara.sprite = eventName[EventRand].eventData[EventCount].SpriteEventChara;
-        txtPlayerName.text = eventName[EventRand].eventData[EventCount].PlayerName;
         imgEventChara.gameObject.SetActive(true);
         imgTextSpace.gameObject.SetActive(true);
         txtMessage.gameObject.SetActive(true);
         txtPlayerName.gameObject.SetActive(true);
-        EventRand = Random.Range(0, eventName.Count - 1);
     }
 }
