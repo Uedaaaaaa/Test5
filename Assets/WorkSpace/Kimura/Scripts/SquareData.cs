@@ -3,14 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using KanKikuchi.AudioManager;
 
-public enum Move
-{
-    None,
-    Left,
-    Right,
-    Up,
-    Down,
-}
 
 public class SquareData : MonoBehaviour
 {

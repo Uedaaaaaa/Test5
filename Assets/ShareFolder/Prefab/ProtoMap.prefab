@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4981310245773967729
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4981310245773967731}
+  - component: {fileID: 4981310245773967728}
+  m_Layer: 0
+  m_Name: ProtoMap 1
+  m_TagString: Map
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4981310245773967731
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4981310245773967729}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -17.1484, y: 13.483138, z: -17.800005}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4981310245773967728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4981310245773967729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba05c9ed864f05e40b7e9232a930223c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HalloweenPrefab: {fileID: 3464114044674534445, guid: 224aebe201a99b3498e5bd939108d01c, type: 3}
+  MinusPrefab: {fileID: 3734885650089437193, guid: 8d13825248382ae42aa5c471195ba70f, type: 3}
+  PlusPrefab: {fileID: 7026294784041904461, guid: 1c6095ab13adf134ca66fca41074d7b8, type: 3}
+  QuizPrefab: {fileID: 3447305450061463132, guid: d36a2a005e55f934a9f450e396bc8fc9, type: 3}

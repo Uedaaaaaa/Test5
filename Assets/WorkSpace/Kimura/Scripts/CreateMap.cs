@@ -2,13 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//プレイヤーが進める方向
+public enum Move
+{
+    None,
+    Left,
+    Right,
+    Up,
+    Down,
+}
+
+//マス目のクラス
+public class Square
+{
+    //自身の所持するID
+    public int MyID;
+    //プレイヤーに伝える次に進める方向
+    public Move MyMove;
+    //初期値設定
+    public Square()
+    {
+        this.MyID = 0;
+        this.MyMove = Move.None;
+    }
+}
 public class CreateMap : MonoBehaviour
 {
     //インスタンス作成時に参照するオブジェクト
-    public GameObject HalloweenPrehub;
-    public GameObject MinusPrehub;
-    public GameObject PlusPrehub;
-    public GameObject QuizPrehub;
+    public GameObject HalloweenPrefab;
+    public GameObject MinusPrefab;
+    public GameObject PlusPrefab;
+    public GameObject QuizPrefab;
 
     //マップ作成用二次配列
     int[][] MapData = new int[8][];
@@ -27,12 +51,17 @@ public class CreateMap : MonoBehaviour
     
     //作成するインスタンスの格納用オブジェクト
     GameObject SetSquare;
-    
-    SquareData squareData;
+
+    //マス目クラス
+    public Square[] squares = new Square[64];
 
     //プレイヤーに次に進む方向を指示
     [System.NonSerialized]
     public Move move = Move.None;
+
+    //インスペクタ上でIDと向きが正しいかデバッグ用
+    //SquareData squareData;
+        
     // Start is called before the first frame update
     void Start()
     {
@@ -54,7 +83,8 @@ public class CreateMap : MonoBehaviour
         {
             for(int j = MapData[i].Length-1; j >= 0; j--)
             {
-                //オブジェクトの向きをセット
+                //オブジェクトの向きと
+                //マス目クラスに格納するプレイヤーの進む向きをセット
                 Quaternion Set;
                 SetSquare = null;
                 move = Move.None;
@@ -92,38 +122,38 @@ public class CreateMap : MonoBehaviour
                 {
                     switch (MapData[i][j])
                     {
+                        //インスタンス作成するオブジェクトをプレハブから獲得
                         case 1:
-                            SetSquare = HalloweenPrehub;
-                            //squareData = HalloweenPrehub.GetComponent<SquareData>();
+                            SetSquare = HalloweenPrefab;
                             break;
                         case 2:
-                            SetSquare = MinusPrehub;
-                            //squareData = MinusPrehub.GetComponent<SquareData>();
+                            SetSquare = MinusPrefab;
                             break;
                         case 3:
-                            SetSquare = PlusPrehub;
-                            //squareData = PlusPrehub.GetComponent<SquareData>();
+                            SetSquare = PlusPrefab;
                             break;
                         case 4:
-                            SetSquare = QuizPrehub;
-                            //squareData = QuizPrehub.GetComponent<SquareData>();
+                            SetSquare = QuizPrefab;
                             break;
                     }
+                    //インスタンスオブジェクトを作成し、子構造にする
                     MapObject[SquareID] = Instantiate(SetSquare,
                                 new Vector3(-20 * (MapData[i].Length - 1 - j), 0, 20 * (MapData.Length - 1 - i)), Set);
                     MapObject[SquareID].transform.parent = this.transform;
-                    squareData = MapObject[SquareID].GetComponent<SquareData>();
-                    squareData.SetID(SquareID,move);
-                    //squareData[SquareID].MapID = SquareID;
-                    //squareData[SquareID].MyMove = move;
-                    //((MapData[i].Length - 1) - j) + ((MapData.Length - 1) - i);
+
+                    //マス目クラスを作成
+                    squares[SquareID] = new Square();
+                    squares[SquareID].MyID = SquareID;
+                    squares[SquareID].MyMove = move;
+
+                    //MyIDとMyMoveをインスペクタ上で見るためのデバッグ用処理
+                    //squareData = MapObject[SquareID].GetComponent<SquareData>();
+                    //squareData.SetID(squares[SquareID].MyID, squares[SquareID].MyMove);
                 }
                 else
                 {
                     MapObject[SquareID] = null;
                 }
-                //squareData.MapID = SquareID + 1;
-                //squareData.MyMove = Move.None;
                 SquareID++;
             }
         }
