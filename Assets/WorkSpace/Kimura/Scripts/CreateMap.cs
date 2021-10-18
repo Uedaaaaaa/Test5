@@ -4,19 +4,33 @@ using UnityEngine;
 
 public class CreateMap : MonoBehaviour
 {
+    //インスタンス作成時に参照するオブジェクト
     public GameObject HalloweenPrehub;
     public GameObject MinusPrehub;
     public GameObject PlusPrehub;
     public GameObject QuizPrehub;
+
+    //マップ作成用二次配列
     int[][] MapData = new int[8][];
+
+    //オブジェクトの向き
     Quaternion Left = Quaternion.Euler(0, 270, 0);
     Quaternion Right = Quaternion.Euler(0, 90, 0);
     Quaternion None = Quaternion.Euler(0, 0, 0);
+
+    //それぞれのマスに入れるマスのID
     [System.NonSerialized]
     public int SquareID = 0;
+
+    //マップとして作成するオブジェクト
     GameObject[] MapObject = new GameObject[64];
+    
+    //作成するインスタンスの格納用オブジェクト
     GameObject SetSquare;
-    SquareData squareData ;
+    
+    SquareData squareData;
+
+    //プレイヤーに次に進む方向を指示
     [System.NonSerialized]
     public Move move = Move.None;
     // Start is called before the first frame update
