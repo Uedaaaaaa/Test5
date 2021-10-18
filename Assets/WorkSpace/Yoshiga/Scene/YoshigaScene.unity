@@ -219,6 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7944c82b64611d04fa7e33e4e24f41e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DiceObj: {fileID: 6074541189656972468, guid: 3422033834799ad428708b39c7b95f51, type: 3}
   CharacterObj:
   - {fileID: 7718318516049553528}
   - {fileID: 277500826280910524}
@@ -226,6 +227,8 @@ MonoBehaviour:
   - {fileID: 1575913497672476699}
   GameTurn: 10
   NowPlayerNo: 0
+  Ordering: 0
+  OrderjudgeNo: 00000000000000000000000000000000
 --- !u!1 &1628733092
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,24 +557,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dice
       objectReference: {fileID: 0}
-    - target: {fileID: 6074541189656972475, guid: 3422033834799ad428708b39c7b95f51, type: 3}
-      propertyPath: DiceRollSpeed
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 6074541189656972478, guid: 3422033834799ad428708b39c7b95f51, type: 3}
       propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6074541189656972478, guid: 3422033834799ad428708b39c7b95f51, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6074541189656972478, guid: 3422033834799ad428708b39c7b95f51, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6074541189656972478, guid: 3422033834799ad428708b39c7b95f51, type: 3}
-      propertyPath: m_LocalScale.z
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6074541189656972478, guid: 3422033834799ad428708b39c7b95f51, type: 3}
