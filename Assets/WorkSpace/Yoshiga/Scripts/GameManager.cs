@@ -99,14 +99,14 @@ public class GameManager : MonoBehaviour
             Array.Sort(OrderArray);
             Array.Reverse(OrderArray);
 
-            for (int i = 0; i < 4; ++i)
-            {
-                Debug.Log("変更前 = " + OrderArray[i]);             
-            }
-            for (int i = 0; i < 4; ++i)
-            {
-                Debug.Log(i + "のダイスNo = " + characters[i].MyDiceNo);
-            }
+            //for (int i = 0; i < 4; ++i)
+            //{
+            //    Debug.Log("変更前 = " + OrderArray[i]);             
+            //}
+            //for (int i = 0; i < 4; ++i)
+            //{
+            //    Debug.Log(i + "のダイスNo = " + characters[i].MyDiceNo);
+            //}
 
             for (int i = 0; i < 4; ++i)
             {                
@@ -120,10 +120,10 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            for (int i = 0; i < 4; ++i)
-            {
-                Debug.Log("変更後の"+ i + " = " +OrderArray[i]);
-            }
+            //for (int i = 0; i < 4; ++i)
+            //{
+            //    Debug.Log("変更後の"+ i + " = " +OrderArray[i]);
+            //}
 
             Ordering = false;
         }
@@ -143,8 +143,5 @@ public class GameManager : MonoBehaviour
             }
             FinishDiceFlg = false;
         }
-
-        Debug.Log("NowPlayerNo = " + NowPlayerNo);
-
     }
 }
