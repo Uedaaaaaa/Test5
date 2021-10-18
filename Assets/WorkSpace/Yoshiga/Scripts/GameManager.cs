@@ -52,6 +52,15 @@ public class GameManager : MonoBehaviour
     //順番決めで出たダイスの目を保存する変数
     [HideInInspector]
     public int[] OrderjudgeNo = new int[4];
+    [Header("プレイヤー固定カメラのプレイヤーからの距離")]
+    [SerializeField]
+    private Vector3 PlayerCameraPos;
+    [Header("カメラの傾き : X軸")]
+    [SerializeField]
+    private float CameraXaxis;
+    [Header("プレイヤー固定カメラの向きたい高さ")]
+    [SerializeField]
+    private float CameraLookY;
     
     // Start is called before the first frame update
     void Start()
@@ -88,6 +97,24 @@ public class GameManager : MonoBehaviour
     private void SpawnDice()
     {          
         Instantiate(DiceObj, new Vector3(CharacterObj[OrderArray[NowPlayerNo]].transform.position.x, CharacterObj[OrderArray[NowPlayerNo]].transform.position.y + 10, CharacterObj[OrderArray[NowPlayerNo]].transform.position.z), CharacterObj[OrderArray[NowPlayerNo]].transform.rotation);       
+    }
+
+    private void FixedUpdate()
+    {
+        //カメラの位置を更新
+        if(Ordering == false)
+        {
+            Vector3 NewPos = Vector3.Lerp(
+                                transform.position, //現状のカメラ位置
+                                CharacterObj[OrderArray[NowPlayerNo]].transform.position + PlayerCameraPos, //行きたいカメラ位置
+                                Time.fixedDeltaTime * 3.0f); //その差の割合（0～1）
+
+            //カメラの位置と角度の調整
+            transform.position = NewPos;
+            //transform.LookAt(new Vector3(CharacterObj[OrderArray[NowPlayerNo]].transform.position.x,
+            //                             CharacterObj[OrderArray[NowPlayerNo]].transform.position.y + CameraLookY,
+            //                             CharacterObj[OrderArray[NowPlayerNo]].transform.position.z));
+        }
     }
 
     // Update is called once per frame
@@ -127,6 +154,7 @@ public class GameManager : MonoBehaviour
             //}
 
             Ordering = false;
+            transform.rotation = Quaternion.Euler(CameraXaxis, 0, 0);
         }
 
         //ダイスを出現させる処理
