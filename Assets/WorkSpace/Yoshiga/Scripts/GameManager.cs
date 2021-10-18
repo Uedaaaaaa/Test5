@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
             characters[i].MyNo = i + 1;
             characters[i].MyRB = CharacterObj[i].GetComponent<Rigidbody>();
         }
+        SpawnDice();
     }
 
     //ダイスの目を保存する処理
