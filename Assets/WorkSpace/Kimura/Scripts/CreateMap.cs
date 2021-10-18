@@ -143,7 +143,7 @@ public class CreateMap : MonoBehaviour
 
                     //マス目クラスを作成
                     squares[SquareID] = new Square();
-                    squares[SquareID].MyID = SquareID;
+                    squares[SquareID].MyID = SquareID + 1;
                     squares[SquareID].MyMove = move;
 
                     //MyIDとMyMoveをインスペクタ上で見るためのデバッグ用処理
