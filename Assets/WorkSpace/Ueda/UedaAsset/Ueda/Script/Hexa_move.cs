@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class Hexa_move : MonoBehaviour
 {
-    float time;
+    float time = 2f;
     void Start()
     {
-        time = 0;
+        
     }
 
     void Update()
     {
-        time += Time.deltaTime;
-        float z = Mathf.PerlinNoise(time, 0);
-        gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, z);
+        transform.position = new Vector3(transform.position.x, transform.position.y, 10 + Mathf.Sin(Time.frameCount * time));
     }
 }
