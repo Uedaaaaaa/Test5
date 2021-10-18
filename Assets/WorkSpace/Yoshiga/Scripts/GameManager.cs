@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     [Header("サイコロ : オブジェクト")]
     [SerializeField]
     private GameObject DiceObj;
-    //キャラクター配列
+    //キャラクタークラス配列
     [HideInInspector]
     public Character[] characters = new Character[4];
     [Header("キャラクター : オブジェクト")]
