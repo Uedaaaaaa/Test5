@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnAction : MonoBehaviour
+public class move_Hexa : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()

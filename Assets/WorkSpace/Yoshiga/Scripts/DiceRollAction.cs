@@ -47,6 +47,8 @@ public class DiceRollAction : MonoBehaviour
 
     //GameManagerのScript
     private GameManager manager;
+    //乱数調整用変数
+    private int ransuchousei;
 
     // Start is called before the first frame update
     void Start()
@@ -64,7 +66,10 @@ public class DiceRollAction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("BtnA"))
+        //乱数調整用
+        ransuchousei = Random.Range(1, 7);
+
+        if (Input.GetButtonDown("BtnA") && JumpFlg == false)
         {
             //ダイスロールを開始
             if (DiceRollFlg == true)
@@ -81,13 +86,12 @@ public class DiceRollAction : MonoBehaviour
     private void FixedUpdate()
     {        
         //ダイスが跳ねている時にSinを増やす処理
-        if(JumpFlg == true)
+        if(JumpFlg == true && DestroyFlg == false)
         {
             JumpSin += Time.deltaTime * JumpSpeed;
 
             if(Mathf.Sin(JumpSin) < 0)
             {
-                JumpFlg = false;
                 JumpSin = 0;
                 DestroyFlg = true;
             }
@@ -118,6 +122,13 @@ public class DiceRollAction : MonoBehaviour
                 JumpFlg = true;
                 JumpPosY = this.gameObject.transform.position.y;
                 DiceNo = Random.Range(1, 7);
+                if(manager.Ordering == true)
+                {
+                    while (DiceNo == manager.OrderjudgeNo[0] || DiceNo == manager.OrderjudgeNo[1] || DiceNo == manager.OrderjudgeNo[2] || DiceNo == manager.OrderjudgeNo[3])
+                    {
+                        DiceNo = Random.Range(1, 7);
+                    }
+                }               
                 manager.SetDiceNo(DiceNo);
                 for(int i = 0;i < 6; ++i)
                 {
