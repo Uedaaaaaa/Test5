@@ -19,9 +19,13 @@ public class SquareData : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
 
+    }
+    public void SetID(int ID,Move move)
+    {
+        MapID = ID;
+        MyMove = move;
+    }
     // Update is called once per frame
     void Update()
     {

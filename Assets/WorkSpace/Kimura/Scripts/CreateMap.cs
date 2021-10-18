@@ -12,10 +12,13 @@ public class CreateMap : MonoBehaviour
     Quaternion Left = Quaternion.Euler(0, 270, 0);
     Quaternion Right = Quaternion.Euler(0, 90, 0);
     Quaternion None = Quaternion.Euler(0, 0, 0);
-    int SquareID = 0;
+    [System.NonSerialized]
+    public int SquareID = 0;
     GameObject[] MapObject = new GameObject[64];
-    SquareData[] squareData = new SquareData[64];
-    Move move = Move.None;
+    GameObject SetSquare;
+    SquareData squareData ;
+    [System.NonSerialized]
+    public Move move = Move.None;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +42,7 @@ public class CreateMap : MonoBehaviour
             {
                 //オブジェクトの向きをセット
                 Quaternion Set;
+                SetSquare = null;
                 move = Move.None;
                 if(j == 0)
                 {
@@ -72,31 +76,32 @@ public class CreateMap : MonoBehaviour
                 //オブジェクトのインスタンスを生成
                 if(MapData[i][j] != 0)
                 {
-                    switch(MapData[i][j])
+                    switch (MapData[i][j])
                     {
                         case 1:
-                            MapObject[SquareID] = HalloweenPrehub;
+                            SetSquare = HalloweenPrehub;
                             //squareData = HalloweenPrehub.GetComponent<SquareData>();
                             break;
                         case 2:
-                            MapObject[SquareID] = MinusPrehub;
+                            SetSquare = MinusPrehub;
                             //squareData = MinusPrehub.GetComponent<SquareData>();
                             break;
                         case 3:
-                            MapObject[SquareID] = PlusPrehub;
+                            SetSquare = PlusPrehub;
                             //squareData = PlusPrehub.GetComponent<SquareData>();
                             break;
                         case 4:
-                            MapObject[SquareID] = QuizPrehub;
+                            SetSquare = QuizPrehub;
                             //squareData = QuizPrehub.GetComponent<SquareData>();
                             break;
                     }
-                    Instantiate(MapObject[SquareID],
+                    MapObject[SquareID] = Instantiate(SetSquare,
                                 new Vector3(-20 * (MapData[i].Length - 1 - j), 0, 20 * (MapData.Length - 1 - i)), Set);
                     MapObject[SquareID].transform.parent = this.transform;
-                    squareData[SquareID] = MapObject[SquareID].GetComponent<SquareData>();
-                    squareData[SquareID].MapID = SquareID;
-                    squareData[SquareID].MyMove = move;
+                    squareData = MapObject[SquareID].GetComponent<SquareData>();
+                    squareData.SetID(SquareID,move);
+                    //squareData[SquareID].MapID = SquareID;
+                    //squareData[SquareID].MyMove = move;
                     //((MapData[i].Length - 1) - j) + ((MapData.Length - 1) - i);
                 }
                 else

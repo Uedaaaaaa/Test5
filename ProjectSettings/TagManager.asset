@@ -8,6 +8,7 @@ TagManager:
   - Quiz
   - Plus
   - Minus
+  - Map
   layers:
   - Default
   - TransparentFX
