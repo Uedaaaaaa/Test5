@@ -15,15 +15,21 @@ public enum move
 public class sample : MonoBehaviour
 {
     public move mymove = move.none;
+    CreateMap square;
+    GameObject map;
+    public int DebugID;
+    public Move DebugMove;
     // Start is called before the first frame update
     void Start()
     {
-        SEManager.Instance.Play(SEPath.SYSTEM20);
+        map = GameObject.FindGameObjectWithTag("Map");
+        square = map.GetComponent<CreateMap>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        DebugID = square.squares[7].MyID;
+        DebugMove = square.squares[7].MyMove;
     }
 }

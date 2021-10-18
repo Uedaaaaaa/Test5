@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3926927400782019567
+--- !u!1 &2746295631052394821
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3926927400782019565}
-  - component: {fileID: 3926927400782019566}
+  - component: {fileID: 2746295631052394823}
+  - component: {fileID: 2746295631052394820}
   m_Layer: 0
-  m_Name: ProtoMap
+  m_Name: ProtoMap 1
   m_TagString: Map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3926927400782019565
+--- !u!4 &2746295631052394823
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3926927400782019567}
+  m_GameObject: {fileID: 2746295631052394821}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -17.1484, y: 13.483138, z: -17.800005}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,19 +31,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3926927400782019566
+--- !u!114 &2746295631052394820
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3926927400782019567}
+  m_GameObject: {fileID: 2746295631052394821}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba05c9ed864f05e40b7e9232a930223c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HalloweenPrehub: {fileID: 8135792070610702531, guid: 4b943ea7826b3c94abafd82ffe5788cc, type: 3}
-  MinusPrehub: {fileID: 7910897962366710938, guid: 55b1f5359dd8c08478290be1a5f38b81, type: 3}
-  PlusPrehub: {fileID: 5858991994384444237, guid: a1627252ab337644cbb1602b574b71f8, type: 3}
-  QuizPrehub: {fileID: 38677013401963270, guid: 44f7cdf2ef63d20499fef9c012e8b21f, type: 3}
+  HalloweenPrefab: {fileID: 3464114044674534445, guid: 224aebe201a99b3498e5bd939108d01c, type: 3}
+  MinusPrefab: {fileID: 3734885650089437193, guid: 8d13825248382ae42aa5c471195ba70f, type: 3}
+  PlusPrefab: {fileID: 7026294784041904461, guid: 1c6095ab13adf134ca66fca41074d7b8, type: 3}
+  QuizPrefab: {fileID: 3447305450061463132, guid: d36a2a005e55f934a9f450e396bc8fc9, type: 3}
