@@ -2281,11 +2281,11 @@ GameObject:
   - component: {fileID: 1221112285}
   m_Layer: 0
   m_Name: girl_Manage
-  m_TagString: Quiz
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1221112285
 Transform:
   m_ObjectHideFlags: 0
@@ -3040,10 +3040,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1219506376418324979, guid: a48dd8fd9c27ba84cbf93b6fbd56511d, type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1289185441122860214, guid: a48dd8fd9c27ba84cbf93b6fbd56511d, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -3088,10 +3084,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1548477878454224509, guid: a48dd8fd9c27ba84cbf93b6fbd56511d, type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1922979834356295180, guid: a48dd8fd9c27ba84cbf93b6fbd56511d, type: 3}
       propertyPath: m_Name
       value: 'OrangeGirl '
@@ -3099,18 +3091,6 @@ PrefabInstance:
     - target: {fileID: 1922979834356295180, guid: a48dd8fd9c27ba84cbf93b6fbd56511d, type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3176487537160826237, guid: a48dd8fd9c27ba84cbf93b6fbd56511d, type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4161668845851767618, guid: a48dd8fd9c27ba84cbf93b6fbd56511d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5084828422324590809, guid: a48dd8fd9c27ba84cbf93b6fbd56511d, type: 3}
-      propertyPath: m_CastShadows
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a48dd8fd9c27ba84cbf93b6fbd56511d, type: 3}
