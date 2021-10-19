@@ -127,15 +127,6 @@ public class GameManager : MonoBehaviour
             Array.Sort(OrderArray);
             Array.Reverse(OrderArray);
 
-            //for (int i = 0; i < 4; ++i)
-            //{
-            //    Debug.Log("変更前 = " + OrderArray[i]);             
-            //}
-            //for (int i = 0; i < 4; ++i)
-            //{
-            //    Debug.Log(i + "のダイスNo = " + characters[i].MyDiceNo);
-            //}
-
             for (int i = 0; i < 4; ++i)
             {                
                 for (int j = 0;j < 4; ++j)
@@ -148,11 +139,7 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            //for (int i = 0; i < 4; ++i)
-            //{
-            //    Debug.Log("変更後の"+ i + " = " +OrderArray[i]);
-            //}
-
+            //順番決めのターン終了
             Ordering = false;
             transform.rotation = Quaternion.Euler(CameraXaxis, 0, 0);
         }
@@ -167,6 +154,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+                //全員が終わったらゲームの残りターンを減らす
                 NowPlayerNo = 0;
                 GameTurn--;
             }
