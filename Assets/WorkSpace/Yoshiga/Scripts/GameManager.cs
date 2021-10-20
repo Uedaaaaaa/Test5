@@ -6,7 +6,7 @@ using System;
 //キャラクタークラス
 public class Character
 {
-    //キャラクターナンバー
+    //キャラクターの番号
     public int MyNo;
     //キャラクターのRigidbody
     public Rigidbody MyRB;
@@ -46,7 +46,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public bool Ordering;
     //順番を保存しておくための変数
-    private int[] OrderArray = new int[4];
+    [HideInInspector]
+    public int[] OrderArray = new int[4];
     //ダイスを振ったかどうかの確認フラグ
     private bool FinishDiceFlg = false;
     //順番決めで出たダイスの目を保存する変数
@@ -95,8 +96,13 @@ public class GameManager : MonoBehaviour
 
     //サイコロ生成処理
     private void SpawnDice()
-    {          
-        Instantiate(DiceObj, new Vector3(CharacterObj[OrderArray[NowPlayerNo]].transform.position.x, CharacterObj[OrderArray[NowPlayerNo]].transform.position.y + 10, CharacterObj[OrderArray[NowPlayerNo]].transform.position.z), CharacterObj[OrderArray[NowPlayerNo]].transform.rotation);       
+    {
+        Instantiate(DiceObj, new Vector3(CharacterObj[OrderArray[NowPlayerNo]].transform.position.x,
+                                         CharacterObj[OrderArray[NowPlayerNo]].transform.position.y + 10,
+                                         CharacterObj[OrderArray[NowPlayerNo]].transform.position.z),
+                        Quaternion.Euler(CharacterObj[OrderArray[NowPlayerNo]].transform.rotation.x,
+                                         0.0f,
+                                         CharacterObj[OrderArray[NowPlayerNo]].transform.rotation.z));                                               
     }
 
     private void FixedUpdate()
