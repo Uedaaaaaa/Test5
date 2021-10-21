@@ -3,20 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+//マスの名前の列挙体
+public enum MassType
+{
+    Plus,
+    Minus,
+    Halloween,
+    Quiz
+}
+
 //キャラクタークラス
 public class Character
 {
-    //キャラクターの番号
-    public int MyNo;
-    //キャラクターのRigidbody
-    public Rigidbody MyRB;
-    //キャラクターが持っている飴の個数
-    public int Candy;
-    //キャラクターのやる気
-    public int Yaruki;
-    //現在のターンに自身が出したダイスの目
-    public int MyDiceNo;
-   
+    public int MyNo;        //キャラクターの番号
+    public Rigidbody MyRB;  //キャラクターのRigidbody                      
+    public int Candy;       //キャラクターが持っている飴の個数    
+    public int Yaruki;      //キャラクターのやる気   
+    public int MyDiceNo;    //現在のターンに自身が出したダイスの目
+
     //キャラクターの初期値設定の関数
     public Character()
     {
@@ -29,40 +33,27 @@ public class Character
 public class GameManager : MonoBehaviour
 {
     [Header("サイコロ : オブジェクト")]
-    [SerializeField]
-    private GameObject DiceObj;
-    //キャラクタークラス配列
-    [HideInInspector]
-    public Character[] characters = new Character[4];
+    [SerializeField] private GameObject DiceObj;    
+    [HideInInspector] public Character[] characters = new Character[4];  //キャラクタークラス配列
+    [Header("キャラクターの速さ")]
+    public float CharacterSpeed;
     [Header("キャラクター : オブジェクト")]
-    [SerializeField]
-    private GameObject[] CharacterObj = new GameObject[4];
+    [SerializeField] private GameObject[] CharacterObj = new GameObject[4];
     [Header("ターン数 : 全員がサイコロを振って1ターン")]
-    public int GameTurn;
-    //現在誰のターンかの変数
-    [HideInInspector]
-    public int NowPlayerNo;
-    //順番決めをしているかのフラグ
-    [HideInInspector]
-    public bool Ordering;
-    //順番を保存しておくための変数
-    [HideInInspector]
-    public int[] OrderArray = new int[4];
-    //ダイスを振ったかどうかの確認フラグ
-    private bool FinishDiceFlg = false;
-    //順番決めで出たダイスの目を保存する変数
-    [HideInInspector]
-    public int[] OrderjudgeNo = new int[4];
+    public int GameTurn;    
+    [HideInInspector] public int NowPlayerNo;                   //現在のターンで何番目の人のターンか
+    [HideInInspector] public bool Ordering;                     //順番決めをしているかのフラグ
+    [HideInInspector] public int[] OrderArray = new int[4];     //順番を保存しておくための変数  
+    private bool FinishDiceFlg = false;                         //ダイスを振ったかどうかの確認フラグ    
+    [HideInInspector] public int[] OrderjudgeNo = new int[4];   //順番決めで出たダイスの目を保存する変数
     [Header("プレイヤー固定カメラのプレイヤーからの距離")]
-    [SerializeField]
-    private Vector3 PlayerCameraPos;
+    [SerializeField] private Vector3 PlayerCameraPos;
     [Header("カメラの傾き : X軸")]
-    [SerializeField]
-    private float CameraXaxis;
+    [SerializeField] private float CameraXaxis;
     [Header("プレイヤー固定カメラの向きたい高さ")]
-    [SerializeField]
-    private float CameraLookY;
-    
+    [SerializeField] private float CameraLookY;
+
+
     // Start is called before the first frame update
     void Start()
     {
