@@ -16,6 +16,14 @@ public class PlayerAction : MonoBehaviour
         MyNo = int.Parse(gameObject.name.Substring(0, 1));
     }
 
+    private void FixedUpdate()
+    {
+        if(MyNo == manager.OrderArray[manager.NowPlayerNo])
+        {
+
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
