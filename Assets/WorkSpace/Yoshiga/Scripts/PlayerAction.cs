@@ -11,6 +11,7 @@ public class PlayerAction : MonoBehaviour
     private Vector3 StartDashVelocity;  //スタートダッシュの時の速度
     private bool MoveFlg = false;       //動いていいかのフラグ
     [HideInInspector]public MassType StopMass;       //止まったマスのタイプ
+    private Rigidbody MyRB;             //自身のRigidbody
     
     // Start is called before the first frame update
     void Start()
@@ -19,8 +20,10 @@ public class PlayerAction : MonoBehaviour
         MyNo = int.Parse(gameObject.name.Substring(0, 1));
         MapScript = GameObject.FindGameObjectWithTag("Map").GetComponent<CreateMap>();
         StartDashVelocity = new Vector3(-transform.position.x,0.0f,-transform.position.z).normalized * manager.CharacterSpeed;
+        MyRB = this.gameObject.GetComponent<Rigidbody>();
     }
 
+    //MoveFlgを変更する処理
     public void SetMoveFlg(bool Flg)
     {
         MoveFlg = Flg;
@@ -28,30 +31,35 @@ public class PlayerAction : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //プレイヤーが１マス進んだ時の処理
         if(other.gameObject.tag == "Plus")
         {
             StopMass = MassType.Plus;
-            manager.characters[manager.OrderArray[manager.NowPlayerNo]].MyDiceNo--;
+            manager.MinusDiceNo();
         }
         else if(other.gameObject.tag == "Minus")
         {
             StopMass = MassType.Minus;
+            manager.MinusDiceNo();
         }
         else if(other.gameObject.tag == "Halloween")
         {
             StopMass = MassType.Halloween;
+            manager.MinusDiceNo();
         }
         else if(other.gameObject.tag == "Quiz")
         {
             StopMass = MassType.Quiz;
+            manager.MinusDiceNo();
         }
     }
 
     private void FixedUpdate()
     {
-        if(MyNo == manager.OrderArray[manager.NowPlayerNo] && StartFlg == false)
+        //順番決めが終わっていてMoveflgがtrueの時
+        if(MyNo == manager.OrderArray[manager.NowPlayerNo] && StartFlg == false && manager.GameStatus == GameSTS.Play)
         {
-            
+            MyRB.velocity = StartDashVelocity;
         }
     }
 

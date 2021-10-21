@@ -12,11 +12,18 @@ public enum MassType
     Quiz
 }
 
+//ゲームステータスの列挙体
+public enum GameSTS
+{
+    OrderJudge,
+    Play,
+    Ranking
+}
+
 //キャラクタークラス
 public class Character
 {
-    public int MyNo;        //キャラクターの番号
-    public Rigidbody MyRB;  //キャラクターのRigidbody                      
+    public int MyNo;        //キャラクターの番号                    
     public int Candy;       //キャラクターが持っている飴の個数    
     public int Yaruki;      //キャラクターのやる気   
     public int MyDiceNo;    //現在のターンに自身が出したダイスの目
@@ -32,6 +39,7 @@ public class Character
 
 public class GameManager : MonoBehaviour
 {
+    [HideInInspector]public GameSTS GameStatus;    //ゲームステータス
     [Header("サイコロ : オブジェクト")]
     [SerializeField] private GameObject DiceObj;    
     [HideInInspector] public Character[] characters = new Character[4];  //キャラクタークラス配列
@@ -58,6 +66,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Ordering = true;
+        GameStatus = GameSTS.OrderJudge;
         NowPlayerNo = 0;
         //キャラクタークラスを作成し、Rigidbodyを格納
         for (int i = 0; i < characters.Length; ++i)
@@ -65,9 +74,14 @@ public class GameManager : MonoBehaviour
             characters[i] = new Character();
             OrderArray[i] = i;
             characters[i].MyNo = i + 1;
-            characters[i].MyRB = CharacterObj[i].GetComponent<Rigidbody>();
         }
         SpawnDice();
+    }
+
+    //プレイヤーが進んだ時に進める回数を減らす処理
+    public void MinusDiceNo()
+    {
+        characters[OrderArray[NowPlayerNo]].MyDiceNo--;
     }
 
     //ダイスの目を保存する処理
@@ -138,6 +152,7 @@ public class GameManager : MonoBehaviour
 
             //順番決めのターン終了
             Ordering = false;
+            GameStatus = GameSTS.Play;
             transform.rotation = Quaternion.Euler(CameraXaxis, 0, 0);
         }
 
