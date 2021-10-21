@@ -25,6 +25,8 @@ public class Square
         this.MyID = 0;
         this.MyMove = Move.None;
     }
+    //自身のポジション
+    public Vector3 MyPos;
 }
 public class CreateMap : MonoBehaviour
 {
@@ -37,6 +39,9 @@ public class CreateMap : MonoBehaviour
     //マップ作成用二次配列
     int[][] MapData = new int[8][];
 
+    //マップ作成配列
+    //int[] MapData = new int[26];
+
     //オブジェクトの向き
     Quaternion Left = Quaternion.Euler(0, 270, 0);
     Quaternion Right = Quaternion.Euler(0, 90, 0);
@@ -44,11 +49,15 @@ public class CreateMap : MonoBehaviour
 
     //それぞれのマスに入れるマスのID
     [System.NonSerialized]
-    public int SquareID = 0;
+    public int SquareID = 1;
 
     //マップとして作成するオブジェクト
-    GameObject[] MapObject = new GameObject[64];
-    
+    [System.NonSerialized]
+    public GameObject[] MapObject = new GameObject[64];
+
+    //オブジェクトを作成するポジション
+    public Vector3 SetPos;
+
     //作成するインスタンスの格納用オブジェクト
     GameObject SetSquare;
 
@@ -65,6 +74,8 @@ public class CreateMap : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SetPos = this.gameObject.transform.position;
+
         //Nothing:0
         //Halloween:1
         //Minus:2
@@ -125,26 +136,35 @@ public class CreateMap : MonoBehaviour
                         //インスタンス作成するオブジェクトをプレハブから獲得
                         case 1:
                             SetSquare = HalloweenPrefab;
+                            SetSquare.gameObject.name = SquareID.ToString();
                             break;
                         case 2:
                             SetSquare = MinusPrefab;
+                            SetSquare.gameObject.name = SquareID.ToString();
                             break;
                         case 3:
                             SetSquare = PlusPrefab;
+                            SetSquare.gameObject.name = SquareID.ToString();
                             break;
                         case 4:
                             SetSquare = QuizPrefab;
+                            SetSquare.gameObject.name = SquareID.ToString();
                             break;
                     }
+                    if(SquareID == 1)
+                    {
+                        SetSquare.gameObject.name += "Start";
+                    }
+
                     //インスタンスオブジェクトを作成し、子構造にする
-                    MapObject[SquareID] = Instantiate(SetSquare,
+                    MapObject[SquareID-1] = Instantiate(SetSquare,
                                 new Vector3(-20 * (MapData[i].Length - 1 - j), 0, 20 * (MapData.Length - 1 - i)), Set);
-                    MapObject[SquareID].transform.parent = this.transform;
+                    MapObject[SquareID-1].transform.parent = this.transform;
 
                     //マス目クラスを作成
-                    squares[SquareID] = new Square();
-                    squares[SquareID].MyID = SquareID + 1;
-                    squares[SquareID].MyMove = move;
+                    squares[SquareID-1] = new Square();
+                    squares[SquareID-1].MyID = SquareID;
+                    squares[SquareID-1].MyMove = move;
 
                     //MyIDとMyMoveをインスペクタ上で見るためのデバッグ用処理
                     //squareData = MapObject[SquareID].GetComponent<SquareData>();

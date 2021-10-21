@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using KanKikuchi.AudioManager;
-
 public enum move
 {
     none,
