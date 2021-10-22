@@ -12,7 +12,7 @@ public class PlayerAction : MonoBehaviour
     private bool MoveFlg = false;       //動いていいかのフラグ
     [HideInInspector]public MassType StopMass;       //止まったマスのタイプ
     private Rigidbody MyRB;             //自身のRigidbody
-    private int NowMassNo = 0;              //今いるマスの番号
+    public int NowMassNo = 0;              //今いるマスの番号
     
     // Start is called before the first frame update
     void Start()
@@ -32,47 +32,49 @@ public class PlayerAction : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //プレイヤーが１マス進んだ時の処理
-        if(other.gameObject.tag == "Plus")
+        if(MyNo == manager.OrderArray[manager.NowPlayerNo])
         {
-            StopMass = MassType.Plus;
-            manager.MinusDiceNo();
-            NowMassNo = int.Parse(other.gameObject.name.Substring(0, 1));
-            MyRB.velocity = Vector3.zero;
-        }
-        else if(other.gameObject.tag == "Minus")
-        {
-            StopMass = MassType.Minus;
-            manager.MinusDiceNo();
-            NowMassNo = int.Parse(other.gameObject.name.Substring(0, 1));
-        }
-        else if(other.gameObject.tag == "Halloween")
-        {
-            StopMass = MassType.Halloween;
-            manager.MinusDiceNo();
-            NowMassNo = int.Parse(other.gameObject.name.Substring(0, 1));
-        }
-        else if(other.gameObject.tag == "Quiz")
-        {
-            StopMass = MassType.Quiz;
-            manager.MinusDiceNo();
-            NowMassNo = int.Parse(other.gameObject.name.Substring(0, 1));
-        }
+            //プレイヤーが１マス進んだ時の処理
+            if (other.gameObject.tag == "Plus")
+            {
+                StopMass = MassType.Plus;
+                manager.MinusDiceNo();
+                NowMassNo = int.Parse(other.gameObject.name.Substring(0, 1));
+            }
+            else if (other.gameObject.tag == "Minus")
+            {
+                StopMass = MassType.Minus;
+                manager.MinusDiceNo();
+                NowMassNo = int.Parse(other.gameObject.name.Substring(0, 1));
+            }
+            else if (other.gameObject.tag == "Halloween")
+            {
+                StopMass = MassType.Halloween;
+                manager.MinusDiceNo();
+                NowMassNo = int.Parse(other.gameObject.name.Substring(0, 1));
+            }
+            else if (other.gameObject.tag == "Quiz")
+            {
+                StopMass = MassType.Quiz;
+                manager.MinusDiceNo();
+                NowMassNo = int.Parse(other.gameObject.name.Substring(0, 1));
+            }
 
-        if(NowMassNo == 1)
-        {
-            StartFlg = false;
-        }
+            if (NowMassNo == 1)
+            {
+                StartFlg = false;
+            }
 
-        //止まりたいマスについた時
-        if(manager.characters[manager.OrderArray[manager.NowPlayerNo]].MyDiceNo == 0)
-        {
-            MoveFlg = false;
-            MyRB.velocity = Vector3.zero;
-            this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
-            manager.ChangeNowPlayerNo();
-            manager.SpawnDice();
-        }
+            //止まりたいマスについた時
+            if (manager.characters[manager.OrderArray[manager.NowPlayerNo]].MyDiceNo == 0)
+            {
+                MoveFlg = false;
+                MyRB.velocity = Vector3.zero;
+                this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
+                manager.ChangeNowPlayerNo();
+                manager.SpawnDice();
+            }
+        }       
     }
 
     private void FixedUpdate()

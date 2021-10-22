@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
         {
             NowPlayerNo++;
         }
-        else
+        else if(NowPlayerNo >= 3)
         {
             //全員が終わったらゲームの残りターンを減らす
             NowPlayerNo = 0;
