@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject[] CharacterObj = new GameObject[4];
     [Header("ターン数 : 全員がサイコロを振って1ターン")]
     public int GameTurn;    
-    [HideInInspector] public int NowPlayerNo;                   //現在のターンで何番目の人のターンか
+    [HideInInspector] public int NowPlayerNo;                   //現在のターンで何番目の人のターンかの変数
     [HideInInspector] public bool Ordering;                     //順番決めをしているかのフラグ
     [HideInInspector] public int[] OrderArray = new int[4];     //順番を保存しておくための変数  
     private bool FinishDiceFlg = false;                         //ダイスを振ったかどうかの確認フラグ    
@@ -80,6 +80,21 @@ public class GameManager : MonoBehaviour
         SpawnDice();
     }
 
+    //現在のターンで何番目の人のターンかの変数を変える
+    public void ChangeNowPlayerNo()
+    {
+        if (NowPlayerNo < 3)
+        {
+            NowPlayerNo++;
+        }
+        else
+        {
+            //全員が終わったらゲームの残りターンを減らす
+            NowPlayerNo = 0;
+            GameTurn--;
+        }
+    }
+
     //プレイヤーが進んだ時に進める回数を減らす処理
     public void MinusDiceNo()
     {
@@ -106,7 +121,7 @@ public class GameManager : MonoBehaviour
     }
 
     //サイコロ生成処理
-    private void SpawnDice()
+    public void SpawnDice()
     {
         Instantiate(DiceObj, new Vector3(CharacterObj[OrderArray[NowPlayerNo]].transform.position.x,
                                          CharacterObj[OrderArray[NowPlayerNo]].transform.position.y + 10,
@@ -158,6 +173,8 @@ public class GameManager : MonoBehaviour
 
             //順番決めのターン終了
             Ordering = false;
+            NowPlayerNo = 0;
+            SpawnDice();
             GameStatus = GameSTS.Play;
             transform.rotation = Quaternion.Euler(CameraXaxis, 0, 0);
         }
@@ -165,16 +182,10 @@ public class GameManager : MonoBehaviour
         //ダイスを出現させるための処理
         if(FinishDiceFlg == true)
         {
-            Invoke("SpawnDice", 2);
-            if (NowPlayerNo < 3)
+            if(Ordering == true)
             {
-                NowPlayerNo++;
-            }
-            else
-            {
-                //全員が終わったらゲームの残りターンを減らす
-                NowPlayerNo = 0;
-                GameTurn--;
+                Invoke("SpawnDice", 2);
+                ChangeNowPlayerNo();
             }
             FinishDiceFlg = false;
         }

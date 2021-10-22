@@ -124,7 +124,10 @@ public class DiceRollAction : MonoBehaviour
                 DiceNo = Random.Range(1, 7);
                 if(manager.Ordering == true)
                 {
-                    while (DiceNo == manager.OrderjudgeNo[0] || DiceNo == manager.OrderjudgeNo[1] || DiceNo == manager.OrderjudgeNo[2] || DiceNo == manager.OrderjudgeNo[3])
+                    while (DiceNo == manager.OrderjudgeNo[0] 
+                        || DiceNo == manager.OrderjudgeNo[1] 
+                        || DiceNo == manager.OrderjudgeNo[2] 
+                        || DiceNo == manager.OrderjudgeNo[3])
                     {
                         DiceNo = Random.Range(1, 7);
                     }

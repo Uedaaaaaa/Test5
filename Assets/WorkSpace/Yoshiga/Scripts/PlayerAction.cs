@@ -12,13 +12,13 @@ public class PlayerAction : MonoBehaviour
     private bool MoveFlg = false;       //動いていいかのフラグ
     [HideInInspector]public MassType StopMass;       //止まったマスのタイプ
     private Rigidbody MyRB;             //自身のRigidbody
-    private int NowMassNo;              //今いるマスの番号
+    private int NowMassNo = 0;              //今いるマスの番号
     
     // Start is called before the first frame update
     void Start()
     {
         manager = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameManager>();
-        MyNo = int.Parse(gameObject.name.Substring(0, 1));
+        MyNo = int.Parse(gameObject.name.Substring(0, 1)) - 1;
         MapScript = GameObject.FindGameObjectWithTag("Map").GetComponent<CreateMap>();
         StartDashVelocity = new Vector3(-transform.position.x,0.0f,-transform.position.z).normalized * manager.CharacterSpeed;
         MyRB = this.gameObject.GetComponent<Rigidbody>();
@@ -38,6 +38,7 @@ public class PlayerAction : MonoBehaviour
             StopMass = MassType.Plus;
             manager.MinusDiceNo();
             NowMassNo = int.Parse(other.gameObject.name.Substring(0, 1));
+            MyRB.velocity = Vector3.zero;
         }
         else if(other.gameObject.tag == "Minus")
         {
@@ -58,36 +59,54 @@ public class PlayerAction : MonoBehaviour
             NowMassNo = int.Parse(other.gameObject.name.Substring(0, 1));
         }
 
+        if(NowMassNo == 1)
+        {
+            StartFlg = false;
+        }
+
         //止まりたいマスについた時
         if(manager.characters[manager.OrderArray[manager.NowPlayerNo]].MyDiceNo == 0)
         {
             MoveFlg = false;
             MyRB.velocity = Vector3.zero;
+            this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
+            manager.ChangeNowPlayerNo();
+            manager.SpawnDice();
         }
     }
 
     private void FixedUpdate()
     {
         //キャラクターが動いていい時の処理
-        if(MoveFlg && MyNo == manager.OrderArray[manager.NowPlayerNo] && manager.GameStatus == GameSTS.Play)
+        if(MoveFlg == true && MyNo == manager.OrderArray[manager.NowPlayerNo] && manager.GameStatus == GameSTS.Play)
         {
             //キャラクターを動かす処理
             if (StartFlg == true)
             {
                 MyRB.velocity = StartDashVelocity;
+                this.gameObject.transform.LookAt(new Vector3(0, 0, 0));
             }
             else
             {
                 switch (MapScript.squares[NowMassNo].MyMove)
                 {
                     case Move.Down:
+                        MyRB.velocity = new Vector3(0, 0, -1) * manager.CharacterSpeed;
+                        this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
+                        break;
+                    case Move.Up:
+                        MyRB.velocity = new Vector3(0, 0, 1) * manager.CharacterSpeed;
+                        this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
                         break;
                     case Move.Left:
+                        MyRB.velocity = new Vector3(-1, 0, 0) * manager.CharacterSpeed;
+                        this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 270.0f, 0.0f);
                         break;
                     case Move.Right:
+                        MyRB.velocity = new Vector3(1, 0, 0) * manager.CharacterSpeed;
+                        this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 90.0f, 0.0f);
                         break;
-                    case Move.None:
-                        break;
+                    
                 }
 
             }
