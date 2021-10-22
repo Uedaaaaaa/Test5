@@ -105,20 +105,23 @@ public class CreateMap : MonoBehaviour
             {
                 SetPos.z -= 20;
             }
-            switch (i)
+
+            //進む方向をセットする
+            if(i < 8)
             {
-                case 1:
-                    move = Move.Left;
-                    break;
-                case 8:
-                    move = Move.Up;
-                    break;
-                case 15:
-                    move = Move.Right;
-                    break;
-                case 22:
-                    move = Move.Down;
-                    break;
+                move = Move.Left;
+            }
+            else if(i >= 8 && i < 15)
+            {
+                move = Move.Up;
+            }
+            else if(i >= 15 && i < 22)
+            {
+                move = Move.Right;
+            }
+            else if(i >= 22)
+            {
+                move = Move.Down;
             }
             if (i >= 8 && i < 15)
             {
@@ -162,8 +165,8 @@ public class CreateMap : MonoBehaviour
             squares[i - 1].MyMove = move;
             squares[i - 1].MyPos = SetPos;
             //MyIDとMyMoveをインスペクタ上で見るためのデバッグ用処理
-            //squareData = MapObject[i-1].GetComponent<SquareData>();
-            //squareData.SetID(squares[i-1].MyID, squares[i-1].MyMove,squares[i-1].MyPos);
+            //squareData = MapObject[i - 1].GetComponent<SquareData>();
+            //squareData.SetID(squares[i - 1].MyID, squares[i - 1].MyMove, squares[i - 1].MyPos);
         }
     }
 
