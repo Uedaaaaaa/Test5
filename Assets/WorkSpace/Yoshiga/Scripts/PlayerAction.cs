@@ -7,7 +7,7 @@ public class PlayerAction : MonoBehaviour
     private GameManager manager;    //ゲームマネージャー
     private int MyNo;               //自身の番号
     private CreateMap MapScript;    //マップの生成script
-    private bool StartFlg = false;  //スタート地点に向かうためのフラグ
+    private bool StartFlg = true;  //スタート地点に向かうためのフラグ
     private Vector3 StartDashVelocity;  //スタートダッシュの時の速度
     private bool MoveFlg = false;       //動いていいかのフラグ
     [HideInInspector]public MassType StopMass;       //止まったマスのタイプ
@@ -52,15 +52,31 @@ public class PlayerAction : MonoBehaviour
             StopMass = MassType.Quiz;
             manager.MinusDiceNo();
         }
+
+        //止まりたいマスについた時
+        if(manager.characters[manager.OrderArray[manager.NowPlayerNo]].MyDiceNo == 0)
+        {
+            MoveFlg = false;
+            MyRB.velocity = Vector3.zero;
+        }
     }
 
     private void FixedUpdate()
     {
-        //順番決めが終わっていてMoveflgがtrueの時
-        if(MyNo == manager.OrderArray[manager.NowPlayerNo] && StartFlg == false && manager.GameStatus == GameSTS.Play)
+        //キャラクターが動いていい時の処理
+        if(MoveFlg && MyNo == manager.OrderArray[manager.NowPlayerNo] && manager.GameStatus == GameSTS.Play)
         {
-            MyRB.velocity = StartDashVelocity;
+            //キャラクターを動かす処理
+            if (StartFlg == true)
+            {
+                MyRB.velocity = StartDashVelocity;
+            }
+            else
+            {
+                MyRB.velocity = ;
+            }
         }
+        
     }
 
     // Update is called once per frame

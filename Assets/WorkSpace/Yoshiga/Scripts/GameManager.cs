@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float CameraXaxis;
     [Header("プレイヤー固定カメラの向きたい高さ")]
     [SerializeField] private float CameraLookY;
+    private PlayerAction[] PlayerScript = new PlayerAction[4];   //プレイヤーごとのPlayerScript
 
 
     // Start is called before the first frame update
@@ -74,6 +75,7 @@ public class GameManager : MonoBehaviour
             characters[i] = new Character();
             OrderArray[i] = i;
             characters[i].MyNo = i + 1;
+            PlayerScript[i] = CharacterObj[i].GetComponent<PlayerAction>();
         }
         SpawnDice();
     }
@@ -87,7 +89,7 @@ public class GameManager : MonoBehaviour
     //ダイスの目を保存する処理
     public void SetDiceNo(int No)
     {        
-        characters[NowPlayerNo].MyDiceNo = No;
+        characters[OrderArray[NowPlayerNo]].MyDiceNo = No;
 
         //順番決めの時
         if(Ordering == true)
@@ -97,6 +99,7 @@ public class GameManager : MonoBehaviour
         }
               
         FinishDiceFlg = true;
+        PlayerScript[OrderArray[NowPlayerNo]].SetMoveFlg(true);
     }
 
     //サイコロ生成処理
@@ -156,7 +159,7 @@ public class GameManager : MonoBehaviour
             transform.rotation = Quaternion.Euler(CameraXaxis, 0, 0);
         }
 
-        //ダイスを出現させる処理
+        //ダイスを出現させるための処理
         if(FinishDiceFlg == true)
         {
             Invoke("SpawnDice", 2);

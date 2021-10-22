@@ -276,7 +276,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7944c82b64611d04fa7e33e4e24f41e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameStatus: 0
   DiceObj: {fileID: 6074541189656972468, guid: 3422033834799ad428708b39c7b95f51, type: 3}
+  CharacterSpeed: 2
   CharacterObj:
   - {fileID: 7718318516049553528}
   - {fileID: 277500826280910524}
@@ -285,6 +287,7 @@ MonoBehaviour:
   GameTurn: 10
   NowPlayerNo: 0
   Ordering: 0
+  OrderArray: 00000000000000000000000000000000
   OrderjudgeNo: 00000000000000000000000000000000
   PlayerCameraPos: {x: 0, y: 10, z: -10}
   CameraXaxis: 20
@@ -494,6 +497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2d62a35bcfe1684491a5a7d9dfab24f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StopMass: 0
 --- !u!1 &743840185535297159 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8547178371874925742, guid: 1a6c02576a1a6da4d97822fb4a09fadd, type: 3}
@@ -511,6 +515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2d62a35bcfe1684491a5a7d9dfab24f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StopMass: 0
 --- !u!1 &1575913497672476699 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6552522877541081365, guid: d90e513d02bcd634d97da33cee1b6e38, type: 3}
@@ -528,6 +533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2d62a35bcfe1684491a5a7d9dfab24f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StopMass: 0
 --- !u!1001 &1997607822080027707
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -728,6 +734,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2d62a35bcfe1684491a5a7d9dfab24f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StopMass: 0
 --- !u!1001 &8993419919806454313
 PrefabInstance:
   m_ObjectHideFlags: 0
