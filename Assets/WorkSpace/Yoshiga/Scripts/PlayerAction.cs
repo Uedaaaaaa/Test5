@@ -12,6 +12,7 @@ public class PlayerAction : MonoBehaviour
     private bool MoveFlg = false;       //動いていいかのフラグ
     [HideInInspector]public MassType StopMass;       //止まったマスのタイプ
     private Rigidbody MyRB;             //自身のRigidbody
+    private int NowMassNo;              //今いるマスの番号
     
     // Start is called before the first frame update
     void Start()
@@ -36,21 +37,25 @@ public class PlayerAction : MonoBehaviour
         {
             StopMass = MassType.Plus;
             manager.MinusDiceNo();
+            NowMassNo = int.Parse(other.gameObject.name.Substring(0, 1));
         }
         else if(other.gameObject.tag == "Minus")
         {
             StopMass = MassType.Minus;
             manager.MinusDiceNo();
+            NowMassNo = int.Parse(other.gameObject.name.Substring(0, 1));
         }
         else if(other.gameObject.tag == "Halloween")
         {
             StopMass = MassType.Halloween;
             manager.MinusDiceNo();
+            NowMassNo = int.Parse(other.gameObject.name.Substring(0, 1));
         }
         else if(other.gameObject.tag == "Quiz")
         {
             StopMass = MassType.Quiz;
             manager.MinusDiceNo();
+            NowMassNo = int.Parse(other.gameObject.name.Substring(0, 1));
         }
 
         //止まりたいマスについた時
@@ -73,7 +78,18 @@ public class PlayerAction : MonoBehaviour
             }
             else
             {
-                MyRB.velocity = ;
+                switch (MapScript.squares[NowMassNo].MyMove)
+                {
+                    case Move.Down:
+                        break;
+                    case Move.Left:
+                        break;
+                    case Move.Right:
+                        break;
+                    case Move.None:
+                        break;
+                }
+
             }
         }
         

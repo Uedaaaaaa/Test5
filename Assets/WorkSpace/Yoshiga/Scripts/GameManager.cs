@@ -97,9 +97,12 @@ public class GameManager : MonoBehaviour
             OrderjudgeNo[NowPlayerNo] = No;
             OrderArray[NowPlayerNo] = No;
         }
-              
-        FinishDiceFlg = true;
-        PlayerScript[OrderArray[NowPlayerNo]].SetMoveFlg(true);
+        else
+        {
+            PlayerScript[OrderArray[NowPlayerNo]].SetMoveFlg(true);
+        }
+
+        FinishDiceFlg = true;       
     }
 
     //サイコロ生成処理
