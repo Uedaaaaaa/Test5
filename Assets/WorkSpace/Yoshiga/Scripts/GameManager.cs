@@ -27,13 +27,15 @@ public class Character
     public int Candy;       //キャラクターが持っている飴の個数    
     public int Yaruki;      //キャラクターのやる気   
     public int MyDiceNo;    //現在のターンに自身が出したダイスの目
+    public bool EventFlg;   //キャラクターがマスのイベントを行っているかのフラグ
 
     //キャラクターの初期値設定の関数
     public Character()
     {
         this.Candy = 0;
         this.Yaruki = 5;
-        MyDiceNo = 0;
+        this.MyDiceNo = 0;
+        this.EventFlg = false;
     }
 }
 
@@ -42,7 +44,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector]public GameSTS GameStatus;    //ゲームステータス
     [Header("サイコロ : オブジェクト")]
     [SerializeField] private GameObject DiceObj;    
-    [HideInInspector] public Character[] characters = new Character[4];  //キャラクタークラス配列
+    [HideInInspector] public Character[] characters = new Character[4];  //キャラクタークラス配列(charactors[0]が1P)
     [Header("キャラクターの速さ")]
     public float CharacterSpeed;
     [Header("キャラクター : オブジェクト")]
@@ -77,6 +79,47 @@ public class GameManager : MonoBehaviour
             characters[i].MyNo = i + 1;
             PlayerScript[i] = CharacterObj[i].GetComponent<PlayerAction>();
         }
+        SpawnDice();
+    }
+
+
+    //キャラクターがマスに止まってイベントを行う時の処理
+    public void PlayEvent(int PLNo)
+    {
+        characters[PLNo].EventFlg = true;
+    }
+
+    //キャラクターがイベントを終えたときに呼ばれる関数
+    public void EndEvent()
+    {
+        int Samesquare = 0;
+
+        //同じマスに何人いるのか確認する処理
+        for (int i = 0; i < characters.Length; ++i)
+        {
+            if (PlayerScript[OrderArray[NowPlayerNo]].NowMassNo == PlayerScript[OrderArray[i]].NowMassNo)
+            {
+                Samesquare++;
+            }
+        }
+        
+        switch(Samesquare)
+        {
+            case 1:
+                CharacterObj[OrderArray[NowPlayerNo]].transform.position += new Vector3(-5.0f, 0.0f, 5.0f);
+                break;
+            case 2:
+                CharacterObj[OrderArray[NowPlayerNo]].transform.position += new Vector3(5.0f, 0.0f, 5.0f);
+                break;
+            case 3:
+                CharacterObj[OrderArray[NowPlayerNo]].transform.position += new Vector3(-5.0f, 0.0f, -5.0f);
+                break;
+            case 4:
+                CharacterObj[OrderArray[NowPlayerNo]].transform.position += new Vector3(5.0f, 0.0f, -5.0f);
+                break;
+        }
+
+        ChangeNowPlayerNo();
         SpawnDice();
     }
 

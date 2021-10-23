@@ -12,7 +12,7 @@ public class PlayerAction : MonoBehaviour
     private bool MoveFlg = false;       //動いていいかのフラグ
     [HideInInspector]public MassType StopMass;       //止まったマスのタイプ
     private Rigidbody MyRB;             //自身のRigidbody
-    public int NowMassNo = 0;              //今いるマスの番号
+    [HideInInspector]public int NowMassNo = 0;    //今いるマスの番号
     
     // Start is called before the first frame update
     void Start()
@@ -71,8 +71,7 @@ public class PlayerAction : MonoBehaviour
                 MoveFlg = false;
                 MyRB.velocity = Vector3.zero;
                 this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
-                manager.ChangeNowPlayerNo();
-                manager.SpawnDice();
+                manager.EndEvent();
             }
         }       
     }
@@ -90,7 +89,7 @@ public class PlayerAction : MonoBehaviour
             }
             else
             {
-                switch (MapScript.squares[NowMassNo].MyMove)
+                switch (MapScript.squares[NowMassNo - 1].MyMove)
                 {
                     case Move.Down:
                         MyRB.velocity = new Vector3(0, 0, -1) * manager.CharacterSpeed;
