@@ -76,6 +76,15 @@ public class PlayerAction : MonoBehaviour
         }       
     }
 
+    public void SetStartPos()
+    {
+        if(StartFlg == false)
+        {
+            this.gameObject.transform.position = MapScript.squares[NowMassNo - 1].MyPos;
+        }
+        
+    }
+
     private void FixedUpdate()
     {
         //キャラクターが動いていい時の処理
