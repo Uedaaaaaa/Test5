@@ -10,6 +10,7 @@ TagManager:
   - Minus
   - Map
   - FxTemporaire
+  - UICamera
   layers:
   - Default
   - TransparentFX
