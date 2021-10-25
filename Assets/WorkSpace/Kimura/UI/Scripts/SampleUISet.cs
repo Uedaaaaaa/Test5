@@ -5,32 +5,32 @@ using UnityEngine.UI;
 public class SampleUISet : MonoBehaviour
 {
     public Image[] PlayerTurnUI = new Image[4];
-    Image SetPlayerTurnUI;
+    GameObject camera;
     // Start is called before the first frame update
     void Start()
     {
-        for(int i = 0; i < PlayerTurnUI.Length;i++)
+        camera = GameObject.FindGameObjectWithTag("MainCamera");
+        for (int i = 0; i < PlayerTurnUI.Length -1;i++)
         {
-
+            PlayerTurnUI[i].enabled = false;
         }
     }
-    void PlayerTrunUIDestroy()
+    public void SetPlayerTurnUI(int PlayerNum)
     {
-        if (SetPlayerTurnUI != null)
-        {
-            Destroy(SetPlayerTurnUI);
-        }
+        PlayerTurnUI[PlayerNum].enabled = true;
+        PlayerTurnUI[PlayerNum].gameObject.transform.position = (camera.transform.position);
+        PlayerTurnUI[PlayerNum].gameObject.transform.position += new Vector3(10,0,0); 
     }
     // Update is called once per frame
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.A))
         {
-            SetPlayerTurnUI = Instantiate(PlayerTurnUI[0]);
+            SetPlayerTurnUI(0);
         }
         if(Input.GetKeyDown(KeyCode.B))
         {
-            SetPlayerTurnUI = Instantiate(PlayerTurnUI[1]);
+
         }
     }
 }
