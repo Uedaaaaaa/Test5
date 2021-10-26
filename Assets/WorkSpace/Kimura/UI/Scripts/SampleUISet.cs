@@ -15,10 +15,6 @@ public class SampleUISet : MonoBehaviour
     //プレイヤーターンUI表示と同時にセットするBボタンUI
     [SerializeField] Image PlayerTurnBbuttonUI;
 
-    //プレイヤーターンUIの表示フラグ
-    //trueなら表示中
-    //private bool PlayerTurnUIMoveFlg = false;
-
     //ダイスを止めると書かれたUI
     [SerializeField] Image DiceStopUI;
 
@@ -46,7 +42,7 @@ public class SampleUISet : MonoBehaviour
         PlayerTurnBbuttonUI.gameObject.SetActive(false);
         DiceStopUI.gameObject.SetActive(false);
         DiceImage.gameObject.SetActive(false);
-        for(int i = 0; i < PlayerStatusUI.Length -1; i++)
+        for(int i = 0; i < PlayerStatusUI.Length; i++)
         {
             PlayerStatusUI[i].gameObject.SetActive(false);
             Candytxt[i].text = "";
@@ -56,26 +52,21 @@ public class SampleUISet : MonoBehaviour
         //ゲームマネージャーを獲得
         manager = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameManager>();
         //プレイヤーのキャンディ、やる気を獲得する
-        for(int i = 0; i < manager.characters.Length -1; i++)
+        for(int i = 0; i < manager.characters.Length; i++)
         {
             PlayerStatusUI[i].gameObject.SetActive(true);
-            Candytxt[i].text = manager.characters[i].Candy.ToString();
-            Yarukitxt[i].text = manager.characters[i].Yaruki.ToString();
+            Candytxt[i].text = manager.characters[i].Candy.ToString().PadLeft(2,'0');
+            Yarukitxt[i].text = manager.characters[i].Yaruki.ToString().PadLeft(2,'0');
         }
     }
 
     //ターンUIの表示非表示
     public void PlayerTurnUISet(int PlayerNum)
     {
-        //if (!PlayerTurnUIMoveFlg)
-        //{
         ImagePlayerTurnUI.gameObject.SetActive(true);
         ImagePlayerTurnUI.sprite = PlayerTurnUI[PlayerNum].sprite;
 
         PlayerTurnBbuttonUI.gameObject.SetActive(true);
-            //PlayerTurnUIMoveFlg = true;
-            //ImagePlayerTurnUI.transform.position += new Vector3(22, 0, 0);
-        //}
     }
     public void PlayerTurnUIDestroy()
     {
@@ -121,23 +112,6 @@ public class SampleUISet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if(Input.GetKeyDown(KeyCode.A))
-        //{
-        //    PlayerTurnUISet(Random.Range(0,4));
-        //}
-        //if(Input.GetKeyDown(KeyCode.B))
-        //{
-        //    DiceNumUISet(3);
-        //}
-        //if(PlayerTurnUIMoveFlg)
-        //{
-            //ImagePlayerTurnUI.transform.position -= new Vector3(0.1f * TurnUIMoveSpeed, 0, 0);
-            //if(ImagePlayerTurnUI.transform.position.x <= this.gameObject.transform.position.x - 22.0f)
-            //{
-            //    PlayerTurnUIMoveFlg = false;
-            //    ImagePlayerTurnUI.transform.position = this.gameObject.transform.position;
-            //    ImagePlayerTurnUI.gameObject.SetActive(false);
-            //}
-        //}
+
     }
 }
