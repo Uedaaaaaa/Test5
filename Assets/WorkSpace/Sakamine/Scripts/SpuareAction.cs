@@ -69,7 +69,6 @@ public class SpuareAction : MonoBehaviour
     private bool NextTextFlg;
     private string[] BestAnswer = new string[50];
     private int Sel;
-
     private bool NowQuizFlg;
     private bool isCorrect;
     // Start is called before the first frame update
@@ -147,10 +146,8 @@ public class SpuareAction : MonoBehaviour
         if (!PlusFlg)
         {
             EventRand = Random.Range(0, plusEvent.Count);
-            StartCoroutine("Novel", plusEvent[EventRand].eventData[EventCount].Message);
-            imgEventChara.sprite = plusEvent[EventRand].eventData[EventCount].SpriteEventChara;
-            txtPlayerName.text = plusEvent[EventRand].eventData[EventCount].PlayerName;
             imgEventChara.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+            SetNextText(null, plusEvent[EventRand].eventData);
             SetUI();
             PlusFlg = true;
         }
@@ -168,14 +165,7 @@ public class SpuareAction : MonoBehaviour
                 else
                 {
                     EventCount++;
-                    StartCoroutine("Novel", plusEvent[EventRand].eventData[EventCount].Message);
-                    //キャラ画像が設定されてるなら変更
-                    if (plusEvent[EventRand].eventData[EventCount].SpriteEventChara != null)
-                    {
-                        imgEventChara.sprite = plusEvent[EventRand].eventData[EventCount].SpriteEventChara;
-                    }
-                    //名前変更
-                    txtPlayerName.text = plusEvent[EventRand].eventData[EventCount].PlayerName;
+                    SetNextText(null, plusEvent[EventRand].eventData);
                 }
             }
             else
@@ -191,10 +181,8 @@ public class SpuareAction : MonoBehaviour
         if (!MinusFlg)
         {
             EventRand = Random.Range(0, minusEvent.Count);
-            StartCoroutine("Novel", minusEvent[EventRand].eventData[EventCount].Message);
-            imgEventChara.sprite = minusEvent[EventRand].eventData[EventCount].SpriteEventChara;
-            txtPlayerName.text = minusEvent[EventRand].eventData[EventCount].PlayerName;
             imgEventChara.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+            SetNextText(null, minusEvent[EventRand].eventData);
             SetUI();
             MinusFlg = true;
         }
@@ -213,14 +201,7 @@ public class SpuareAction : MonoBehaviour
                 else
                 {
                     EventCount++;
-                    StartCoroutine("Novel", minusEvent[EventRand].eventData[EventCount].Message);
-                    //キャラ画像が設定されてるなら変更
-                    if (minusEvent[EventRand].eventData[EventCount].SpriteEventChara != null)
-                    {
-                        imgEventChara.sprite = minusEvent[EventRand].eventData[EventCount].SpriteEventChara;
-                    }
-                    //名前変更
-                    txtPlayerName.text = minusEvent[EventRand].eventData[EventCount].PlayerName;
+                    SetNextText(null, minusEvent[EventRand].eventData);
                 }
             }
             else
@@ -236,22 +217,20 @@ public class SpuareAction : MonoBehaviour
         if (!QuizFlg)
         {
             EventRand = Random.Range(0, quizEvent.Count);
-            StartCoroutine("Novel", quizEvent[EventRand].eventData[EventCount].Message);
-            imgEventChara.sprite = quizEvent[EventRand].eventData[EventCount].SpriteEventChara;
-            txtPlayerName.text = quizEvent[EventRand].eventData[EventCount].PlayerName;
             imgEventChara.transform.localPosition = new Vector3(500.0f, 0.0f, 0.0f);
+            SetNextText(quizEvent[EventRand].eventData, null);
             SetUI();
             QuizFlg = true;
         }
+        imgSel.transform.localPosition = new Vector3(-860.0f, 290 + (Sel * -200.0f), 0.0f);
         //選択の矢印が出てるとき
-        if(imgSel.gameObject.activeSelf)
+        if (imgSel.gameObject.activeSelf)
         {
-            if(Input.GetKeyDown(KeyCode.UpArrow))
+            if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 if (Sel > 0)
                 {
                     Sel--;
-                    imgSel.transform.localPosition += new Vector3(0.0f, 200.0f, 0.0f);
                 }
             }
             if (Input.GetKeyDown(KeyCode.DownArrow))
@@ -259,7 +238,6 @@ public class SpuareAction : MonoBehaviour
                 if (Sel < 2)
                 {
                     Sel++;
-                    imgSel.transform.localPosition += new Vector3(0.0f, -200.0f, 0.0f);
                 }
             }
         }
@@ -292,23 +270,34 @@ public class SpuareAction : MonoBehaviour
                 //正解なら
                 else if (quizEvent[EventRand].Answer[Sel] == BestAnswer[EventRand] && NowQuizFlg)
                 {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if(i == Sel)
+                        {
+                            continue;
+                        }
+                        txtAnswer[i].gameObject.SetActive(false);
+                        imgQuizSpace[i].gameObject.SetActive(false);
+                    }
                     isCorrect = true;
                     NowQuizFlg = false;
                     imgSel.gameObject.SetActive(false);
                     EventCount++;
-                    StartCoroutine("Novel", quizEvent[EventRand].eventData[EventCount].Message);
-                    //キャラ画像が設定されてるなら変更
-                    if (quizEvent[EventRand].eventData[EventCount].SpriteEventChara != null)
-                    {
-                        imgEventChara.sprite = quizEvent[EventRand].eventData[EventCount].SpriteEventChara;
-                    }
-                    //名前変更
-                    txtPlayerName.text = quizEvent[EventRand].eventData[EventCount].PlayerName;
+                    SetNextText(quizEvent[EventRand].eventData, null);
 
                 }
                 //不正解なら
                 else if (quizEvent[EventRand].Answer[Sel] != BestAnswer[EventRand] && NowQuizFlg)
                 {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if (i == Sel)
+                        {
+                            continue;
+                        }
+                        txtAnswer[i].gameObject.SetActive(false);
+                        imgQuizSpace[i].gameObject.SetActive(false);
+                    }
                     //不正解テキストまでスキップ
                     while (!quizEvent[EventRand].eventData[EventCount].AnswerText)
                     {
@@ -317,32 +306,19 @@ public class SpuareAction : MonoBehaviour
                     isCorrect = false;
                     imgSel.gameObject.SetActive(false);
                     NowQuizFlg = false;
-                    StartCoroutine("Novel", quizEvent[EventRand].eventData[EventCount].Message);
-                    //キャラ画像が設定されてるなら変更
-                    if (quizEvent[EventRand].eventData[EventCount].SpriteEventChara != null)
-                    {
-                        imgEventChara.sprite = quizEvent[EventRand].eventData[EventCount].SpriteEventChara;
-                    }
-                    //名前変更
-                    txtPlayerName.text = quizEvent[EventRand].eventData[EventCount].PlayerName;
+                    SetNextText(quizEvent[EventRand].eventData, null);
                 }
                 else
                 {
                     EventCount++;
+                    //正解テキストが終了
                     if (quizEvent[EventRand].eventData[EventCount].AnswerText && isCorrect)
                     {
                         EndEvent();
                     }
                     else
                     {
-                        StartCoroutine("Novel", quizEvent[EventRand].eventData[EventCount].Message);
-                        //キャラ画像が設定されてるなら変更
-                        if (quizEvent[EventRand].eventData[EventCount].SpriteEventChara != null)
-                        {
-                            imgEventChara.sprite = quizEvent[EventRand].eventData[EventCount].SpriteEventChara;
-                        }
-                        //名前変更
-                        txtPlayerName.text = quizEvent[EventRand].eventData[EventCount].PlayerName;
+                        SetNextText(quizEvent[EventRand].eventData,null);
                     }
                 }
             }
@@ -439,4 +415,32 @@ public class SpuareAction : MonoBehaviour
         txtMessage.gameObject.SetActive(true);
         txtPlayerName.gameObject.SetActive(true);
     }
+    //次のテキストデータを表示
+    void SetNextText(List<QuizEventData> Q, List<EventData> S)
+    {
+        if (Q != null)
+        {
+            StartCoroutine("Novel", Q[EventCount].Message);
+            //キャラ画像が設定されてるなら変更
+            if (Q[EventCount].SpriteEventChara != null)
+            {
+                imgEventChara.sprite = Q[EventCount].SpriteEventChara;
+            }
+            //名前変更
+            txtPlayerName.text = Q[EventCount].PlayerName;
+        }
+        if (S != null)
+        {
+            StartCoroutine("Novel", S[EventCount].Message);
+            //キャラ画像が設定されてるなら変更
+            if (S[EventCount].SpriteEventChara != null)
+            {
+                imgEventChara.sprite = S[EventCount].SpriteEventChara;
+            }
+            //名前変更
+            txtPlayerName.text = S[EventCount].PlayerName;
+        }
+
+    }
+
 }

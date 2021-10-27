@@ -200,4 +200,20 @@ MonoBehaviour:
       PlayerName: 
       QuizSet: 0
       AnswerText: 1
-  halloweenEvent: []
+  halloweenEvent:
+  - EventName: a
+    eventData:
+    - SpriteEventChara: {fileID: 0}
+      Message: "\u30CF\u30ED\u30A6\u30A3\u30F31-1"
+      PlayerName: 
+    - SpriteEventChara: {fileID: 0}
+      Message: "\u30CF\u30ED\u30A6\u30A3\u30F31-2"
+      PlayerName: 
+  - EventName: b
+    eventData:
+    - SpriteEventChara: {fileID: 0}
+      Message: "\u30CF\u30ED\u30A6\u30A3\u30F32-1"
+      PlayerName: 
+    - SpriteEventChara: {fileID: 0}
+      Message: "\u30CF\u30ED\u30A6\u30A3\u30F32-2"
+      PlayerName: 
