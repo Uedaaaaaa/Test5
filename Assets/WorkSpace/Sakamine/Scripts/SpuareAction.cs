@@ -40,7 +40,7 @@ public class QuizEvent
 
 public class SpuareAction : MonoBehaviour
 {
-    Transform Canvas;
+    GameObject Canvas;
     [SerializeField] float NovelSpeed;
     [SerializeField] Image imgEventChara;
     [SerializeField] Image imgTextSpace;
@@ -75,14 +75,20 @@ public class SpuareAction : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Canvas = transform.Find("Canvas");
+        Canvas = GameObject.Find("Canvas");
         imgEventChara = Canvas.transform.Find("imgEventChara").GetComponent<Image>();
         imgTextSpace = Canvas.transform.Find("imgTextSpace").GetComponent<Image>();
         imgBbtn = Canvas.transform.Find("imgBbtn").GetComponent<Image>();
         imgSel = Canvas.transform.Find("imgSel").GetComponent<Image>();
         txtMessage = Canvas.transform.Find("txtMessage").GetComponent<Text>();
         txtPlayerName = Canvas.transform.Find("txtPlayerName").GetComponent<Text>();
-        /////
+        imgQuizSpace[0] = Canvas.transform.Find("imgQuizSpace1").GetComponent<Image>();
+        imgQuizSpace[1] = Canvas.transform.Find("imgQuizSpace2").GetComponent<Image>();
+        imgQuizSpace[2] = Canvas.transform.Find("imgQuizSpace3").GetComponent<Image>();
+        txtAnswer[0] = Canvas.transform.Find("txtAnswer1").GetComponent<Text>();
+        txtAnswer[1] = Canvas.transform.Find("txtAnswer2").GetComponent<Text>();
+        txtAnswer[2] = Canvas.transform.Find("txtAnswer3").GetComponent<Text>();
+
         for (int i = 0;i<quizEvent.Count;i++)
         {
             BestAnswer[i] = quizEvent[i].Answer[0];
