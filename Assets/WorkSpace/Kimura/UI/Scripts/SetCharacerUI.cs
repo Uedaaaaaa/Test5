@@ -48,15 +48,13 @@ public class SetCharacerUI : MonoBehaviour
             Candytxt[i].text = "";
             Yarukitxt[i].text = "";
         }
-
         //ゲームマネージャーを獲得
         manager = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameManager>();
+        PlayerStatusChange();
         //プレイヤーのキャンディ、やる気を獲得する
-        for (int i = 0; i < manager.characters.Length; i++)
+        for (int i = 0; i < PlayerStatusUI.Length; i++)
         {
             PlayerStatusUI[i].gameObject.SetActive(true);
-            Candytxt[i].text = manager.characters[i].Candy.ToString().PadLeft(2, '0');
-            Yarukitxt[i].text = manager.characters[i].Yaruki.ToString().PadLeft(2, '0');
         }
     }
 
