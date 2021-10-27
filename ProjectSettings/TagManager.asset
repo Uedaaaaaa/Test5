@@ -9,6 +9,8 @@ TagManager:
   - Plus
   - Minus
   - Map
+  - FxTemporaire
+  - UICamera
   layers:
   - Default
   - TransparentFX
@@ -18,7 +20,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Player
   - 
   - 
   - 

@@ -102,20 +102,20 @@ public class GameManager : MonoBehaviour
                 Samesquare++;
             }
         }
-        
-        switch(Samesquare)
+
+        switch (Samesquare)
         {
             case 1:
-                CharacterObj[OrderArray[NowPlayerNo]].transform.position += new Vector3(-5.0f, 0.0f, 5.0f);
+                CharacterObj[OrderArray[NowPlayerNo]].transform.position += new Vector3(-7.5f, 0.0f, 7.5f);
                 break;
             case 2:
-                CharacterObj[OrderArray[NowPlayerNo]].transform.position += new Vector3(5.0f, 0.0f, 5.0f);
+                CharacterObj[OrderArray[NowPlayerNo]].transform.position += new Vector3(7.5f, 0.0f, 7.5f);
                 break;
             case 3:
-                CharacterObj[OrderArray[NowPlayerNo]].transform.position += new Vector3(-5.0f, 0.0f, -5.0f);
+                CharacterObj[OrderArray[NowPlayerNo]].transform.position += new Vector3(-2.5f, 0.0f, 7.5f);
                 break;
             case 4:
-                CharacterObj[OrderArray[NowPlayerNo]].transform.position += new Vector3(5.0f, 0.0f, -5.0f);
+                CharacterObj[OrderArray[NowPlayerNo]].transform.position += new Vector3(2.5f, 0.0f, 7.5f);
                 break;
         }
 
@@ -166,6 +166,11 @@ public class GameManager : MonoBehaviour
     //サイコロ生成処理
     public void SpawnDice()
     {
+        if(Ordering == false)
+        {
+            PlayerScript[OrderArray[NowPlayerNo]].SetStartPos();
+        }
+
         Instantiate(DiceObj, new Vector3(CharacterObj[OrderArray[NowPlayerNo]].transform.position.x,
                                          CharacterObj[OrderArray[NowPlayerNo]].transform.position.y + 10,
                                          CharacterObj[OrderArray[NowPlayerNo]].transform.position.z),
