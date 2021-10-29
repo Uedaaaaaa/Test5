@@ -38,60 +38,65 @@ public class SetCharacerUI : MonoBehaviour
     void Start()
     {
         //UIの表示をオフにする
-        ImagePlayerTurnUI.gameObject.SetActive(false);
-        PlayerTurnBbuttonUI.gameObject.SetActive(false);
-        DiceStopUI.gameObject.SetActive(false);
-        DiceImage.gameObject.SetActive(false);
+        ImagePlayerTurnUI.enabled = false;
+        PlayerTurnBbuttonUI.enabled = false;
+        DiceStopUI.enabled = false;
+        DiceImage.enabled = false;
         for (int i = 0; i < PlayerStatusUI.Length; i++)
         {
-            PlayerStatusUI[i].gameObject.SetActive(false);
+            PlayerStatusUI[i].enabled = false;
             Candytxt[i].text = "";
             Yarukitxt[i].text = "";
         }
         //ゲームマネージャーを獲得
         manager = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameManager>();
-        PlayerStatusChange();
-        //プレイヤーのキャンディ、やる気を獲得する
-        for (int i = 0; i < PlayerStatusUI.Length; i++)
-        {
-            PlayerStatusUI[i].gameObject.SetActive(true);
-        }
     }
 
     //ターンUIの表示非表示
     public void PlayerTurnUISet(int PlayerNum)
     {
-        ImagePlayerTurnUI.gameObject.SetActive(true);
+        ImagePlayerTurnUI.enabled = true;
         ImagePlayerTurnUI.sprite = PlayerTurnUI[PlayerNum].sprite;
 
-        PlayerTurnBbuttonUI.gameObject.SetActive(true);
+        PlayerTurnBbuttonUI.enabled = true;
     }
     public void PlayerTurnUIDestroy()
     {
-        ImagePlayerTurnUI.gameObject.SetActive(false);
-        PlayerTurnBbuttonUI.gameObject.SetActive(false);
+        ImagePlayerTurnUI.enabled = false;
+        PlayerTurnBbuttonUI.enabled = false;
     }
 
     //ダイスを止めるUIの表示非表示
     public void DiceStopUISet()
     {
-        DiceStopUI.gameObject.SetActive(true);
+        DiceStopUI.enabled = true;
     }
     public void DiceStopUIDestroy()
     {
-        DiceStopUI.gameObject.SetActive(false);
+        DiceStopUI.enabled = false;
     }
 
     //ダイスの数のUIの表示非表示
     public void DiceNumUISet(int DiceNum)
     {
         DiceImage.transform.position = this.gameObject.transform.position + DiceImagePos;
-        DiceImage.gameObject.SetActive(true);
+        DiceImage.enabled = true;
         DiceImage.sprite = DiceNumSprite[DiceNum - 1];
     }
     public void DiceNumUIDestroy()
     {
-        DiceImage.gameObject.SetActive(false);
+        DiceImage.enabled = false;
+    }
+
+    //プレイヤーステータスUIの表示
+    public void PlayerStatusUISet()
+    {
+        //プレイヤーのキャンディ、やる気を獲得する
+        for (int i = 0; i < PlayerStatusUI.Length; i++)
+        {
+            PlayerStatusUI[i].enabled = true;
+        }
+        PlayerStatusChange();
     }
 
     //プレイヤーのステータスUIの更新
