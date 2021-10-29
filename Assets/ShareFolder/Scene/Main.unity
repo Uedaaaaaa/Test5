@@ -365,6 +365,7 @@ GameObject:
   - component: {fileID: 553028826}
   - component: {fileID: 553028825}
   - component: {fileID: 553028828}
+  - component: {fileID: 553028829}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -467,6 +468,131 @@ MonoBehaviour:
   CameraXaxis: 20
   CameraLookY: 4
   CharacerUI: {fileID: 144823267}
+--- !u!114 &553028829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553028824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44f12aa63ea6e574c95dcf49565639d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NovelSpeed: 0.05
+  imgEventChara: {fileID: 0}
+  imgTextSpace: {fileID: 0}
+  imgBbtn: {fileID: 0}
+  imgSel: {fileID: 0}
+  txtMessage: {fileID: 0}
+  txtTextName: {fileID: 0}
+  imgQuizSpace:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  txtAnswer:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  imgCharaUI: {fileID: 0}
+  txtPlayerName: {fileID: 0}
+  txtCandy: {fileID: 0}
+  txtYaruki: {fileID: 0}
+  plusEvent:
+  - EventName: a
+    eventData:
+    - SpriteEventChara: {fileID: 0}
+      Message: "\u30D7\u30E9\u30B91-1"
+      TextName: 
+    - SpriteEventChara: {fileID: 0}
+      Message: "\u30D7\u30E9\u30B91-2"
+      TextName: 
+  - EventName: b
+    eventData:
+    - SpriteEventChara: {fileID: 0}
+      Message: "\u30D7\u30E9\u30B92-1"
+      TextName: 
+    - SpriteEventChara: {fileID: 0}
+      Message: "\u30D7\u30E9\u30B92-2"
+      TextName: 
+  - EventName: c
+    eventData:
+    - SpriteEventChara: {fileID: 0}
+      Message: "\u30D7\u30E9\u30B93-1"
+      TextName: 
+    - SpriteEventChara: {fileID: 0}
+      Message: "\u30D7\u30E9\u30B93-2"
+      TextName: 
+  minusEvent:
+  - EventName: a
+    eventData:
+    - SpriteEventChara: {fileID: 0}
+      Message: "\u30DE\u30A4\u30CA\u30B91-1"
+      TextName: 
+    - SpriteEventChara: {fileID: 0}
+      Message: "\u30DE\u30A4\u30CA\u30B91-2"
+      TextName: 
+  - EventName: b
+    eventData:
+    - SpriteEventChara: {fileID: 0}
+      Message: "\u30DE\u30A4\u30CA\u30B92-2"
+      TextName: 
+    - SpriteEventChara: {fileID: 0}
+      Message: "\u30DE\u30A4\u30CA\u30B92-1"
+      TextName: 
+  - EventName: c
+    eventData:
+    - SpriteEventChara: {fileID: 0}
+      Message: "\u30DE\u30A4\u30CA\u30B93-1"
+      TextName: 
+    - SpriteEventChara: {fileID: 0}
+      Message: "\u30DE\u30A4\u30CA\u30B93-2"
+      TextName: 
+  quizEvent:
+  - EventName: a
+    Answer:
+    - "\u30C6\u30B9\u30C81-1"
+    - "\u30C6\u30B9\u30C81-2"
+    - "\u30C6\u30B9\u30C81-3"
+    eventData:
+    - SpriteEventChara: {fileID: 0}
+      Message: "\u554F\u984C"
+      TextName: 
+      QuizSet: 0
+      AnswerText: 0
+    - SpriteEventChara: {fileID: 0}
+      Message: "\u7B54\u3048\u306F\u4F55"
+      TextName: 
+      QuizSet: 1
+      AnswerText: 0
+    - SpriteEventChara: {fileID: 0}
+      Message: "\u6B63\u89E3"
+      TextName: 
+      QuizSet: 0
+      AnswerText: 0
+    - SpriteEventChara: {fileID: 0}
+      Message: "\u4E0D\u6B63\u89E3"
+      TextName: 
+      QuizSet: 0
+      AnswerText: 1
+  halloweenEvent:
+  - EventName: a
+    eventData:
+    - SpriteEventChara: {fileID: 0}
+      Message: "\u30CF\u30ED\u30A6\u30A3\u30F31-1"
+      TextName: 
+    - SpriteEventChara: {fileID: 0}
+      Message: "\u30CF\u30ED\u30A6\u30A3\u30F31-2"
+      TextName: 
+  - EventName: b
+    eventData:
+    - SpriteEventChara: {fileID: 0}
+      Message: "\u30CF\u30ED\u30A6\u30A3\u30F32-1"
+      TextName: 
+    - SpriteEventChara: {fileID: 0}
+      Message: "\u30CF\u30ED\u30A6\u30A3\u30F32-2"
+      TextName: 
 --- !u!1 &1628733092
 GameObject:
   m_ObjectHideFlags: 0
