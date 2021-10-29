@@ -72,7 +72,7 @@ public class PlayerAction : MonoBehaviour
                 MoveFlg = false;
                 MyRB.velocity = Vector3.zero;
                 this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
-                manager.PlayEvent(manager.OrderArray[manager.NowPlayerNo],StopMass);
+                manager.PlayEvent(StopMass);
             }
         }       
     }
