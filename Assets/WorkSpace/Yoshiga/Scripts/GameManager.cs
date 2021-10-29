@@ -65,11 +65,13 @@ public class GameManager : MonoBehaviour
     private PlayerAction[] playerScript = new PlayerAction[4];   //プレイヤーごとのPlayerScript
     [Header("CharactorUICanvas : オブジェクト")]
     public SetCharacerUI CharacerUI;
+    private bool statusUIActive;    //キャラクターのステータスUIが表示されているかのフラグ
 
     // Start is called before the first frame update
     void Start()
     {
         Ordering = true;
+        statusUIActive = false;
         gameStatus = GameSTS.OrderJudge;
         NowPlayerNo = 0;
         //キャラクタークラスを作成し、Rigidbodyを格納
@@ -87,6 +89,8 @@ public class GameManager : MonoBehaviour
     public void PlayEvent(int PLNo)
     {
         characters[PLNo].EventFlg = true;
+
+
     }
 
     //キャラクターがイベントを終えたときに呼ばれる関数
@@ -169,6 +173,13 @@ public class GameManager : MonoBehaviour
         if(Ordering == false)
         {
             playerScript[OrderArray[NowPlayerNo]].SetStartPos();
+            if(statusUIActive == false)
+            {
+                CharacerUI.PlayerStatusUISet();
+                statusUIActive = true;
+            }
+
+            CharacerUI.PlayerTurnUISet(OrderArray[NowPlayerNo]);
         }
 
         Instantiate(DiceObj, new Vector3(CharacterObj[OrderArray[NowPlayerNo]].transform.position.x,

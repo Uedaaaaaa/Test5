@@ -55,6 +55,7 @@ public class DiceRollAction : MonoBehaviour
             {
                 DiceRollFlg = true;               
                 manager.CharacerUI.DiceStopUISet();
+                manager.CharacerUI.PlayerTurnUIDestroy();
             }
             else //ダイスロールを止める
             {
