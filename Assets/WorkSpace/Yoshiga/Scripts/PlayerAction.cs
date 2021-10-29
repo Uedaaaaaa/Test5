@@ -88,7 +88,7 @@ public class PlayerAction : MonoBehaviour
     private void FixedUpdate()
     {
         //キャラクターが動いていい時の処理
-        if(MoveFlg == true && MyNo == manager.OrderArray[manager.NowPlayerNo] && manager.GameStatus == GameSTS.Play)
+        if(MoveFlg == true && MyNo == manager.OrderArray[manager.NowPlayerNo] && manager.gameStatus == GameSTS.Play)
         {
             //キャラクターを動かす処理
             if (StartFlg == true)

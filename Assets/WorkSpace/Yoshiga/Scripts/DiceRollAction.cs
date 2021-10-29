@@ -3,59 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DiceRollAction : MonoBehaviour
-{
-    //ダイスの回転フラグ T:回転　F:止まる
-    private bool DiceRollFlg = false;
+{    
+    private bool DiceRollFlg = false;       //ダイスの回転フラグ T:回転　F:止まる
     [Header("ダイスの回転速度")]
-    [SerializeField]
-    private float DiceRollSpeed;
+    [SerializeField] private float DiceRollSpeed;
     [Header("ダイスの面 : オブジェクト")]
-    [SerializeField]
-    private GameObject[] DiceSides = new GameObject[6];
+    [SerializeField] private GameObject[] DiceSides = new GameObject[6];
     [Header("ダイスの面のマテリアル")]
-    [SerializeField]
-    private Material[] DiceMats = new Material[6];
-    //ダイスの面のrenderer
-    private MeshRenderer[] DiceSideRenderers = new MeshRenderer[6];
-    //ダイスの目を保存するための変数
-    private int DiceNo;
-
-    //回転しているダイスを止めるためのフラグ
-    private bool DiceDecisionFlg = false;
-  
+    [SerializeField] private Material[] DiceMats = new Material[6];    
+    private MeshRenderer[] DiceSideRenderers = new MeshRenderer[6];  //ダイスの面のrenderer    
+    private int DiceNo; //ダイスの目を保存するための変数
+    private bool DiceDecisionFlg = false; //回転しているダイスを止めるためのフラグ
     [Header("ダイスの跳ねる速度")]
-    [SerializeField]
-    private float JumpSpeed;
-    //ジャンプの時のSin
+    [SerializeField] private float JumpSpeed;
+    //ジャンプの時の変数
     private float JumpSin;
-    private bool JumpFlg;
-    //ジャンプした時のy
-    private float JumpPosY;
-
+    private bool JumpFlg;    
+    private float JumpPosY;　//ジャンプした時のy振幅
     [Header("ダイスが消えるまでの秒数")]
-    [SerializeField]
-    private float DestroyTime;
-    //ジャンプして消えるまでのカウントダウンが始まるためのフラグ
-    private bool DestroyFlg;
-
+    [SerializeField] private float DestroyTime;  
+    private bool DestroyFlg; //ジャンプして消えるまでのカウントダウンが始まるためのフラグ
     [Header("もくもくエフェクト : オブジェクト")]
-    [SerializeField]
-    private GameObject CloudEffect;
+    [SerializeField] private GameObject CloudEffect;
     [Header("紙吹雪エフェクト : オブジェクト")]
-    [SerializeField]
-    private GameObject ConfettiEffect;
-
-    //GameManagerのScript
-    private GameManager manager;
-    //乱数調整用変数
-    private int ransuchousei;
+    [SerializeField] private GameObject ConfettiEffect;
+    private GameManager manager;    //GameManagerのScript    
+    private int ransuchousei;   //乱数調整用変数
 
     // Start is called before the first frame update
     void Start()
     {
         manager = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameManager>();
         JumpPosY = this.gameObject.transform.position.y;
-
         for (int i = 0; i < 6;++i)
         {
             DiceSideRenderers[i] = DiceSides[i].GetComponent<MeshRenderer>();
@@ -72,13 +51,15 @@ public class DiceRollAction : MonoBehaviour
         if (Input.GetButtonDown("BtnA") && JumpFlg == false)
         {
             //ダイスロールを開始
-            if (DiceRollFlg == true)
+            if (DiceRollFlg == false)
             {
-                DiceDecisionFlg = true;
+                DiceRollFlg = true;               
+                manager.CharacerUI.DiceStopUISet();
             }
             else //ダイスロールを止める
             {
-                DiceRollFlg = true;
+                DiceDecisionFlg = true;
+                manager.CharacerUI.DiceStopUIDestroy();
             }
         }
     }

@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 553028827}
     m_Modifications:
+    - target: {fileID: 509076833061009724, guid: 90ad21abba974e6428b03795d98134c8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 509076834119129840, guid: 90ad21abba974e6428b03795d98134c8, type: 3}
       propertyPath: m_Name
       value: UICamera
@@ -180,6 +184,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90ad21abba974e6428b03795d98134c8, type: 3}
+--- !u!114 &144823267 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 509076833480470890, guid: 90ad21abba974e6428b03795d98134c8, type: 3}
+  m_PrefabInstance: {fileID: 144823266}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfeee70f65629a644976908b918f6014, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &182000896
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -435,7 +450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7944c82b64611d04fa7e33e4e24f41e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameStatus: 0
+  gameStatus: 0
   DiceObj: {fileID: 6074541189656972468, guid: 3422033834799ad428708b39c7b95f51, type: 3}
   CharacterSpeed: 10
   CharacterObj:
@@ -451,6 +466,7 @@ MonoBehaviour:
   PlayerCameraPos: {x: 0, y: 10, z: -10}
   CameraXaxis: 20
   CameraLookY: 4
+  CharacerUI: {fileID: 144823267}
 --- !u!1 &1628733092
 GameObject:
   m_ObjectHideFlags: 0

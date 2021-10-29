@@ -41,7 +41,7 @@ public class Character
 
 public class GameManager : MonoBehaviour
 {
-    [HideInInspector]public GameSTS GameStatus;    //ゲームステータス
+    [HideInInspector]public GameSTS gameStatus;    //ゲームステータス
     [Header("サイコロ : オブジェクト")]
     [SerializeField] private GameObject DiceObj;    
     [HideInInspector] public Character[] characters = new Character[4];  //キャラクタークラス配列(charactors[0]が1P)
@@ -62,14 +62,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float CameraXaxis;
     [Header("プレイヤー固定カメラの向きたい高さ")]
     [SerializeField] private float CameraLookY;
-    private PlayerAction[] PlayerScript = new PlayerAction[4];   //プレイヤーごとのPlayerScript
-
+    private PlayerAction[] playerScript = new PlayerAction[4];   //プレイヤーごとのPlayerScript
+    [Header("CharactorUICanvas : オブジェクト")]
+    public SetCharacerUI CharacerUI;
 
     // Start is called before the first frame update
     void Start()
     {
         Ordering = true;
-        GameStatus = GameSTS.OrderJudge;
+        gameStatus = GameSTS.OrderJudge;
         NowPlayerNo = 0;
         //キャラクタークラスを作成し、Rigidbodyを格納
         for (int i = 0; i < characters.Length; ++i)
@@ -77,11 +78,10 @@ public class GameManager : MonoBehaviour
             characters[i] = new Character();
             OrderArray[i] = i;
             characters[i].MyNo = i + 1;
-            PlayerScript[i] = CharacterObj[i].GetComponent<PlayerAction>();
+            playerScript[i] = CharacterObj[i].GetComponent<PlayerAction>();
         }
         SpawnDice();
     }
-
 
     //キャラクターがマスに止まってイベントを行う時の処理
     public void PlayEvent(int PLNo)
@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour
         //同じマスに何人いるのか確認する処理
         for (int i = 0; i < characters.Length; ++i)
         {
-            if (PlayerScript[OrderArray[NowPlayerNo]].NowMassNo == PlayerScript[OrderArray[i]].NowMassNo)
+            if (playerScript[OrderArray[NowPlayerNo]].NowMassNo == playerScript[OrderArray[i]].NowMassNo)
             {
                 Samesquare++;
             }
@@ -157,7 +157,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            PlayerScript[OrderArray[NowPlayerNo]].SetMoveFlg(true);
+            playerScript[OrderArray[NowPlayerNo]].SetMoveFlg(true);
         }
 
         FinishDiceFlg = true;       
@@ -168,7 +168,7 @@ public class GameManager : MonoBehaviour
     {
         if(Ordering == false)
         {
-            PlayerScript[OrderArray[NowPlayerNo]].SetStartPos();
+            playerScript[OrderArray[NowPlayerNo]].SetStartPos();
         }
 
         Instantiate(DiceObj, new Vector3(CharacterObj[OrderArray[NowPlayerNo]].transform.position.x,
@@ -223,7 +223,7 @@ public class GameManager : MonoBehaviour
             Ordering = false;
             NowPlayerNo = 0;
             SpawnDice();
-            GameStatus = GameSTS.Play;
+            gameStatus = GameSTS.Play;
             transform.rotation = Quaternion.Euler(CameraXaxis, 0, 0);
         }
 
