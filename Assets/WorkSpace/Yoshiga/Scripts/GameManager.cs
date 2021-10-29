@@ -65,11 +65,14 @@ public class GameManager : MonoBehaviour
     private PlayerAction[] playerScript = new PlayerAction[4];   //プレイヤーごとのPlayerScript
     [Header("CharactorUICanvas : オブジェクト")]
     public SetCharacerUI CharacerUI;
+    private bool statusUIActive;    //キャラクターのステータスUIが表示されているかのフラグ
+    private SpuareAction eventScript;
 
     // Start is called before the first frame update
     void Start()
     {
         Ordering = true;
+        statusUIActive = false;
         gameStatus = GameSTS.OrderJudge;
         NowPlayerNo = 0;
         //キャラクタークラスを作成し、Rigidbodyを格納
@@ -80,13 +83,30 @@ public class GameManager : MonoBehaviour
             characters[i].MyNo = i + 1;
             playerScript[i] = CharacterObj[i].GetComponent<PlayerAction>();
         }
+        eventScript = this.gameObject.GetComponent<SpuareAction>();
         SpawnDice();
     }
 
     //キャラクターがマスに止まってイベントを行う時の処理
-    public void PlayEvent(int PLNo)
+    public void PlayEvent(MassType EventType)
     {
-        characters[PLNo].EventFlg = true;
+        characters[OrderArray[NowPlayerNo]].EventFlg = true;
+
+        switch(EventType)
+        {
+            case MassType.Halloween:
+                eventScript.HalloweenEvent();
+                break;
+            case MassType.Plus:
+                eventScript.PlusEvent();
+                break;
+            case MassType.Minus:
+                eventScript.MinusEvent();
+                break;
+            case MassType.Quiz:
+                eventScript.QuizEvent();
+                break;
+        }
     }
 
     //キャラクターがイベントを終えたときに呼ばれる関数
@@ -119,6 +139,7 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
+        characters[OrderArray[NowPlayerNo]].EventFlg = false;
         ChangeNowPlayerNo();
         SpawnDice();
     }
@@ -169,6 +190,13 @@ public class GameManager : MonoBehaviour
         if(Ordering == false)
         {
             playerScript[OrderArray[NowPlayerNo]].SetStartPos();
+            if(statusUIActive == false)
+            {
+                CharacerUI.PlayerStatusUISet();
+                statusUIActive = true;
+            }
+
+            CharacerUI.PlayerTurnUISet(OrderArray[NowPlayerNo]);
         }
 
         Instantiate(DiceObj, new Vector3(CharacterObj[OrderArray[NowPlayerNo]].transform.position.x,

@@ -68,10 +68,11 @@ public class PlayerAction : MonoBehaviour
             //止まりたいマスについた時
             if (manager.characters[manager.OrderArray[manager.NowPlayerNo]].MyDiceNo == 0)
             {
+                manager.CharacerUI.DiceNumUIDestroy();
                 MoveFlg = false;
                 MyRB.velocity = Vector3.zero;
                 this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
-                manager.EndEvent();
+                manager.PlayEvent(StopMass);
             }
         }       
     }
@@ -90,6 +91,8 @@ public class PlayerAction : MonoBehaviour
         //キャラクターが動いていい時の処理
         if(MoveFlg == true && MyNo == manager.OrderArray[manager.NowPlayerNo] && manager.gameStatus == GameSTS.Play)
         {
+            manager.CharacerUI.DiceNumUISet(manager.characters[manager.OrderArray[manager.NowPlayerNo]].MyDiceNo);
+
             //キャラクターを動かす処理
             if (StartFlg == true)
             {

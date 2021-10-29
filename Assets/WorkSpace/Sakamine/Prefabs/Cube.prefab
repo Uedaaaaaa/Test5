@@ -114,7 +114,7 @@ MonoBehaviour:
   imgBbtn: {fileID: 0}
   imgSel: {fileID: 0}
   txtMessage: {fileID: 0}
-  txtPlayerName: {fileID: 0}
+  txtTextName: {fileID: 0}
   imgQuizSpace:
   - {fileID: 0}
   - {fileID: 0}
@@ -123,56 +123,60 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  imgCharaUI: {fileID: 0}
+  txtPlayerName: {fileID: 0}
+  txtCandy: {fileID: 0}
+  txtYaruki: {fileID: 0}
   plusEvent:
   - EventName: a
     eventData:
     - SpriteEventChara: {fileID: 0}
       Message: "\u30D7\u30E9\u30B91-1"
-      PlayerName: 
+      TextName: 
     - SpriteEventChara: {fileID: 0}
       Message: "\u30D7\u30E9\u30B91-2"
-      PlayerName: 
+      TextName: 
   - EventName: b
     eventData:
     - SpriteEventChara: {fileID: 0}
       Message: "\u30D7\u30E9\u30B92-1"
-      PlayerName: 
+      TextName: 
     - SpriteEventChara: {fileID: 0}
       Message: "\u30D7\u30E9\u30B92-2"
-      PlayerName: 
+      TextName: 
   - EventName: c
     eventData:
     - SpriteEventChara: {fileID: 0}
       Message: "\u30D7\u30E9\u30B93-1"
-      PlayerName: 
+      TextName: 
     - SpriteEventChara: {fileID: 0}
       Message: "\u30D7\u30E9\u30B93-2"
-      PlayerName: 
+      TextName: 
   minusEvent:
   - EventName: a
     eventData:
     - SpriteEventChara: {fileID: 0}
       Message: "\u30DE\u30A4\u30CA\u30B91-1"
-      PlayerName: 
+      TextName: 
     - SpriteEventChara: {fileID: 0}
       Message: "\u30DE\u30A4\u30CA\u30B91-2"
-      PlayerName: 
+      TextName: 
   - EventName: b
     eventData:
     - SpriteEventChara: {fileID: 0}
       Message: "\u30DE\u30A4\u30CA\u30B92-2"
-      PlayerName: 
+      TextName: 
     - SpriteEventChara: {fileID: 0}
       Message: "\u30DE\u30A4\u30CA\u30B92-1"
-      PlayerName: 
+      TextName: 
   - EventName: c
     eventData:
     - SpriteEventChara: {fileID: 0}
       Message: "\u30DE\u30A4\u30CA\u30B93-1"
-      PlayerName: 
+      TextName: 
     - SpriteEventChara: {fileID: 0}
       Message: "\u30DE\u30A4\u30CA\u30B93-2"
-      PlayerName: 
+      TextName: 
   quizEvent:
   - EventName: a
     Answer:
@@ -182,22 +186,22 @@ MonoBehaviour:
     eventData:
     - SpriteEventChara: {fileID: 0}
       Message: "\u554F\u984C"
-      PlayerName: 
+      TextName: 
       QuizSet: 0
       AnswerText: 0
     - SpriteEventChara: {fileID: 0}
       Message: "\u7B54\u3048\u306F\u4F55"
-      PlayerName: 
+      TextName: 
       QuizSet: 1
       AnswerText: 0
     - SpriteEventChara: {fileID: 0}
       Message: "\u6B63\u89E3"
-      PlayerName: 
+      TextName: 
       QuizSet: 0
       AnswerText: 0
     - SpriteEventChara: {fileID: 0}
       Message: "\u4E0D\u6B63\u89E3"
-      PlayerName: 
+      TextName: 
       QuizSet: 0
       AnswerText: 1
   halloweenEvent:
@@ -205,15 +209,15 @@ MonoBehaviour:
     eventData:
     - SpriteEventChara: {fileID: 0}
       Message: "\u30CF\u30ED\u30A6\u30A3\u30F31-1"
-      PlayerName: 
+      TextName: 
     - SpriteEventChara: {fileID: 0}
       Message: "\u30CF\u30ED\u30A6\u30A3\u30F31-2"
-      PlayerName: 
+      TextName: 
   - EventName: b
     eventData:
     - SpriteEventChara: {fileID: 0}
       Message: "\u30CF\u30ED\u30A6\u30A3\u30F32-1"
-      PlayerName: 
+      TextName: 
     - SpriteEventChara: {fileID: 0}
       Message: "\u30CF\u30ED\u30A6\u30A3\u30F32-2"
-      PlayerName: 
+      TextName: 
