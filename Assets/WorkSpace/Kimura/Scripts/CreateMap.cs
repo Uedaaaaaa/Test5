@@ -150,7 +150,14 @@ public class CreateMap : MonoBehaviour
                     break;
             }
             //作成するオブジェクトの名前を変更
-            SetSquare.gameObject.name = i.ToString();
+            if(i >= 10)
+            {
+                SetSquare.gameObject.name = i.ToString();
+            }
+            else
+            {
+                SetSquare.gameObject.name = "0" + i.ToString();
+            }
             if (i == 1)
             {
                 SetSquare.gameObject.name += "Start";
