@@ -98,7 +98,13 @@ public class SetCharacerUI : MonoBehaviour
         }
         PlayerStatusChange();
     }
-
+    public void PlayerStatusUIDestroy()
+    {
+        for (int i = 0; i < PlayerStatusUI.Length; i++)
+        {
+            PlayerStatusUI[i].enabled = false;
+        }
+    }
     //プレイヤーのステータスUIの更新
     public void PlayerStatusChange()
     {
