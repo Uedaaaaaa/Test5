@@ -402,6 +402,8 @@ public class SpuareAction : MonoBehaviour
 
     void EndEvent()
     {
+        //プレイヤー側の終了関数
+        manager.EndEvent();
         imgEventChara.gameObject.SetActive(false);
         imgTextSpace.gameObject.SetActive(false);
         txtMessage.gameObject.SetActive(false);
