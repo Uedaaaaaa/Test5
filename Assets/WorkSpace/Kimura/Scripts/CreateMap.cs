@@ -152,11 +152,11 @@ public class CreateMap : MonoBehaviour
             //作成するオブジェクトの名前を変更
             if(i >= 10)
             {
-                SetSquare.gameObject.name = i.ToString();
+                SetSquare.gameObject.name = "2" + i.ToString();
             }
             else
             {
-                SetSquare.gameObject.name = "0" + i.ToString();
+                SetSquare.gameObject.name = "1" + i.ToString();
             }
             if (i == 1)
             {
