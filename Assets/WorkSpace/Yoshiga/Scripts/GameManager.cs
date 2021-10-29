@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
     [Header("CharactorUICanvas : オブジェクト")]
     public SetCharacerUI CharacerUI;
     private bool statusUIActive;    //キャラクターのステータスUIが表示されているかのフラグ
+    private SpuareAction eventScript;
 
     // Start is called before the first frame update
     void Start()
@@ -82,15 +83,30 @@ public class GameManager : MonoBehaviour
             characters[i].MyNo = i + 1;
             playerScript[i] = CharacterObj[i].GetComponent<PlayerAction>();
         }
+        eventScript = this.gameObject.GetComponent<SpuareAction>();
         SpawnDice();
     }
 
     //キャラクターがマスに止まってイベントを行う時の処理
-    public void PlayEvent(int PLNo)
+    public void PlayEvent(MassType EventType)
     {
-        characters[PLNo].EventFlg = true;
+        characters[OrderArray[NowPlayerNo]].EventFlg = true;
 
-
+        switch(EventType)
+        {
+            case MassType.Halloween:
+                eventScript.HalloweenEvent();
+                break;
+            case MassType.Plus:
+                eventScript.PlusEvent();
+                break;
+            case MassType.Minus:
+                eventScript.MinusEvent();
+                break;
+            case MassType.Quiz:
+                eventScript.QuizEvent();
+                break;
+        }
     }
 
     //キャラクターがイベントを終えたときに呼ばれる関数
@@ -123,6 +139,7 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
+        characters[OrderArray[NowPlayerNo]].EventFlg = false;
         ChangeNowPlayerNo();
         SpawnDice();
     }
