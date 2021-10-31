@@ -159,8 +159,6 @@ public class SpuareAction : MonoBehaviour
         //フェードイン
         if(FeedInFlg)
         {
-            Debug.Log("aaaa");
-
             FeedIn();
             if(alfa >= 1.0f)
             {
@@ -184,13 +182,25 @@ public class SpuareAction : MonoBehaviour
                 txtMessage.gameObject.SetActive(true);
                 txtTextName.gameObject.SetActive(true);
                 if (PlusFlg)
+                {
                     StartCoroutine("Novel", plusEvent[EventRand].eventData[EventCount].Message);
+                    PlusFlg = true;
+                }
                 else if (MinusFlg)
+                {
                     StartCoroutine("Novel", minusEvent[EventRand].eventData[EventCount].Message);
+                    MinusFlg = true;
+                }
                 else if (QuizFlg)
+                {
                     StartCoroutine("Novel", quizEvent[EventRand].eventData[EventCount].Message);
+                    QuizFlg = true;
+                }
                 else if (HalloweenFlg)
+                {
                     StartCoroutine("Novel", halloweenEvent[EventRand].eventData[EventCount].Message);
+                    HalloweenFlg = true;
+                }
 
             }
         }
@@ -464,7 +474,7 @@ public class SpuareAction : MonoBehaviour
     void EndEvent()
     {
         //プレイヤー側の終了関数
-        //manager.EndEvent();
+        manager.EndEvent();
         imgEventChara.gameObject.SetActive(false);
         imgTextSpace.gameObject.SetActive(false);
         txtMessage.gameObject.SetActive(false);
