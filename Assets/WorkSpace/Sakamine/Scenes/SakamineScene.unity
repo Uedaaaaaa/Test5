@@ -288,6 +288,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4139668232847131632, guid: 152ac49b25280124784a6d497dde2c34, type: 3}
+      propertyPath: FeedSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4139668232847131632, guid: 152ac49b25280124784a6d497dde2c34, type: 3}
       propertyPath: txtMessage
       value: 
       objectReference: {fileID: 0}
