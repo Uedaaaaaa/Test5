@@ -12,8 +12,9 @@ public class PlayerAction : MonoBehaviour
     private bool MoveFlg = false;       //動いていいかのフラグ
     [HideInInspector]public MassType StopMass;       //止まったマスのタイプ
     private Rigidbody MyRB;             //自身のRigidbody
-    [HideInInspector]public int NowMassNo = 0;    //今いるマスの番号
-    
+    [HideInInspector] public int NowMassNo = 0;    //今いるマスの番号
+    private int MassHeadNo;     //今いるマスの頭の数字(そのマスの番号が何桁の数字か)
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,26 +39,29 @@ public class PlayerAction : MonoBehaviour
             if (other.gameObject.tag == "Plus")
             {
                 StopMass = MassType.Plus;
-                manager.MinusDiceNo();
-                NowMassNo = int.Parse(other.gameObject.name.Substring(0, 1));
             }
             else if (other.gameObject.tag == "Minus")
             {
                 StopMass = MassType.Minus;
-                manager.MinusDiceNo();
-                NowMassNo = int.Parse(other.gameObject.name.Substring(0, 1));
             }
             else if (other.gameObject.tag == "Halloween")
             {
                 StopMass = MassType.Halloween;
-                manager.MinusDiceNo();
-                NowMassNo = int.Parse(other.gameObject.name.Substring(0, 1));
             }
             else if (other.gameObject.tag == "Quiz")
             {
                 StopMass = MassType.Quiz;
-                manager.MinusDiceNo();
-                NowMassNo = int.Parse(other.gameObject.name.Substring(0, 1));
+            }
+
+            manager.MinusDiceNo();
+            MassHeadNo = int.Parse(other.gameObject.name.Substring(0, 1));
+            if (MassHeadNo == 1)
+            {
+                NowMassNo = int.Parse(other.gameObject.name.Substring(1, 1));
+            }
+            else if (MassHeadNo == 2)
+            {
+                NowMassNo = int.Parse(other.gameObject.name.Substring(1, 2));
             }
 
             if (NowMassNo == 1)
