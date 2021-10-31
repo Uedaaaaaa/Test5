@@ -60,8 +60,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Vector3 PlayerCameraPos;
     [Header("カメラの傾き : X軸")]
     [SerializeField] private float CameraXaxis;
-    [Header("プレイヤー固定カメラの向きたい高さ")]
-    [SerializeField] private float CameraLookY;
     private PlayerAction[] playerScript = new PlayerAction[4];   //プレイヤーごとのPlayerScript
     [Header("CharactorUICanvas : オブジェクト")]
     public SetCharacerUI CharacerUI;
@@ -219,9 +217,11 @@ public class GameManager : MonoBehaviour
 
             //カメラの位置と角度の調整
             transform.position = NewPos;
-            //transform.LookAt(new Vector3(CharacterObj[OrderArray[NowPlayerNo]].transform.position.x,
-            //                             CharacterObj[OrderArray[NowPlayerNo]].transform.position.y + CameraLookY,
-            //                             CharacterObj[OrderArray[NowPlayerNo]].transform.position.z));
+            
+            if(playerScript[OrderArray[NowPlayerNo]].MoveFlg == true)
+            {
+                transform.position = new Vector3(CharacterObj[OrderArray[NowPlayerNo]].transform.position.x, NewPos.y, NewPos.z);
+            }
         }
     }
 

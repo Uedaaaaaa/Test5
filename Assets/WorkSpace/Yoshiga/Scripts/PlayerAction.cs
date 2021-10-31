@@ -9,7 +9,7 @@ public class PlayerAction : MonoBehaviour
     private CreateMap MapScript;    //マップの生成script
     private bool StartFlg = true;  //スタート地点に向かうためのフラグ
     private Vector3 StartDashVelocity;  //スタートダッシュの時の速度
-    private bool MoveFlg = false;       //動いていいかのフラグ
+    [HideInInspector]public bool MoveFlg = false;       //動いていいかのフラグ
     [HideInInspector]public MassType StopMass;       //止まったマスのタイプ
     private Rigidbody MyRB;             //自身のRigidbody
     [HideInInspector] public int NowMassNo = 0;    //今いるマスの番号
