@@ -497,6 +497,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NovelSpeed: 0.05
+  FeedSpeed: 0.02
+  Feed: {fileID: 0}
   imgEventChara: {fileID: 0}
   imgTextSpace: {fileID: 0}
   imgBbtn: {fileID: 0}

@@ -8,6 +8,7 @@ using System.Linq;
 [System.Serializable]
 public class EventData
 {
+    [Tooltip("SE")] public AudioClip SE;
     [Tooltip("イベントのキャラ画像")] public Sprite SpriteEventChara;
     [TextArea(1, 3), Tooltip("テキスト内容")] public string Message;
     [Tooltip("名前テキスト")] public string TextName;
@@ -53,7 +54,13 @@ public class HalloweenEvent
 public class SpuareAction : MonoBehaviour
 {
     GameObject Canvas;
+    float alfa;    //A値を操作するための変数
+    float red, green, blue;    //RGBを操作するための変数
+
     [SerializeField] float NovelSpeed;
+    [SerializeField] float FeedSpeed = 0.02f;  //透明化の速さ
+    [Space(20)]
+    [SerializeField] Image Feed;
     [SerializeField] Image imgEventChara;
     [SerializeField] Image imgTextSpace;
     [SerializeField] Image imgBbtn;
@@ -88,11 +95,15 @@ public class SpuareAction : MonoBehaviour
     private int Sel;
     private bool NowQuizFlg;
     private bool isCorrect;
+    private bool FeedInFlg = false;
+    private bool FeedOutFlg = false;
+
     private GameManager manager;
     // Start is called before the first frame update
     void Start()
     {
         Canvas = GameObject.Find("Canvas");
+        Feed = Canvas.transform.Find("Feed").GetComponent<Image>();
         imgEventChara = Canvas.transform.Find("imgEventChara").GetComponent<Image>();
         imgTextSpace = Canvas.transform.Find("imgTextSpace").GetComponent<Image>();
         imgBbtn = Canvas.transform.Find("imgBbtn").GetComponent<Image>();
@@ -124,17 +135,67 @@ public class SpuareAction : MonoBehaviour
         imgSel.gameObject.SetActive(false);
         txtMessage.gameObject.SetActive(false);
         txtTextName.gameObject.SetActive(false);
+        imgCharaUI.gameObject.SetActive(false);
+        txtPlayerName.gameObject.SetActive(false);
+        txtCandy.gameObject.SetActive(false);
+        txtYaruki.gameObject.SetActive(false);
         for (int i = 0; i < 3; i++)
         {
             txtAnswer[i].gameObject.SetActive(false);
             imgQuizSpace[i].gameObject.SetActive(false);
         }
+
+        red = Feed.color.r;
+        green = Feed.color.g;
+        blue = Feed.color.b;
+        alfa = 0.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(NextTextFlg)
+        Debug.Log(alfa);
+        Feed.color = new Color(red, green, blue, alfa);
+        //フェードイン
+        if(FeedInFlg)
+        {
+            Debug.Log("aaaa");
+
+            FeedIn();
+            if(alfa >= 1.0f)
+            {
+                FeedInFlg = false;
+                //Feedがイベント開始時ならUIを表示
+                if (PlusFlg || MinusFlg || QuizFlg || HalloweenFlg)
+                {
+                    ShowUI();
+                }
+                //FeedOut開始
+                FeedOutFlg = true;
+            }
+        }
+        if (FeedOutFlg)
+        {
+            FeedOut();
+            if (alfa <= 0.1f)
+            {
+                FeedOutFlg = false;
+                //フェードアウトが完了したら文字が流れ始める
+                txtMessage.gameObject.SetActive(true);
+                txtTextName.gameObject.SetActive(true);
+                if (PlusFlg)
+                    StartCoroutine("Novel", plusEvent[EventRand].eventData[EventCount].Message);
+                else if (MinusFlg)
+                    StartCoroutine("Novel", minusEvent[EventRand].eventData[EventCount].Message);
+                else if (QuizFlg)
+                    StartCoroutine("Novel", quizEvent[EventRand].eventData[EventCount].Message);
+                else if (HalloweenFlg)
+                    StartCoroutine("Novel", halloweenEvent[EventRand].eventData[EventCount].Message);
+
+            }
+        }
+
+        if (NextTextFlg)
         {
             imgBbtn.gameObject.SetActive(true);
         }
@@ -162,7 +223,7 @@ public class SpuareAction : MonoBehaviour
         //プラスイベント処理
         if (PlusFlg)
         {
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("BtnB"))
+            if (!FeedInFlg&&!FeedOutFlg&&Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("BtnB"))
             {
                 if (NextTextFlg)
                 {
@@ -252,6 +313,7 @@ public class SpuareAction : MonoBehaviour
                     {
                         //配列をシャッフル
                         quizEvent[EventRand].Answer = quizEvent[EventRand].Answer.OrderBy(i => System.Guid.NewGuid()).ToArray();
+                        //選択肢表示
                         for (int i = 0; i < 3; i++)
                         {
                             txtAnswer[i].gameObject.SetActive(true);
@@ -260,6 +322,7 @@ public class SpuareAction : MonoBehaviour
                         }
                         imgSel.gameObject.SetActive(true);
                         NextTextFlg = true;
+                        //クイズ中
                         NowQuizFlg = true;
                     }
                     //正解なら
@@ -360,10 +423,8 @@ public class SpuareAction : MonoBehaviour
         {
             EventRand = Random.Range(0, plusEvent.Count);
             imgEventChara.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-            SetNextText(null, plusEvent[EventRand].eventData,null);
-            
-            SetUI();
             PlusFlg = true;
+            FeedInFlg = true;
         }
     }
     public void MinusEvent()
@@ -373,7 +434,7 @@ public class SpuareAction : MonoBehaviour
             EventRand = Random.Range(0, minusEvent.Count);
             imgEventChara.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
             SetNextText(null, minusEvent[EventRand].eventData,null);
-            SetUI();
+            ShowUI();
             MinusFlg = true;
         }
     }
@@ -384,7 +445,7 @@ public class SpuareAction : MonoBehaviour
             EventRand = Random.Range(0, quizEvent.Count);
             imgEventChara.transform.localPosition = new Vector3(500.0f, 0.0f, 0.0f);
             SetNextText(quizEvent[EventRand].eventData, null,null);
-            SetUI();
+            ShowUI();
             QuizFlg = true;
         }
     }
@@ -395,7 +456,7 @@ public class SpuareAction : MonoBehaviour
             EventRand = Random.Range(0, halloweenEvent.Count);
             imgEventChara.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
             SetNextText(null, null, halloweenEvent[EventRand].eventData);
-            SetUI();
+            ShowUI();
             HalloweenFlg = true;
         }
     }
@@ -403,7 +464,7 @@ public class SpuareAction : MonoBehaviour
     void EndEvent()
     {
         //プレイヤー側の終了関数
-        manager.EndEvent();
+        //manager.EndEvent();
         imgEventChara.gameObject.SetActive(false);
         imgTextSpace.gameObject.SetActive(false);
         txtMessage.gameObject.SetActive(false);
@@ -414,12 +475,30 @@ public class SpuareAction : MonoBehaviour
             imgQuizSpace[i].gameObject.SetActive(false);
         }
         imgSel.gameObject.SetActive(false);
+        imgCharaUI.gameObject.SetActive(false);
+        txtPlayerName.gameObject.SetActive(false);
+        txtCandy.gameObject.SetActive(false);
+        txtYaruki.gameObject.SetActive(false);
+
         PlusFlg = false;
         MinusFlg = false;
         QuizFlg = false;
         HalloweenFlg = false;
         EventCount = 0;
         Sel = 0;
+        if (PlusFlg)
+        {
+        }
+        else if (MinusFlg)
+        {
+        }
+        else if (QuizFlg)
+        {
+        }
+        else if (HalloweenFlg)
+        {
+        }
+
     }
     //1文字ずつ表示する処理
     IEnumerator Novel(string NowMessage)
@@ -435,13 +514,53 @@ public class SpuareAction : MonoBehaviour
         NextTextFlg = true;
     }
     //UIを表示
-    void SetUI()
+    void ShowUI()
     {
         imgEventChara.gameObject.SetActive(true);
         imgTextSpace.gameObject.SetActive(true);
-        txtMessage.gameObject.SetActive(true);
-        txtTextName.gameObject.SetActive(true);
+        imgCharaUI.gameObject.SetActive(true);
+        txtPlayerName.gameObject.SetActive(true);
+        txtCandy.gameObject.SetActive(true);
+        txtYaruki.gameObject.SetActive(true);
+
         //txtPlayerName.text = "プレイヤー" + manager.characters.
+        if (PlusFlg)
+        {
+            if (plusEvent[EventRand].eventData[EventCount].SpriteEventChara != null)
+            {
+                imgEventChara.sprite = plusEvent[EventRand].eventData[EventCount].SpriteEventChara;
+            }
+            //名前変更
+            txtTextName.text = plusEvent[EventRand].eventData[EventCount].TextName;
+        }
+        else if(MinusFlg)
+        {
+            if (minusEvent[EventRand].eventData[EventCount].SpriteEventChara != null)
+            {
+                imgEventChara.sprite = minusEvent[EventRand].eventData[EventCount].SpriteEventChara;
+            }
+            //名前変更
+            txtTextName.text = minusEvent[EventRand].eventData[EventCount].TextName;
+        }
+        else if (QuizFlg)
+        {
+            if (quizEvent[EventRand].eventData[EventCount].SpriteEventChara != null)
+            {
+                imgEventChara.sprite = quizEvent[EventRand].eventData[EventCount].SpriteEventChara;
+            }
+            //名前変更
+            txtTextName.text = quizEvent[EventRand].eventData[EventCount].TextName;
+        }
+        else if (HalloweenFlg)
+        {
+            if (halloweenEvent[EventRand].eventData[EventCount].SpriteEventChara != null)
+            {
+                imgEventChara.sprite = halloweenEvent[EventRand].eventData[EventCount].SpriteEventChara;
+            }
+            //名前変更
+            txtTextName.text = halloweenEvent[EventRand].eventData[EventCount].TextName;
+        }
+
     }
     //次のテキストデータを表示
     void SetNextText(List<QuizEventData> Q, List<EventData> S,List<HalloweenEventData> H)
@@ -478,9 +597,17 @@ public class SpuareAction : MonoBehaviour
             }
             //名前変更
             txtTextName.text = H[EventCount].TextName;
-
         }
-
+    }
+    private void FeedIn()
+    {
+        //if(alfa <= 1.0f) 
+        alfa += FeedSpeed * Time.deltaTime;
+    }
+    private void FeedOut()
+    {
+        //if (alfa >= 1.0f) 
+        alfa -= FeedSpeed * Time.deltaTime;
     }
 
 }
