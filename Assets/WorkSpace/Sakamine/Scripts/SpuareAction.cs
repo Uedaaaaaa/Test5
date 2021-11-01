@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using KanKikuchi.AudioManager;
 
 //イベント内容
 [System.Serializable]
@@ -97,6 +98,7 @@ public class SpuareAction : MonoBehaviour
     private bool isCorrect;
     private bool FeedInFlg = false;
     private bool FeedOutFlg = false;
+    private int CharaNo;
 
     private GameManager manager;
     // Start is called before the first frame update
@@ -154,7 +156,7 @@ public class SpuareAction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(alfa);
+        Debug.Log(CharaNo);
         Feed.color = new Color(red, green, blue, alfa);
         //フェードイン
         if(FeedInFlg)
@@ -167,6 +169,13 @@ public class SpuareAction : MonoBehaviour
                 if (PlusFlg || MinusFlg || QuizFlg || HalloweenFlg)
                 {
                     ShowUI();
+                    txtPlayerName.text = "プレイヤー" + CharaNo.ToString();
+                    txtCandy.text = manager.characters[CharaNo].Candy.ToString();
+                    txtYaruki.text = manager.characters[CharaNo].Yaruki.ToString();
+                }
+                else
+                {
+                    HideUI();
                 }
                 //FeedOut開始
                 FeedOutFlg = true;
@@ -179,27 +188,37 @@ public class SpuareAction : MonoBehaviour
             {
                 FeedOutFlg = false;
                 //フェードアウトが完了したら文字が流れ始める
-                txtMessage.gameObject.SetActive(true);
-                txtTextName.gameObject.SetActive(true);
                 if (PlusFlg)
                 {
+                    txtMessage.gameObject.SetActive(true);
+                    txtTextName.gameObject.SetActive(true);
                     StartCoroutine("Novel", plusEvent[EventRand].eventData[EventCount].Message);
                     PlusFlg = true;
                 }
                 else if (MinusFlg)
                 {
+                    txtMessage.gameObject.SetActive(true);
+                    txtTextName.gameObject.SetActive(true);
                     StartCoroutine("Novel", minusEvent[EventRand].eventData[EventCount].Message);
                     MinusFlg = true;
                 }
                 else if (QuizFlg)
                 {
+                    txtMessage.gameObject.SetActive(true);
+                    txtTextName.gameObject.SetActive(true);
                     StartCoroutine("Novel", quizEvent[EventRand].eventData[EventCount].Message);
                     QuizFlg = true;
                 }
                 else if (HalloweenFlg)
                 {
+                    txtMessage.gameObject.SetActive(true);
+                    txtTextName.gameObject.SetActive(true);
                     StartCoroutine("Novel", halloweenEvent[EventRand].eventData[EventCount].Message);
                     HalloweenFlg = true;
+                }
+                else
+                {
+                    EndEvent();
                 }
 
             }
@@ -216,24 +235,24 @@ public class SpuareAction : MonoBehaviour
         //デバッグ用
         if(Input.GetKeyDown(KeyCode.P))
         {
-            PlusEvent();
+            PlusEvent(1);
         }
         if (Input.GetKeyDown(KeyCode.M))
         {
-            MinusEvent();
+            MinusEvent(2);
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            QuizEvent();
+            QuizEvent(3);
         }
         if (Input.GetKeyDown(KeyCode.H))
         {
-            HalloweenEvent();
+            HalloweenEvent(4);
         }
         //プラスイベント処理
         if (PlusFlg)
         {
-            if (!FeedInFlg&&!FeedOutFlg&&Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("BtnB"))
+            if (!FeedInFlg&&!FeedOutFlg&&Input.GetKeyDown(KeyCode.Return) || !FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
             {
                 if (NextTextFlg)
                 {
@@ -242,7 +261,11 @@ public class SpuareAction : MonoBehaviour
                     if (EventCount + 1 == plusEvent[EventRand].eventData.Count)
                     {
                         //イベント終了
-                        EndEvent();
+                        txtMessage.gameObject.SetActive(false);
+                        txtTextName.gameObject.SetActive(false);
+                        PlusFlg = false;
+                        //フェード開始してイベ終了
+                        FeedInFlg = true;
                     }
                     else
                     {
@@ -260,7 +283,7 @@ public class SpuareAction : MonoBehaviour
         }
         if (MinusFlg)
         {
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("BtnB"))
+            if (!FeedInFlg && !FeedOutFlg&&Input.GetKeyDown(KeyCode.Return) || !FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
             {
                 if (NextTextFlg)
                 {
@@ -269,7 +292,11 @@ public class SpuareAction : MonoBehaviour
                     if (EventCount + 1 == minusEvent[EventRand].eventData.Count)
                     {
                         //イベント終了
-                        EndEvent();
+                        txtMessage.gameObject.SetActive(false);
+                        txtTextName.gameObject.SetActive(false);
+                        MinusFlg = false;
+                        //フェード開始してイベ終了
+                        FeedInFlg = true;
 
                     }
                     else
@@ -307,7 +334,7 @@ public class SpuareAction : MonoBehaviour
                     }
                 }
             }
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("BtnB"))
+            if (!FeedInFlg && !FeedOutFlg && Input.GetKeyDown(KeyCode.Return) || !FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
             {
                 if (NextTextFlg)
                 {
@@ -316,7 +343,11 @@ public class SpuareAction : MonoBehaviour
                     if (EventCount + 1 == quizEvent[EventRand].eventData.Count)
                     {
                         //イベント終了
-                        EndEvent();
+                        txtMessage.gameObject.SetActive(false);
+                        txtTextName.gameObject.SetActive(false);
+                        QuizFlg = false;
+                        //フェード開始してイベ終了
+                        FeedInFlg = true;
                     }
                     //クイズあるなら出す
                     else if (quizEvent[EventRand].eventData[EventCount].QuizSet == true && !NowQuizFlg)
@@ -382,7 +413,12 @@ public class SpuareAction : MonoBehaviour
                         //正解テキストが終了
                         if (quizEvent[EventRand].eventData[EventCount].AnswerText && isCorrect)
                         {
-                            EndEvent();
+                            //イベント終了
+                            txtMessage.gameObject.SetActive(false);
+                            txtTextName.gameObject.SetActive(false);
+                            QuizFlg = false;
+                            //フェード開始してイベ終了
+                            FeedInFlg = true;
                         }
                         else
                         {
@@ -400,7 +436,7 @@ public class SpuareAction : MonoBehaviour
         }
         if (HalloweenFlg)
         {
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("BtnB"))
+            if (!FeedInFlg && !FeedOutFlg && Input.GetKeyDown(KeyCode.Return) || !FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
             {
                 if (NextTextFlg)
                 {
@@ -409,7 +445,11 @@ public class SpuareAction : MonoBehaviour
                     if (EventCount + 1 == halloweenEvent[EventRand].eventData.Count)
                     {
                         //イベント終了
-                        EndEvent();
+                        txtMessage.gameObject.SetActive(false);
+                        txtTextName.gameObject.SetActive(false);
+                        HalloweenFlg = false;
+                        //フェード開始してイベ終了
+                        FeedInFlg = true;
                     }
                     else
                     {
@@ -427,47 +467,48 @@ public class SpuareAction : MonoBehaviour
         }
 
     }
-    public void PlusEvent()
+    public void PlusEvent(int MyNo)
     {
         if (!PlusFlg)
         {
+            CharaNo = MyNo;
             EventRand = Random.Range(0, plusEvent.Count);
             imgEventChara.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
             PlusFlg = true;
             FeedInFlg = true;
         }
     }
-    public void MinusEvent()
+    public void MinusEvent(int MyNo)
     {
         if (!MinusFlg)
         {
+            CharaNo = MyNo;
             EventRand = Random.Range(0, minusEvent.Count);
             imgEventChara.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-            SetNextText(null, minusEvent[EventRand].eventData,null);
-            ShowUI();
             MinusFlg = true;
+            FeedInFlg = true;
         }
     }
-    public void QuizEvent()
+    public void QuizEvent(int MyNo)
     {
         if (!QuizFlg)
         {
+            CharaNo = MyNo;
             EventRand = Random.Range(0, quizEvent.Count);
             imgEventChara.transform.localPosition = new Vector3(500.0f, 0.0f, 0.0f);
-            SetNextText(quizEvent[EventRand].eventData, null,null);
-            ShowUI();
             QuizFlg = true;
+            FeedInFlg = true;
         }
     }
-    public void HalloweenEvent()
+    public void HalloweenEvent(int MyNo)
     {
         if (!HalloweenFlg)
         {
+            CharaNo = MyNo;
             EventRand = Random.Range(0, halloweenEvent.Count);
             imgEventChara.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-            SetNextText(null, null, halloweenEvent[EventRand].eventData);
-            ShowUI();
             HalloweenFlg = true;
+            FeedInFlg = true;
         }
     }
 
@@ -475,20 +516,6 @@ public class SpuareAction : MonoBehaviour
     {
         //プレイヤー側の終了関数
         manager.EndEvent();
-        imgEventChara.gameObject.SetActive(false);
-        imgTextSpace.gameObject.SetActive(false);
-        txtMessage.gameObject.SetActive(false);
-        txtTextName.gameObject.SetActive(false);
-        for (int i = 0; i < 3; i++)
-        {
-            txtAnswer[i].gameObject.SetActive(false);
-            imgQuizSpace[i].gameObject.SetActive(false);
-        }
-        imgSel.gameObject.SetActive(false);
-        imgCharaUI.gameObject.SetActive(false);
-        txtPlayerName.gameObject.SetActive(false);
-        txtCandy.gameObject.SetActive(false);
-        txtYaruki.gameObject.SetActive(false);
 
         PlusFlg = false;
         MinusFlg = false;
@@ -572,6 +599,25 @@ public class SpuareAction : MonoBehaviour
         }
 
     }
+    void HideUI()
+    {
+        imgBbtn.gameObject.SetActive(false);
+        imgEventChara.gameObject.SetActive(false);
+        imgTextSpace.gameObject.SetActive(false);
+        txtMessage.gameObject.SetActive(false);
+        txtTextName.gameObject.SetActive(false);
+        for (int i = 0; i < 3; i++)
+        {
+            txtAnswer[i].gameObject.SetActive(false);
+            imgQuizSpace[i].gameObject.SetActive(false);
+        }
+        imgSel.gameObject.SetActive(false);
+        imgCharaUI.gameObject.SetActive(false);
+        txtPlayerName.gameObject.SetActive(false);
+        txtCandy.gameObject.SetActive(false);
+        txtYaruki.gameObject.SetActive(false);
+
+    }
     //次のテキストデータを表示
     void SetNextText(List<QuizEventData> Q, List<EventData> S,List<HalloweenEventData> H)
     {
@@ -609,12 +655,12 @@ public class SpuareAction : MonoBehaviour
             txtTextName.text = H[EventCount].TextName;
         }
     }
-    private void FeedIn()
+    public void FeedIn()
     {
         //if(alfa <= 1.0f) 
         alfa += FeedSpeed * Time.deltaTime;
     }
-    private void FeedOut()
+    public void FeedOut()
     {
         //if (alfa >= 1.0f) 
         alfa -= FeedSpeed * Time.deltaTime;
