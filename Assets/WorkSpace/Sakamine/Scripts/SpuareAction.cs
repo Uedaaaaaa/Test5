@@ -24,7 +24,12 @@ public class QuizEventData : EventData
 [System.Serializable]
 public class HalloweenEventData : EventData
 {
-
+    [Tooltip("何もしないかお菓子くださいの選択肢表示")] public bool SetSelect;
+    [Tooltip("やるき選択の選択肢表示")] public bool SetYaruki;
+    [Tooltip("何もしないかった")] public bool NanimoSinai;
+    [Tooltip("やる気0ならこのテキストに飛ぶ")] public bool NoYaruki;
+    [Tooltip("トリックオアトリート成功時")] public bool TrueTrick;
+    [Tooltip("トリックオアトリート失敗時")] public bool FalseTrick;
 }
 [System.Serializable]
 //プラス、マイナスイベント
@@ -49,6 +54,7 @@ public class QuizEvent
 public class HalloweenEvent
 {
     [SerializeField, Tooltip("イベントの名前")] string EventName;
+    [Tooltip("補正値")] public int Correction;
 
     [Tooltip("Sizeにテキストの数を入力")] public List<HalloweenEventData> eventData;
 }
@@ -74,6 +80,11 @@ public class SpuareAction : MonoBehaviour
     [SerializeField] Text txtPlayerName;
     [SerializeField] Text txtCandy;
     [SerializeField] Text txtYaruki;
+    [SerializeField] Text txtTrick;
+    [SerializeField] Text txtNanimoSinai;
+    [SerializeField] Image imgHalloweenSel;
+    [SerializeField] Image imgYaruki;
+
 
     [Space(50)]
 
@@ -98,8 +109,16 @@ public class SpuareAction : MonoBehaviour
     private bool isCorrect;
     private bool FeedInFlg = false;
     private bool FeedOutFlg = false;
-    private int CharaNo;
 
+    private bool NanimoSinai;
+    private bool NoYaruki;
+    private bool TrueTrick;
+    private bool FalseTrick;
+
+    private int CharaNo;
+    private int UseYaruki;
+    private int SuccessRate;
+    private int SuccessRand;
     private GameManager manager;
     // Start is called before the first frame update
     void Start()
@@ -122,6 +141,10 @@ public class SpuareAction : MonoBehaviour
         txtPlayerName = Canvas.transform.Find("txtPlayerName").GetComponent<Text>();
         txtCandy = Canvas.transform.Find("txtCandy").GetComponent<Text>();
         txtYaruki = Canvas.transform.Find("txtYaruki").GetComponent<Text>();
+        imgHalloweenSel = Canvas.transform.Find("imgHalloweenSel").GetComponent<Image>();
+        imgYaruki = Canvas.transform.Find("imgYaruki").GetComponent<Image>();
+        txtTrick = Canvas.transform.Find("txtTrick").GetComponent<Text>();
+        txtNanimoSinai = Canvas.transform.Find("txtNanimoSinai").GetComponent<Text>();
 
         manager = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameManager>();
         for (int i = 0;i<quizEvent.Count;i++)
@@ -129,24 +152,10 @@ public class SpuareAction : MonoBehaviour
             BestAnswer[i] = quizEvent[i].Answer[0];
         }
         Sel = 0;
+        UseYaruki = 1;
         NextTextFlg = false;
         //最初は非表示
-        imgBbtn.gameObject.SetActive(false);
-        imgEventChara.gameObject.SetActive(false);
-        imgTextSpace.gameObject.SetActive(false);
-        imgSel.gameObject.SetActive(false);
-        txtMessage.gameObject.SetActive(false);
-        txtTextName.gameObject.SetActive(false);
-        imgCharaUI.gameObject.SetActive(false);
-        txtPlayerName.gameObject.SetActive(false);
-        txtCandy.gameObject.SetActive(false);
-        txtYaruki.gameObject.SetActive(false);
-        for (int i = 0; i < 3; i++)
-        {
-            txtAnswer[i].gameObject.SetActive(false);
-            imgQuizSpace[i].gameObject.SetActive(false);
-        }
-
+        HideUI();
         red = Feed.color.r;
         green = Feed.color.g;
         blue = Feed.color.b;
@@ -156,7 +165,6 @@ public class SpuareAction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(CharaNo);
         Feed.color = new Color(red, green, blue, alfa);
         //フェードイン
         if(FeedInFlg)
@@ -170,8 +178,8 @@ public class SpuareAction : MonoBehaviour
                 {
                     ShowUI();
                     txtPlayerName.text = "プレイヤー" + CharaNo.ToString();
-                    txtCandy.text = manager.characters[CharaNo].Candy.ToString();
-                    txtYaruki.text = manager.characters[CharaNo].Yaruki.ToString();
+                    txtCandy.text = manager.characters[CharaNo-1].Candy.ToString();
+                    txtYaruki.text = manager.characters[CharaNo-1].Yaruki.ToString();
                 }
                 else
                 {
@@ -211,6 +219,7 @@ public class SpuareAction : MonoBehaviour
                 }
                 else if (HalloweenFlg)
                 {
+                    //manager.characters[CharaNo].Yaruki = 0;
                     txtMessage.gameObject.SetActive(true);
                     txtTextName.gameObject.SetActive(true);
                     StartCoroutine("Novel", halloweenEvent[EventRand].eventData[EventCount].Message);
@@ -247,7 +256,7 @@ public class SpuareAction : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.H))
         {
-            HalloweenEvent(4);
+            HalloweenEvent(3);
         }
         //プラスイベント処理
         if (PlusFlg)
@@ -436,6 +445,47 @@ public class SpuareAction : MonoBehaviour
         }
         if (HalloweenFlg)
         {
+            imgHalloweenSel.transform.localPosition = new Vector3(50.0f, -380 + (Sel * -90.0f), 0.0f);
+            //選択の矢印が出てるとき
+            if (imgHalloweenSel.gameObject.activeSelf)
+            {
+                if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    if (Sel > 0)
+                    {
+                        Sel--;
+                    }
+                }
+                if (Input.GetKeyDown(KeyCode.DownArrow))
+                {
+                    if (Sel < 1)
+                    {
+                        Sel++;
+                    }
+                }
+            }
+            //やる気使う量設定とその時の文字列
+            if(imgYaruki.gameObject.activeSelf)
+            {
+                txtTrick.text = "  ×" + UseYaruki.ToString();
+                txtNanimoSinai.text = "成功率" + SuccessRate + "%";
+                SuccessRate = 10 * UseYaruki + halloweenEvent[EventRand].Correction;
+                if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    if (UseYaruki < manager.characters[CharaNo-1].Yaruki)
+                    {
+                        UseYaruki++;
+                    }
+                }
+                if (Input.GetKeyDown(KeyCode.DownArrow))
+                {
+                    if (UseYaruki > 1)
+                    {
+                        UseYaruki--;
+                    }
+                }
+
+            }
             if (!FeedInFlg && !FeedOutFlg && Input.GetKeyDown(KeyCode.Return) || !FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
             {
                 if (NextTextFlg)
@@ -451,10 +501,148 @@ public class SpuareAction : MonoBehaviour
                         //フェード開始してイベ終了
                         FeedInFlg = true;
                     }
+                    //やる気が0なら
+                    else if (manager.characters[CharaNo-1].Yaruki == 0&&!NoYaruki)
+                    {
+                        Debug.Log("Yaruki");
+                        NoYaruki = true;
+                        while (!halloweenEvent[EventRand].eventData[EventCount].NoYaruki)
+                        {
+                            EventCount++;
+                        }
+                        SetNextText(null, null, halloweenEvent[EventRand].eventData);
+                    }
+                    //最初の選択肢表示したいタイミングに来た時
+                    else if (halloweenEvent[EventRand].eventData[EventCount].SetSelect == true && !imgHalloweenSel.gameObject.activeSelf)
+                    {
+
+                        //選択肢表示
+                        txtTrick.text = "Trick or Treat!";
+                        txtNanimoSinai.text = "何もせずに帰る。";
+                        imgHalloweenSel.gameObject.SetActive(true);
+                        txtTrick.gameObject.SetActive(true);
+                        txtNanimoSinai.gameObject.SetActive(true);
+                        NextTextFlg = true;
+
+                    }
+                    //トリックオアトリートがおされたとき
+                    else if (Sel == 0&& imgHalloweenSel.gameObject.activeSelf)
+                    {
+
+                        EventCount++;
+
+                        imgHalloweenSel.gameObject.SetActive(false);
+                        txtTrick.gameObject.SetActive(false);
+                        txtNanimoSinai.gameObject.SetActive(false);
+                        SetNextText(null, null, halloweenEvent[EventRand].eventData);
+                    }
+                    //何もしないを選んだ時
+                    else if(Sel == 1&& imgHalloweenSel.gameObject.activeSelf)
+                    {
+
+                        EventCount++;
+
+                        imgHalloweenSel.gameObject.SetActive(false);
+                        txtTrick.gameObject.SetActive(false);
+                        txtNanimoSinai.gameObject.SetActive(false);
+
+                        NanimoSinai = true;
+                        //何もしないテキストまでスキップ
+                        while (!halloweenEvent[EventRand].eventData[EventCount].NanimoSinai)
+                        {
+                            EventCount++;
+                        }
+
+                        SetNextText(null, null, halloweenEvent[EventRand].eventData);
+                    }
+                    //トリックオアトリートを選択した後のテキストが終わった時
+                    else if(halloweenEvent[EventRand].eventData[EventCount].SetYaruki == true && !imgYaruki.gameObject.activeSelf)
+                    {
+                        txtTrick.text = "  ×" + UseYaruki.ToString();
+                        SuccessRate = 10 * UseYaruki + halloweenEvent[EventRand].Correction;
+                        txtNanimoSinai.text = "成功率" + SuccessRate + "%";
+
+                        imgYaruki.gameObject.SetActive(true);
+                        txtTrick.gameObject.SetActive(true);
+                        txtNanimoSinai.gameObject.SetActive(true);
+                        NextTextFlg = true;
+
+                        SuccessRand = Random.Range(0, 100);
+                        Debug.Log(SuccessRand);
+                    }
+                    //成功
+                    else if(SuccessRand <= SuccessRate && imgYaruki.gameObject.activeSelf)
+                    {
+                        TrueTrick = true;
+                        imgYaruki.gameObject.SetActive(false);
+                        txtTrick.gameObject.SetActive(false);
+                        txtNanimoSinai.gameObject.SetActive(false);
+
+                        while (!halloweenEvent[EventRand].eventData[EventCount].TrueTrick)
+                        {
+                            EventCount++;
+                        }
+                        SetNextText(null, null, halloweenEvent[EventRand].eventData);
+                    }
+                    //失敗
+                    else if(SuccessRand > SuccessRate && imgYaruki.gameObject.activeSelf)
+                    {
+                        FalseTrick = true;
+                        imgYaruki.gameObject.SetActive(false);
+                        txtTrick.gameObject.SetActive(false);
+                        txtNanimoSinai.gameObject.SetActive(false);
+
+                        while (!halloweenEvent[EventRand].eventData[EventCount].FalseTrick)
+                        {
+                            EventCount++;
+                        }
+                        SetNextText(null, null, halloweenEvent[EventRand].eventData);
+                    }
                     else
                     {
                         EventCount++;
-                        SetNextText(null, null, halloweenEvent[EventRand].eventData);
+
+                        //何もしないテキストが送られている中、何もしないフラグが入ってないテキストに到達したとき
+                        if (NanimoSinai && !halloweenEvent[EventRand].eventData[EventCount].NanimoSinai)
+                        {
+                            NanimoSinai = false;
+                            txtMessage.gameObject.SetActive(false);
+                            txtTextName.gameObject.SetActive(false);
+                            HalloweenFlg = false;
+                            //フェード開始してイベ終了
+                            FeedInFlg = true;
+                        }
+                        else if (NoYaruki && !halloweenEvent[EventRand].eventData[EventCount].NoYaruki)
+                        {
+                            NoYaruki = false;
+                            txtMessage.gameObject.SetActive(false);
+                            txtTextName.gameObject.SetActive(false);
+                            HalloweenFlg = false;
+                            //フェード開始してイベ終了
+                            FeedInFlg = true;
+                        }
+                        else if (TrueTrick && !halloweenEvent[EventRand].eventData[EventCount].TrueTrick)
+                        {
+                            TrueTrick = false;
+                            txtMessage.gameObject.SetActive(false);
+                            txtTextName.gameObject.SetActive(false);
+                            HalloweenFlg = false;
+                            //フェード開始してイベ終了
+                            FeedInFlg = true;
+                        }
+                        else if (FalseTrick && !halloweenEvent[EventRand].eventData[EventCount].FalseTrick)
+                        {
+                            FalseTrick = false;
+                            txtMessage.gameObject.SetActive(false);
+                            txtTextName.gameObject.SetActive(false);
+                            HalloweenFlg = false;
+                            //フェード開始してイベ終了
+                            FeedInFlg = true;
+                        }
+                        else
+                        {
+                            SetNextText(null, null, halloweenEvent[EventRand].eventData);
+                        }
                     }
                 }
                 else
@@ -471,7 +659,7 @@ public class SpuareAction : MonoBehaviour
     {
         if (!PlusFlg)
         {
-            CharaNo = MyNo;
+            CharaNo = MyNo + 1;
             EventRand = Random.Range(0, plusEvent.Count);
             imgEventChara.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
             PlusFlg = true;
@@ -482,7 +670,7 @@ public class SpuareAction : MonoBehaviour
     {
         if (!MinusFlg)
         {
-            CharaNo = MyNo;
+            CharaNo = MyNo + 1;
             EventRand = Random.Range(0, minusEvent.Count);
             imgEventChara.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
             MinusFlg = true;
@@ -493,7 +681,7 @@ public class SpuareAction : MonoBehaviour
     {
         if (!QuizFlg)
         {
-            CharaNo = MyNo;
+            CharaNo = MyNo + 1;
             EventRand = Random.Range(0, quizEvent.Count);
             imgEventChara.transform.localPosition = new Vector3(500.0f, 0.0f, 0.0f);
             QuizFlg = true;
@@ -504,7 +692,7 @@ public class SpuareAction : MonoBehaviour
     {
         if (!HalloweenFlg)
         {
-            CharaNo = MyNo;
+            CharaNo = MyNo + 1;
             EventRand = Random.Range(0, halloweenEvent.Count);
             imgEventChara.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
             HalloweenFlg = true;
@@ -523,6 +711,13 @@ public class SpuareAction : MonoBehaviour
         HalloweenFlg = false;
         EventCount = 0;
         Sel = 0;
+        UseYaruki = 1;
+
+        NanimoSinai = false;
+        NoYaruki = false;
+        TrueTrick = false;
+        FalseTrick = false;
+
         if (PlusFlg)
         {
         }
@@ -616,6 +811,11 @@ public class SpuareAction : MonoBehaviour
         txtPlayerName.gameObject.SetActive(false);
         txtCandy.gameObject.SetActive(false);
         txtYaruki.gameObject.SetActive(false);
+        imgHalloweenSel.gameObject.SetActive(false);
+        txtTrick.gameObject.SetActive(false);
+        txtNanimoSinai.gameObject.SetActive(false);
+        imgYaruki.gameObject.SetActive(false);
+
 
     }
     //次のテキストデータを表示

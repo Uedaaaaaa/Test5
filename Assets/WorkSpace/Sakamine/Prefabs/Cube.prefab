@@ -129,6 +129,10 @@ MonoBehaviour:
   txtPlayerName: {fileID: 0}
   txtCandy: {fileID: 0}
   txtYaruki: {fileID: 0}
+  txtTrick: {fileID: 0}
+  txtNanimoSinai: {fileID: 0}
+  imgHalloweenSel: {fileID: 0}
+  imgYaruki: {fileID: 0}
   plusEvent:
   - EventName: a
     eventData:
@@ -224,22 +228,125 @@ MonoBehaviour:
       AnswerText: 1
   halloweenEvent:
   - EventName: a
+    Correction: 0
     eventData:
     - SE: {fileID: 0}
       SpriteEventChara: {fileID: 0}
-      Message: "\u30CF\u30ED\u30A6\u30A3\u30F31-1"
+      Message: "\u3084\u30FC"
       TextName: 
+      SetSelect: 0
+      SetYaruki: 0
+      NanimoSinai: 0
+      NoYaruki: 0
+      TrueTrick: 0
+      FalseTrick: 0
     - SE: {fileID: 0}
       SpriteEventChara: {fileID: 0}
-      Message: "\u30CF\u30ED\u30A6\u30A3\u30F31-2"
+      Message: "\u3069\u3046\u3059\u308B\uFF1F"
       TextName: 
-  - EventName: b
-    eventData:
+      SetSelect: 1
+      SetYaruki: 0
+      NanimoSinai: 0
+      NoYaruki: 0
+      TrueTrick: 0
+      FalseTrick: 0
     - SE: {fileID: 0}
       SpriteEventChara: {fileID: 0}
-      Message: "\u30CF\u30ED\u30A6\u30A3\u30F32-1"
+      Message: "\u3069\u308C\u304F\u3089\u3044\u3084\u308B\u6C17\u3092\u8FBC\u3081\u308B\uFF1F"
       TextName: 
+      SetSelect: 0
+      SetYaruki: 1
+      NanimoSinai: 0
+      NoYaruki: 0
+      TrueTrick: 0
+      FalseTrick: 0
     - SE: {fileID: 0}
       SpriteEventChara: {fileID: 0}
-      Message: "\u30CF\u30ED\u30A6\u30A3\u30F32-2"
+      Message: "\u6C17\u3092\u3064\u3051\u3066\u5E30\u308C\u3084"
       TextName: 
+      SetSelect: 0
+      SetYaruki: 0
+      NanimoSinai: 1
+      NoYaruki: 0
+      TrueTrick: 0
+      FalseTrick: 0
+    - SE: {fileID: 0}
+      SpriteEventChara: {fileID: 0}
+      Message: "\u30AB\u30B9"
+      TextName: 
+      SetSelect: 0
+      SetYaruki: 0
+      NanimoSinai: 1
+      NoYaruki: 0
+      TrueTrick: 0
+      FalseTrick: 0
+    - SE: {fileID: 0}
+      SpriteEventChara: {fileID: 0}
+      Message: "\u6210\u529F\uFF01"
+      TextName: 
+      SetSelect: 0
+      SetYaruki: 0
+      NanimoSinai: 0
+      NoYaruki: 0
+      TrueTrick: 1
+      FalseTrick: 0
+    - SE: {fileID: 0}
+      SpriteEventChara: {fileID: 0}
+      Message: "\u304A\u3081"
+      TextName: 
+      SetSelect: 0
+      SetYaruki: 0
+      NanimoSinai: 0
+      NoYaruki: 0
+      TrueTrick: 1
+      FalseTrick: 0
+    - SE: {fileID: 0}
+      SpriteEventChara: {fileID: 0}
+      Message: "\u5931\u6557"
+      TextName: 
+      SetSelect: 0
+      SetYaruki: 0
+      NanimoSinai: 0
+      NoYaruki: 0
+      TrueTrick: 0
+      FalseTrick: 1
+    - SE: {fileID: 0}
+      SpriteEventChara: {fileID: 0}
+      Message: "\u30C9\u30F3\u30DE\u30A4"
+      TextName: 
+      SetSelect: 0
+      SetYaruki: 0
+      NanimoSinai: 0
+      NoYaruki: 0
+      TrueTrick: 0
+      FalseTrick: 1
+    - SE: {fileID: 0}
+      SpriteEventChara: {fileID: 0}
+      Message: "\u3084\u308B\u6C17\u306A\u3044\u306D"
+      TextName: 
+      SetSelect: 0
+      SetYaruki: 0
+      NanimoSinai: 0
+      NoYaruki: 1
+      TrueTrick: 0
+      FalseTrick: 0
+    - SE: {fileID: 0}
+      SpriteEventChara: {fileID: 0}
+      Message: "\u3046\u3093"
+      TextName: 
+      SetSelect: 0
+      SetYaruki: 0
+      NanimoSinai: 0
+      NoYaruki: 1
+      TrueTrick: 0
+      FalseTrick: 0
+    - SE: {fileID: 0}
+      SpriteEventChara: {fileID: 0}
+      Message: "\u3042\u307E\u308A"
+      TextName: 
+      SetSelect: 0
+      SetYaruki: 0
+      NanimoSinai: 0
+      NoYaruki: 1
+      TrueTrick: 0
+      FalseTrick: 0
