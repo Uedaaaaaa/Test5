@@ -93,16 +93,16 @@ public class GameManager : MonoBehaviour
         switch(EventType)
         {
             case MassType.Halloween:
-                eventScript.HalloweenEvent();
+                eventScript.HalloweenEvent(OrderArray[NowPlayerNo]);
                 break;
             case MassType.Plus:
-                eventScript.PlusEvent();
+                eventScript.PlusEvent(OrderArray[NowPlayerNo]);
                 break;
             case MassType.Minus:
-                eventScript.MinusEvent();
+                eventScript.MinusEvent(OrderArray[NowPlayerNo]);
                 break;
             case MassType.Quiz:
-                eventScript.QuizEvent();
+                eventScript.QuizEvent(OrderArray[NowPlayerNo]);
                 break;
         }
     }
