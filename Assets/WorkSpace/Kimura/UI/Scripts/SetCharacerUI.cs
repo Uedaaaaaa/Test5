@@ -24,7 +24,7 @@ public class SetCharacerUI : MonoBehaviour
     //ダイスの数字UIのスプライト
     [SerializeField] Sprite[] DiceNumSprite = new Sprite[6];
     [Header("ダイスUIの位置")]
-    [SerializeField] Vector3 DiceImagePos = new Vector3(0, 4, 0);
+    [SerializeField] Vector3 DiceImagePos = new Vector3(0, 100, 0);
 
     //プレイヤーのステータスUI
     [SerializeField] Image[] PlayerStatusUI = new Image[4];
