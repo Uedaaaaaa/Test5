@@ -27,21 +27,21 @@ public class BasicSampleButton : MonoBehaviour {
   /// BGM1を再生
   /// </summary>
   public void PlayBGM1() {
-    PlayBGM(BGMPath.FANTASY14);
+    PlayBGM(BGMPath.HALLOWIN_BGM);
   }
   
   /// <summary>
   /// BGM1を再生
   /// </summary>
   public void PlayBGM2() {
-    PlayBGM(BGMPath.BATTLE27);
+    PlayBGM(BGMPath.PLUS_BGM);
   }
   
   /// <summary>
   /// 重複するBGMを再生
   /// </summary>
   public void PlayDuplicateBGM() {
-    PlayBGM(BGMPath.HEARTBEAT01, 0.5f, true);
+    PlayBGM(BGMPath.MINUS_BGM, 0.5f, true);
   }
 
   //BGMを再生
@@ -106,14 +106,14 @@ public class BasicSampleButton : MonoBehaviour {
   /// SE1を再生
   /// </summary>
   public void PlaySE1() {
-    PlaySE(SEPath.SYSTEM20);
+    PlaySE(SEPath.CANDY_GET);
   }
   
   /// <summary>
   /// SE1を再生
   /// </summary>
   public void PlaySE2() {
-    PlaySE(SEPath.JINGLE10);
+    PlaySE(SEPath.CANDY_NO_GET);
   }
   
   //BGMを再生
