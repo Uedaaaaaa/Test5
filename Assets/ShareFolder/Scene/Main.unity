@@ -314,7 +314,6 @@ GameObject:
   - component: {fileID: 553028826}
   - component: {fileID: 553028825}
   - component: {fileID: 553028828}
-  - component: {fileID: 553028829}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -416,153 +415,6 @@ MonoBehaviour:
   PlayerCameraPos: {x: 0, y: 10, z: -10}
   CameraXaxis: 20
   CharacerUI: {fileID: 1052825089}
---- !u!114 &553028829
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 553028824}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44f12aa63ea6e574c95dcf49565639d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NovelSpeed: 0.05
-  FeedSpeed: 0.02
-  Feed: {fileID: 0}
-  imgEventChara: {fileID: 0}
-  imgTextSpace: {fileID: 0}
-  imgBbtn: {fileID: 0}
-  imgSel: {fileID: 0}
-  txtMessage: {fileID: 0}
-  txtTextName: {fileID: 0}
-  imgQuizSpace:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  txtAnswer:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  imgCharaUI: {fileID: 0}
-  txtPlayerName: {fileID: 0}
-  txtCandy: {fileID: 0}
-  txtYaruki: {fileID: 0}
-  plusEvent:
-  - EventName: a
-    eventData:
-    - SE: {fileID: 0}
-      SpriteEventChara: {fileID: 0}
-      Message: "\u30D7\u30E9\u30B91-1"
-      TextName: 
-    - SE: {fileID: 0}
-      SpriteEventChara: {fileID: 0}
-      Message: "\u30D7\u30E9\u30B91-2"
-      TextName: 
-  - EventName: b
-    eventData:
-    - SE: {fileID: 0}
-      SpriteEventChara: {fileID: 0}
-      Message: "\u30D7\u30E9\u30B92-1"
-      TextName: 
-    - SE: {fileID: 0}
-      SpriteEventChara: {fileID: 0}
-      Message: "\u30D7\u30E9\u30B92-2"
-      TextName: 
-  - EventName: c
-    eventData:
-    - SE: {fileID: 0}
-      SpriteEventChara: {fileID: 0}
-      Message: "\u30D7\u30E9\u30B93-1"
-      TextName: 
-    - SE: {fileID: 0}
-      SpriteEventChara: {fileID: 0}
-      Message: "\u30D7\u30E9\u30B93-2"
-      TextName: 
-  minusEvent:
-  - EventName: a
-    eventData:
-    - SE: {fileID: 0}
-      SpriteEventChara: {fileID: 0}
-      Message: "\u30DE\u30A4\u30CA\u30B91-1"
-      TextName: 
-    - SE: {fileID: 0}
-      SpriteEventChara: {fileID: 0}
-      Message: "\u30DE\u30A4\u30CA\u30B91-2"
-      TextName: 
-  - EventName: b
-    eventData:
-    - SE: {fileID: 0}
-      SpriteEventChara: {fileID: 0}
-      Message: "\u30DE\u30A4\u30CA\u30B92-2"
-      TextName: 
-    - SE: {fileID: 0}
-      SpriteEventChara: {fileID: 0}
-      Message: "\u30DE\u30A4\u30CA\u30B92-1"
-      TextName: 
-  - EventName: c
-    eventData:
-    - SE: {fileID: 0}
-      SpriteEventChara: {fileID: 0}
-      Message: "\u30DE\u30A4\u30CA\u30B93-1"
-      TextName: 
-    - SE: {fileID: 0}
-      SpriteEventChara: {fileID: 0}
-      Message: "\u30DE\u30A4\u30CA\u30B93-2"
-      TextName: 
-  quizEvent:
-  - EventName: a
-    Answer:
-    - "\u30C6\u30B9\u30C81-1"
-    - "\u30C6\u30B9\u30C81-2"
-    - "\u30C6\u30B9\u30C81-3"
-    eventData:
-    - SE: {fileID: 0}
-      SpriteEventChara: {fileID: 0}
-      Message: "\u554F\u984C"
-      TextName: 
-      QuizSet: 0
-      AnswerText: 0
-    - SE: {fileID: 0}
-      SpriteEventChara: {fileID: 0}
-      Message: "\u7B54\u3048\u306F\u4F55"
-      TextName: 
-      QuizSet: 1
-      AnswerText: 0
-    - SE: {fileID: 0}
-      SpriteEventChara: {fileID: 0}
-      Message: "\u6B63\u89E3"
-      TextName: 
-      QuizSet: 0
-      AnswerText: 0
-    - SE: {fileID: 0}
-      SpriteEventChara: {fileID: 0}
-      Message: "\u4E0D\u6B63\u89E3"
-      TextName: 
-      QuizSet: 0
-      AnswerText: 1
-  halloweenEvent:
-  - EventName: a
-    eventData:
-    - SE: {fileID: 0}
-      SpriteEventChara: {fileID: 0}
-      Message: "\u30CF\u30ED\u30A6\u30A3\u30F31-1"
-      TextName: 
-    - SE: {fileID: 0}
-      SpriteEventChara: {fileID: 0}
-      Message: "\u30CF\u30ED\u30A6\u30A3\u30F31-2"
-      TextName: 
-  - EventName: b
-    eventData:
-    - SE: {fileID: 0}
-      SpriteEventChara: {fileID: 0}
-      Message: "\u30CF\u30ED\u30A6\u30A3\u30F32-1"
-      TextName: 
-    - SE: {fileID: 0}
-      SpriteEventChara: {fileID: 0}
-      Message: "\u30CF\u30ED\u30A6\u30A3\u30F32-2"
-      TextName: 
 --- !u!114 &1052825089 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7089163678694881940, guid: 00fc13e5242cfab449887a527db0c10a, type: 3}
@@ -631,6 +483,95 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00fc13e5242cfab449887a527db0c10a, type: 3}
+--- !u!1001 &1580484236
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1166127968030492068, guid: c1c593db72fd1ca4e90946c2b91a378b, type: 3}
+      propertyPath: m_Name
+      value: EventController
+      objectReference: {fileID: 0}
+    - target: {fileID: 1919939983509815275, guid: c1c593db72fd1ca4e90946c2b91a378b, type: 3}
+      propertyPath: halloweenEvent.Array.data[0].eventData.Array.data[0].Message
+      value: "\u3053\u3093\u306B\u3061\u306F"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1919939983509815275, guid: c1c593db72fd1ca4e90946c2b91a378b, type: 3}
+      propertyPath: halloweenEvent.Array.data[0].eventData.Array.data[3].Message
+      value: "\u6C17\u3092\u3064\u3051\u3066"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1919939983509815275, guid: c1c593db72fd1ca4e90946c2b91a378b, type: 3}
+      propertyPath: halloweenEvent.Array.data[0].eventData.Array.data[4].Message
+      value: "\u5E30\u308A\u306A\u3055\u3044\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1919939983509815275, guid: c1c593db72fd1ca4e90946c2b91a378b, type: 3}
+      propertyPath: halloweenEvent.Array.data[0].eventData.Array.data[6].Message
+      value: "\u304A\u3081\u3067\u3068\u3046"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1919939983509815275, guid: c1c593db72fd1ca4e90946c2b91a378b, type: 3}
+      propertyPath: halloweenEvent.Array.data[0].eventData.Array.data[8].Message
+      value: "\u6B8B\u5FF5"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1919939983509815275, guid: c1c593db72fd1ca4e90946c2b91a378b, type: 3}
+      propertyPath: halloweenEvent.Array.data[0].eventData.Array.data[9].Message
+      value: "\u3084\u308B\u6C17\u304C\u3042\u308A\u307E\u305B\u3093"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1919939983509815275, guid: c1c593db72fd1ca4e90946c2b91a378b, type: 3}
+      propertyPath: halloweenEvent.Array.data[0].eventData.Array.data[10].Message
+      value: "\u3084\u308B\u6C17\u304C"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1919939983509815275, guid: c1c593db72fd1ca4e90946c2b91a378b, type: 3}
+      propertyPath: halloweenEvent.Array.data[0].eventData.Array.data[11].Message
+      value: "\u3042\u308A\u307E\u305B\u3093"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7758935635107566846, guid: c1c593db72fd1ca4e90946c2b91a378b, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7758935635107566846, guid: c1c593db72fd1ca4e90946c2b91a378b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7758935635107566846, guid: c1c593db72fd1ca4e90946c2b91a378b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7758935635107566846, guid: c1c593db72fd1ca4e90946c2b91a378b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7758935635107566846, guid: c1c593db72fd1ca4e90946c2b91a378b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7758935635107566846, guid: c1c593db72fd1ca4e90946c2b91a378b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7758935635107566846, guid: c1c593db72fd1ca4e90946c2b91a378b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7758935635107566846, guid: c1c593db72fd1ca4e90946c2b91a378b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7758935635107566846, guid: c1c593db72fd1ca4e90946c2b91a378b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7758935635107566846, guid: c1c593db72fd1ca4e90946c2b91a378b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7758935635107566846, guid: c1c593db72fd1ca4e90946c2b91a378b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c1c593db72fd1ca4e90946c2b91a378b, type: 3}
 --- !u!1 &1628733092
 GameObject:
   m_ObjectHideFlags: 0
