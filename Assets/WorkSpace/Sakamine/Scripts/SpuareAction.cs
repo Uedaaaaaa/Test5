@@ -66,6 +66,8 @@ public class SpuareAction : MonoBehaviour
 
     [SerializeField] float NovelSpeed;
     [SerializeField] float FeedSpeed = 0.02f;  //透明化の速さ
+    [SerializeField] Sprite[] PlayerUI;
+
     [Space(20)]
     [SerializeField] Image Feed;
     [SerializeField] Image imgEventChara;
@@ -176,6 +178,13 @@ public class SpuareAction : MonoBehaviour
                 //Feedがイベント開始時ならUIを表示
                 if (PlusFlg || MinusFlg || QuizFlg || HalloweenFlg)
                 {
+                    for (int i = 0; i < PlayerUI.Length; i++)
+                    {
+                        if(i == CharaNo - 1)
+                        {
+                            imgCharaUI.sprite = PlayerUI[i];
+                        }                     
+                    }
                     ShowUI();
                     txtPlayerName.text = "プレイヤー" + CharaNo.ToString();
                     txtCandy.text = manager.characters[CharaNo-1].Candy.ToString();
