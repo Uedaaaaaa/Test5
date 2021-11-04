@@ -5,11 +5,11 @@
 /// </summary>
 public static class BGMPath{
 
-	//public const string BATTLE27     = "BGM/Battle/battle27";
+	public const string BATTLE27     = "BGM/Battle/battle27";
 	public const string END_BGM      = "BGM/BGM/End_BGM";
-	//public const string FANTASY14    = "BGM/fantasy14";
+	public const string FANTASY14    = "BGM/fantasy14";
 	public const string HALLOWIN_BGM = "BGM/BGM/Hallowin_BGM";
-	//public const string HEARTBEAT01  = "BGM/heartbeat01";
+	public const string HEARTBEAT01  = "BGM/heartbeat01";
 	public const string MAIN_BGM     = "BGM/BGM/Main_BGM";
 	public const string MINUS_BGM    = "BGM/BGM/Minus_BGM";
 	public const string PLUS_BGM     = "BGM/BGM/Plus_BGM";
