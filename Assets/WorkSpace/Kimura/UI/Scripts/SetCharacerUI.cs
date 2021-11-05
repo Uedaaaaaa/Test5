@@ -117,6 +117,8 @@ public class SetCharacerUI : MonoBehaviour
         for (int i = 0; i < PlayerStatusUI.Length; i++)
         {
             PlayerStatusUI[i].enabled = false;
+            Candytxt[i].text = "";
+            Yarukitxt[i].text = "";
         }
     }
     //プレイヤーのステータスUIの更新
