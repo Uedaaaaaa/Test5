@@ -92,6 +92,7 @@ public class SetCharacerUI : MonoBehaviour
     }
     public void DiceNumUIDestroy()
     {
+        SEManager.Instance.Play(SEPath.SCENE_CHANGE);
         DiceImage.enabled = false;
     }
 
