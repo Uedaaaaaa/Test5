@@ -38,6 +38,10 @@ public class SetCharacerUI : MonoBehaviour
 
     //ゲームマネージャー
     GameManager manager;
+
+    //スクエアアクション
+    SpuareAction feed;
+    private GameObject feedobj;
     // Start is called before the first frame update
     void Start()
     {
@@ -132,6 +136,9 @@ public class SetCharacerUI : MonoBehaviour
     }
     public void GameEndUIDestroy()
     {
+        feedobj = GameObject.Find("EventController");
+        feed = feedobj.GetComponent<SpuareAction>();
+        feed.FeedIn();
         GameSetUI.enabled = false;
         PlayerTurnBbuttonUI.enabled = false;
     }
