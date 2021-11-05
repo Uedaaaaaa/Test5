@@ -84,7 +84,6 @@ public class GameManager : MonoBehaviour
             playerScript[i] = CharacterObj[i].GetComponent<PlayerAction>();
         }
         eventScript = eventController.GetComponent<SpuareAction>();
-        SpawnDice();
     }
 
     public void SetMove()
