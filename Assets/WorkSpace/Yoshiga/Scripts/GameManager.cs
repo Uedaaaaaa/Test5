@@ -210,7 +210,7 @@ public class GameManager : MonoBehaviour
     private void FixedUpdate()
     {
         //カメラの位置を更新
-        if(Ordering == false)
+        if(gameStatus == GameSTS.Play)
         {
             Vector3 NewPos = Vector3.Lerp(
                                 transform.position, //現状のカメラ位置
@@ -226,6 +226,12 @@ public class GameManager : MonoBehaviour
                 transform.position = new Vector3(CharacterObj[OrderArray[NowPlayerNo]].transform.position.x, NewPos.y, NewPos.z);
             }
         }
+    }
+
+    public void GameStart()
+    {
+        gameStatus = GameSTS.Play;
+        transform.rotation = Quaternion.Euler(CameraXaxis, 0, 0);
     }
 
     // Update is called once per frame
@@ -253,8 +259,6 @@ public class GameManager : MonoBehaviour
             //順番決めのターン終了
             Ordering = false;
             NowPlayerNo = 0;
-            gameStatus = GameSTS.Play;
-            transform.rotation = Quaternion.Euler(CameraXaxis, 0, 0);
         }
 
         //ダイスを出現させるための処理

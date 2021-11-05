@@ -118,7 +118,7 @@ public class DiceRollAction : MonoBehaviour
                     }
                 }               
                 manager.SetDiceNo(DiceNo);
-                if (manager.Ordering == false)
+                if (manager.gameStatus == GameSTS.Play)
                 {
                     manager.CanMove();
                 }
