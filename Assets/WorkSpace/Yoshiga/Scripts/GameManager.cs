@@ -232,6 +232,7 @@ public class GameManager : MonoBehaviour
     {
         gameStatus = GameSTS.Play;
         transform.rotation = Quaternion.Euler(CameraXaxis, 0, 0);
+        SpawnDice();
     }
 
     // Update is called once per frame
