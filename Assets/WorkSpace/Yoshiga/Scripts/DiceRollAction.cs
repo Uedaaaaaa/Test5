@@ -76,6 +76,7 @@ public class DiceRollAction : MonoBehaviour
             {
                 JumpSin = 0;
                 DestroyFlg = true;
+                manager.SetMove();
             }
         }
 
