@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using KanKikuchi.AudioManager;
 
 public class DiceRollAction : MonoBehaviour
 {    
@@ -53,12 +54,14 @@ public class DiceRollAction : MonoBehaviour
             //ダイスロールを開始
             if (DiceRollFlg == false)
             {
+                SEManager.Instance.Play(SEPath.DICE_SPINE, 1, 0, 1, true);
                 DiceRollFlg = true;               
                 manager.CharacerUI.DiceStopUISet();
                 manager.CharacerUI.PlayerTurnUIDestroy();
             }
             else //ダイスロールを止める
             {
+                SEManager.Instance.Play(SEPath.DICE_STOP);
                 DiceDecisionFlg = true;
                 manager.CharacerUI.DiceStopUIDestroy();
             }
@@ -76,7 +79,10 @@ public class DiceRollAction : MonoBehaviour
             {
                 JumpSin = 0;
                 DestroyFlg = true;
-                manager.SetMove();
+                if(manager.Ordering == false)
+                {
+                    manager.SetMove();
+                }               
             }
         }
 

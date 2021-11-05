@@ -121,6 +121,7 @@ public class SpuareAction : MonoBehaviour
     private bool NoYaruki;
     private bool TrueTrick;
     private bool FalseTrick;
+    private bool isInput;
 
     private int CharaNo;
     private int UseYaruki;
@@ -162,6 +163,7 @@ public class SpuareAction : MonoBehaviour
         Sel = 0;
         UseYaruki = 1;
         NextTextFlg = false;
+        isInput = true;
         //最初は非表示
         HideUI();
         //キャラとテキストスペースは表示
@@ -217,7 +219,6 @@ public class SpuareAction : MonoBehaviour
                 //フェードアウトが完了したら文字が流れ始める
                 if (PlusFlg)
                 {
-                    txtTextName.text = "カボチャ";
                     txtMessage.gameObject.SetActive(true);
                     txtTextName.gameObject.SetActive(true);
                     StartCoroutine("Novel", plusEvent[EventRand].eventData[EventCount].Message);
@@ -248,6 +249,7 @@ public class SpuareAction : MonoBehaviour
                 else if(isRule)
                 {
                     BGMManager.Instance.Play(BGMPath.RULE_BGM);
+                    txtTextName.text = "カボチャ";
                     txtMessage.gameObject.SetActive(true);
                     txtTextName.gameObject.SetActive(true);
                     StartCoroutine("Novel",RuleText[0]);
@@ -288,15 +290,30 @@ public class SpuareAction : MonoBehaviour
         //ルール説明中
         if(isRule)
         {
-            if (!FeedInFlg && !FeedOutFlg && Input.GetKeyDown(KeyCode.Return) || !FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
+            if (!FeedInFlg && !FeedOutFlg && isInput&&Input.GetKeyDown(KeyCode.Return) || !FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
             {
                 if(NextTextFlg)
                 {
-                    SEManager.Instance.Play(SEPath.PUSH_B);
-                    NextTextFlg = false;
-                    i++;
-                    StartCoroutine("Novel", RuleText[i]);
+                    if (i == 6)
+                    {
+                        i = 7;
+                        isInput = false;
+                        SEManager.Instance.Play(SEPath.PUSH_B);
+                        manager.SpawnDice();
+                        imgTextSpace.gameObject.SetActive(false);
+                        txtMessage.gameObject.SetActive(false);
+                        imgEventChara.gameObject.SetActive(false);
+                        Debug.Log("aaa");
+                    }
+                    else
+                    {
+                        SEManager.Instance.Play(SEPath.PUSH_B);
+                        NextTextFlg = false;
+                        i++;
+                        StartCoroutine("Novel", RuleText[i]);
+                    }
                 }
+                
                 else
                 {
                     txtMessage.text = RuleText[i];

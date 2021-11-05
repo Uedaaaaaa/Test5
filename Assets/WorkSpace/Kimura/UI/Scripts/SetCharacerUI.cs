@@ -38,6 +38,10 @@ public class SetCharacerUI : MonoBehaviour
 
     //ゲームマネージャー
     GameManager manager;
+
+    //スクエアアクション
+    SpuareAction feed;
+    private GameObject feedobj;
     // Start is called before the first frame update
     void Start()
     {
@@ -62,11 +66,12 @@ public class SetCharacerUI : MonoBehaviour
     {
         ImagePlayerTurnUI.enabled = true;
         ImagePlayerTurnUI.sprite = PlayerTurnUI[PlayerNum].sprite;
-
+        SEManager.Instance.Play(SEPath.TURN_CHANGE);
         PlayerTurnBbuttonUI.enabled = true;
     }
     public void PlayerTurnUIDestroy()
     {
+        SEManager.Instance.Play(SEPath.PUSH_B);
         ImagePlayerTurnUI.enabled = false;
         PlayerTurnBbuttonUI.enabled = false;
     }
@@ -84,12 +89,14 @@ public class SetCharacerUI : MonoBehaviour
     //ダイスの数のUIの表示非表示
     public void DiceNumUISet(int DiceNum)
     {
+        SEManager.Instance.Play(SEPath.DICE_COUNT_MINUS);
         DiceImage.transform.position = this.gameObject.transform.position + DiceImagePos;
         DiceImage.enabled = true;
         DiceImage.sprite = DiceNumSprite[DiceNum - 1];
     }
     public void DiceNumUIDestroy()
     {
+        SEManager.Instance.Play(SEPath.SCENE_CHANGE);
         DiceImage.enabled = false;
     }
 
@@ -125,9 +132,13 @@ public class SetCharacerUI : MonoBehaviour
     {
         GameSetUI.enabled = true;
         PlayerTurnBbuttonUI.enabled = true;
+        SEManager.Instance.Play(SEPath.GAME_END);
     }
     public void GameEndUIDestroy()
     {
+        feedobj = GameObject.Find("EventController");
+        feed = feedobj.GetComponent<SpuareAction>();
+        feed.FeedIn();
         GameSetUI.enabled = false;
         PlayerTurnBbuttonUI.enabled = false;
     }
