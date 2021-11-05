@@ -292,11 +292,21 @@ public class SpuareAction : MonoBehaviour
             {
                 if(NextTextFlg)
                 {
-                    SEManager.Instance.Play(SEPath.PUSH_B);
-                    NextTextFlg = false;
-                    i++;
-                    StartCoroutine("Novel", RuleText[i]);
+                    if (i == 6)
+                    {
+                        SEManager.Instance.Play(SEPath.PUSH_B);
+                        manager.SpawnDice();
+                        Debug.Log("aaa");
+                    }
+                    else
+                    {
+                        SEManager.Instance.Play(SEPath.PUSH_B);
+                        NextTextFlg = false;
+                        i++;
+                        StartCoroutine("Novel", RuleText[i]);
+                    }
                 }
+                
                 else
                 {
                     txtMessage.text = RuleText[i];
