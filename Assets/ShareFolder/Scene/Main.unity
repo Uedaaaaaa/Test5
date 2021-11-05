@@ -700,6 +700,54 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 553028827}
     m_Modifications:
+    - target: {fileID: 7109195750817408110, guid: 4f7ed934a59e04043931957e1f5e3f58, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109195750817408110, guid: 4f7ed934a59e04043931957e1f5e3f58, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109195751397645220, guid: 4f7ed934a59e04043931957e1f5e3f58, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109195751397645220, guid: 4f7ed934a59e04043931957e1f5e3f58, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109195751408928530, guid: 4f7ed934a59e04043931957e1f5e3f58, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109195751408928530, guid: 4f7ed934a59e04043931957e1f5e3f58, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109195751518291917, guid: 4f7ed934a59e04043931957e1f5e3f58, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109195751518291917, guid: 4f7ed934a59e04043931957e1f5e3f58, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109195752171622102, guid: 4f7ed934a59e04043931957e1f5e3f58, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109195752171622102, guid: 4f7ed934a59e04043931957e1f5e3f58, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109195752183729814, guid: 4f7ed934a59e04043931957e1f5e3f58, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109195752183729814, guid: 4f7ed934a59e04043931957e1f5e3f58, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 7109195752306946501, guid: 4f7ed934a59e04043931957e1f5e3f58, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -747,6 +795,22 @@ PrefabInstance:
     - target: {fileID: 7109195752306946502, guid: 4f7ed934a59e04043931957e1f5e3f58, type: 3}
       propertyPath: m_Name
       value: UICamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109195752359559306, guid: 4f7ed934a59e04043931957e1f5e3f58, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109195752359559306, guid: 4f7ed934a59e04043931957e1f5e3f58, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109195752427266430, guid: 4f7ed934a59e04043931957e1f5e3f58, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109195752427266430, guid: 4f7ed934a59e04043931957e1f5e3f58, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 70
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f7ed934a59e04043931957e1f5e3f58, type: 3}
