@@ -79,7 +79,10 @@ public class DiceRollAction : MonoBehaviour
             {
                 JumpSin = 0;
                 DestroyFlg = true;
-                manager.SetMove();
+                if(manager.Ordering == false)
+                {
+                    manager.SetMove();
+                }               
             }
         }
 
