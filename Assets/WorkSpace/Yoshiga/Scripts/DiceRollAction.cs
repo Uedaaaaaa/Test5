@@ -78,11 +78,7 @@ public class DiceRollAction : MonoBehaviour
             if(Mathf.Sin(JumpSin) < 0)
             {
                 JumpSin = 0;
-                DestroyFlg = true;
-                if(manager.Ordering == false)
-                {
-                    manager.SetMove();
-                }               
+                DestroyFlg = true;                         
             }
         }
 
@@ -122,7 +118,11 @@ public class DiceRollAction : MonoBehaviour
                     }
                 }               
                 manager.SetDiceNo(DiceNo);
-                for(int i = 0;i < 6; ++i)
+                if (manager.Ordering == false)
+                {
+                    manager.CanMove();
+                }
+                for (int i = 0;i < 6; ++i)
                 {
                     DiceSideRenderers[i].material = DiceMats[DiceNo - 1];
                 }                

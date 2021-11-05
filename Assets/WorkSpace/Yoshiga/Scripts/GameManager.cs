@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
 {
     [HideInInspector]public GameSTS gameStatus;    //ゲームステータス
     [Header("サイコロ : オブジェクト")]
-    [SerializeField] private GameObject DiceObj;    
+    public GameObject DiceObj;    
     [HideInInspector] public Character[] characters = new Character[4];  //キャラクタークラス配列(charactors[0]が1P)
     [Header("キャラクターの速さ")]
     public float CharacterSpeed;
@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
         eventScript = eventController.GetComponent<SpuareAction>();
     }
 
-    public void SetMove()
+    public void CanMove()
     {
         playerScript[OrderArray[NowPlayerNo]].SetMoveFlg(true);
     }
@@ -220,6 +220,7 @@ public class GameManager : MonoBehaviour
             //カメラの位置と角度の調整
             transform.position = NewPos;
             
+            //カメラがプレイヤーについていくようにする
             if(playerScript[OrderArray[NowPlayerNo]].moveFlg == true)
             {
                 transform.position = new Vector3(CharacterObj[OrderArray[NowPlayerNo]].transform.position.x, NewPos.y, NewPos.z);
@@ -227,40 +228,39 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void FinishOrdering()
+    {
+        //順番決めの配列をソート
+        Array.Sort(OrderArray);
+        Array.Reverse(OrderArray);
+
+        for (int i = 0; i < 4; ++i)
+        {
+            for (int j = 0; j < 4; ++j)
+            {
+                if (OrderArray[i] == characters[j].MyDiceNo)
+                {
+                    OrderArray[i] = j;
+                    break;
+                }
+            }
+        }
+
+        //順番決めのターン終了
+        Ordering = false;
+        NowPlayerNo = 0;
+        Invoke("SpawnDice", 2);
+        gameStatus = GameSTS.Play;
+        transform.rotation = Quaternion.Euler(CameraXaxis, 0, 0);
+    }
+
     // Update is called once per frame
     void Update()
     {
-        //順番決めのダイスを全員が振り終わった時
-        if(Ordering == true && NowPlayerNo == 3 && characters[3].MyDiceNo != 0)
-        {
-            //順番決めの配列をソート
-            Array.Sort(OrderArray);
-            Array.Reverse(OrderArray);
-
-            for (int i = 0; i < 4; ++i)
-            {                
-                for (int j = 0;j < 4; ++j)
-                {
-                    if(OrderArray[i] == characters[j].MyDiceNo)
-                    {
-                        OrderArray[i] = j;
-                        break;
-                    }
-                }
-            }
-
-            //順番決めのターン終了
-            Ordering = false;
-            NowPlayerNo = 0;
-            Invoke("SpawnDice", 2);
-            gameStatus = GameSTS.Play;
-            transform.rotation = Quaternion.Euler(CameraXaxis, 0, 0);
-        }
-
         //ダイスを出現させるための処理
-        if(FinishDiceFlg == true)
+        if (FinishDiceFlg == true)
         {
-            if(Ordering == true)
+            if (Ordering == true)
             {
                 Invoke("SpawnDice", 2);
                 ChangeNowPlayerNo();
