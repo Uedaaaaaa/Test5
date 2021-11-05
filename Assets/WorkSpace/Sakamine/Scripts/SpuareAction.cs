@@ -296,6 +296,9 @@ public class SpuareAction : MonoBehaviour
                     {
                         SEManager.Instance.Play(SEPath.PUSH_B);
                         manager.SpawnDice();
+                        imgTextSpace.gameObject.SetActive(false);
+                        txtMessage.gameObject.SetActive(false);
+                        imgEventChara.gameObject.SetActive(false);
                         Debug.Log("aaa");
                     }
                     else
