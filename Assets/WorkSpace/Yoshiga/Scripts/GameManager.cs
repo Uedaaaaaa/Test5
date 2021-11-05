@@ -87,6 +87,11 @@ public class GameManager : MonoBehaviour
         SpawnDice();
     }
 
+    public void SetMove()
+    {
+        playerScript[OrderArray[NowPlayerNo]].SetMoveFlg(true);
+    }
+
     //キャラクターがマスに止まってイベントを行う時の処理
     public void PlayEvent(MassType EventType)
     {
@@ -176,11 +181,7 @@ public class GameManager : MonoBehaviour
             OrderjudgeNo[NowPlayerNo] = No;
             OrderArray[NowPlayerNo] = No;
         }
-        else
-        {
-            playerScript[OrderArray[NowPlayerNo]].SetMoveFlg(true);
-        }
-
+       
         FinishDiceFlg = true;       
     }
 
@@ -252,7 +253,7 @@ public class GameManager : MonoBehaviour
             //順番決めのターン終了
             Ordering = false;
             NowPlayerNo = 0;
-            SpawnDice();
+            Invoke("SpawnDice", 2);
             gameStatus = GameSTS.Play;
             transform.rotation = Quaternion.Euler(CameraXaxis, 0, 0);
         }
