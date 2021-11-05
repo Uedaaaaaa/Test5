@@ -5,87 +5,90 @@ using UnityEngine;
 public class PlayerAction : MonoBehaviour
 {    
     private GameManager manager;    //ゲームマネージャー
-    private int MyNo;               //自身の番号
-    private CreateMap MapScript;    //マップの生成script
-    private bool StartFlg = true;  //スタート地点に向かうためのフラグ
-    private Vector3 StartDashVelocity;  //スタートダッシュの時の速度
-    [HideInInspector]public bool MoveFlg = false;       //動いていいかのフラグ
-    [HideInInspector]public MassType StopMass;       //止まったマスのタイプ
-    private Rigidbody MyRB;             //自身のRigidbody
-    [HideInInspector] public int NowMassNo = 0;    //今いるマスの番号
-    private int MassHeadNo;     //今いるマスの頭の数字(そのマスの番号が何桁の数字か)
+    private int myNo;               //自身の番号
+    private CreateMap mapScript;    //マップの生成script
+    private bool startFlg = true;  //スタート地点に向かうためのフラグ
+    private Vector3 startDashVelocity;  //スタートダッシュの時の速度
+    [HideInInspector]public bool moveFlg = false;       //動いていいかのフラグ
+    [HideInInspector]public MassType stopMass;       //止まったマスのタイプ
+    private Rigidbody myRB;             //自身のRigidbody
+    [HideInInspector] public int nowMassNo = 0;    //今いるマスの番号
+    private int massHeadNo;     //今いるマスの頭の数字(そのマスの番号が何桁の数字か)
+    private Animator myAnim;
 
     // Start is called before the first frame update
     void Start()
     {
         manager = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameManager>();
-        MyNo = int.Parse(gameObject.name.Substring(0, 1)) - 1;
-        MapScript = GameObject.FindGameObjectWithTag("Map").GetComponent<CreateMap>();
-        StartDashVelocity = new Vector3(-transform.position.x,0.0f,-transform.position.z).normalized * manager.CharacterSpeed;
-        MyRB = this.gameObject.GetComponent<Rigidbody>();
+        myNo = int.Parse(gameObject.name.Substring(0, 1)) - 1;
+        mapScript = GameObject.FindGameObjectWithTag("Map").GetComponent<CreateMap>();
+        startDashVelocity = new Vector3(-transform.position.x,0.0f,-transform.position.z).normalized * manager.CharacterSpeed;
+        myRB = this.gameObject.GetComponent<Rigidbody>();
+        myAnim = this.gameObject.GetComponent<Animator>();
     }
 
     //MoveFlgを変更する処理
     public void SetMoveFlg(bool Flg)
     {
-        MoveFlg = Flg;
+        moveFlg = Flg;
+        myAnim.SetBool("Move", Flg);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(MyNo == manager.OrderArray[manager.NowPlayerNo])
+        if(myNo == manager.OrderArray[manager.NowPlayerNo])
         {
             //プレイヤーが１マス進んだ時の処理
             if (other.gameObject.tag == "Plus")
             {
-                StopMass = MassType.Plus;
+                stopMass = MassType.Plus;
             }
             else if (other.gameObject.tag == "Minus")
             {
-                StopMass = MassType.Minus;
+                stopMass = MassType.Minus;
             }
             else if (other.gameObject.tag == "Halloween")
             {
-                StopMass = MassType.Halloween;
+                stopMass = MassType.Halloween;
             }
             else if (other.gameObject.tag == "Quiz")
             {
-                StopMass = MassType.Quiz;
+                stopMass = MassType.Quiz;
             }
 
             manager.MinusDiceNo();
-            MassHeadNo = int.Parse(other.gameObject.name.Substring(0, 1));
-            if (MassHeadNo == 1)
+            massHeadNo = int.Parse(other.gameObject.name.Substring(0, 1));
+            if (massHeadNo == 1)
             {
-                NowMassNo = int.Parse(other.gameObject.name.Substring(1, 1));
+                nowMassNo = int.Parse(other.gameObject.name.Substring(1, 1));
             }
-            else if (MassHeadNo == 2)
+            else if (massHeadNo == 2)
             {
-                NowMassNo = int.Parse(other.gameObject.name.Substring(1, 2));
+                nowMassNo = int.Parse(other.gameObject.name.Substring(1, 2));
             }
 
-            if (NowMassNo == 1)
+            if (nowMassNo == 1)
             {
-                StartFlg = false;
+                startFlg = false;
             }
 
             //止まりたいマスについた時
             if (manager.characters[manager.OrderArray[manager.NowPlayerNo]].MyDiceNo == 0)
             {
                 manager.CharacerUI.DiceNumUIDestroy();
-                MoveFlg = false;
-                MyRB.velocity = Vector3.zero;
+                SetMoveFlg(false);
+                myRB.velocity = Vector3.zero;
                 this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
-                manager.PlayEvent(StopMass);
+                manager.PlayEvent(stopMass);
             }
         }       
     }
 
     public void SetStartPos()
     {
-        if(StartFlg == false)
+        if(startFlg == false)
         {
-            this.gameObject.transform.position = MapScript.squares[NowMassNo - 1].MyPos;
+            this.gameObject.transform.position = mapScript.squares[nowMassNo - 1].MyPos;
         }
         
     }
@@ -93,34 +96,34 @@ public class PlayerAction : MonoBehaviour
     private void FixedUpdate()
     {
         //キャラクターが動いていい時の処理
-        if(MoveFlg == true && MyNo == manager.OrderArray[manager.NowPlayerNo] && manager.gameStatus == GameSTS.Play)
+        if(moveFlg == true && myNo == manager.OrderArray[manager.NowPlayerNo] && manager.gameStatus == GameSTS.Play)
         {
             manager.CharacerUI.DiceNumUISet(manager.characters[manager.OrderArray[manager.NowPlayerNo]].MyDiceNo);
 
             //キャラクターを動かす処理
-            if (StartFlg == true)
+            if (startFlg == true)
             {
-                MyRB.velocity = StartDashVelocity;
+                myRB.velocity = startDashVelocity;
                 this.gameObject.transform.LookAt(new Vector3(0, 0, 0));
             }
             else
             {
-                switch (MapScript.squares[NowMassNo - 1].MyMove)
+                switch (mapScript.squares[nowMassNo - 1].MyMove)
                 {
                     case Move.Down:
-                        MyRB.velocity = new Vector3(0, 0, -1) * manager.CharacterSpeed;
+                        myRB.velocity = new Vector3(0, 0, -1) * manager.CharacterSpeed;
                         this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
                         break;
                     case Move.Up:
-                        MyRB.velocity = new Vector3(0, 0, 1) * manager.CharacterSpeed;
+                        myRB.velocity = new Vector3(0, 0, 1) * manager.CharacterSpeed;
                         this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
                         break;
                     case Move.Left:
-                        MyRB.velocity = new Vector3(-1, 0, 0) * manager.CharacterSpeed;
+                        myRB.velocity = new Vector3(-1, 0, 0) * manager.CharacterSpeed;
                         this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 270.0f, 0.0f);
                         break;
                     case Move.Right:
-                        MyRB.velocity = new Vector3(1, 0, 0) * manager.CharacterSpeed;
+                        myRB.velocity = new Vector3(1, 0, 0) * manager.CharacterSpeed;
                         this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 90.0f, 0.0f);
                         break;
                     
