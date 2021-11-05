@@ -122,13 +122,17 @@ public class SpuareAction : MonoBehaviour
     private bool TrueTrick;
     private bool FalseTrick;
     private bool isInput;
+    private bool EndDice;
 
     private int CharaNo;
     private int UseYaruki;
     private int SuccessRate;
     private int SuccessRand;
     private int i;
+
     private GameManager manager;
+    public SetCharacerUI CharacerUI;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -164,6 +168,7 @@ public class SpuareAction : MonoBehaviour
         UseYaruki = 1;
         NextTextFlg = false;
         isInput = true;
+        EndDice = true;
         //最初は非表示
         HideUI();
         //キャラとテキストスペースは表示
@@ -175,10 +180,10 @@ public class SpuareAction : MonoBehaviour
         blue = Feed.color.b;
         alfa = 1.0f;
     }
-
     // Update is called once per frame
     void Update()
     {
+
         Feed.color = new Color(red, green, blue, alfa);
         //フェードイン
         if (FeedInFlg)
@@ -197,13 +202,39 @@ public class SpuareAction : MonoBehaviour
                             imgCharaUI.sprite = PlayerUI[i];
                         }
                     }
+                    CharacerUI.PlayerStatusUIDestroy();
                     ShowUI();
                     txtPlayerName.text = "プレイヤー" + CharaNo.ToString();
                     txtCandy.text = manager.characters[CharaNo - 1].Candy.ToString();
                     txtYaruki.text = manager.characters[CharaNo - 1].Yaruki.ToString();
+                    if(PlusFlg)
+                    {
+                        BGMManager.Instance.Play(BGMPath.PLUS_BGM);
+                        SEManager.Instance.Play(SEPath.PLUS);
+                    }
+                    else if (MinusFlg)
+                    {
+                        BGMManager.Instance.Play(BGMPath.MINUS_BGM);
+                        SEManager.Instance.Play(SEPath.MINUS);
+                    }
+                    else if (QuizFlg)
+                    {
+                        BGMManager.Instance.Play(BGMPath.QUIZ_BGM);
+                    }
+                    else if (HalloweenFlg)
+                    {
+                        BGMManager.Instance.Play(BGMPath.HALLOWIN_BGM);
+                    }
                 }
+                //ルール説明終了時
+                else if (isRule)
+                {
+                    HideUI();
+                }
+                //イベント終了時
                 else
                 {
+                    CharacerUI.PlayerStatusUISet();
                     HideUI();
                 }
                 //FeedOut開始
@@ -215,28 +246,24 @@ public class SpuareAction : MonoBehaviour
             FeedOut();
             if (alfa <= 0.1f)
             {
-                FeedOutFlg = false;
                 //フェードアウトが完了したら文字が流れ始める
                 if (PlusFlg)
                 {
                     txtMessage.gameObject.SetActive(true);
                     txtTextName.gameObject.SetActive(true);
                     StartCoroutine("Novel", plusEvent[EventRand].eventData[EventCount].Message);
-                    PlusFlg = true;
                 }
                 else if (MinusFlg)
                 {
                     txtMessage.gameObject.SetActive(true);
                     txtTextName.gameObject.SetActive(true);
                     StartCoroutine("Novel", minusEvent[EventRand].eventData[EventCount].Message);
-                    MinusFlg = true;
                 }
                 else if (QuizFlg)
                 {
                     txtMessage.gameObject.SetActive(true);
                     txtTextName.gameObject.SetActive(true);
                     StartCoroutine("Novel", quizEvent[EventRand].eventData[EventCount].Message);
-                    QuizFlg = true;
                 }
                 else if (HalloweenFlg)
                 {
@@ -244,7 +271,12 @@ public class SpuareAction : MonoBehaviour
                     txtMessage.gameObject.SetActive(true);
                     txtTextName.gameObject.SetActive(true);
                     StartCoroutine("Novel", halloweenEvent[EventRand].eventData[EventCount].Message);
-                    HalloweenFlg = true;
+                }
+                else if (isRule && !EndDice)
+                {
+                    isRule = false;
+                    BGMManager.Instance.Play(BGMPath.MAIN_BGM);
+                    manager.GameStart();
                 }
                 else if(isRule)
                 {
@@ -253,11 +285,12 @@ public class SpuareAction : MonoBehaviour
                     txtMessage.gameObject.SetActive(true);
                     txtTextName.gameObject.SetActive(true);
                     StartCoroutine("Novel",RuleText[0]);
-                }
+                }             
                 else
                 {
                     EndEvent();
                 }
+                FeedOutFlg = false;
 
             }
         }
@@ -290,6 +323,16 @@ public class SpuareAction : MonoBehaviour
         //ルール説明中
         if(isRule)
         {
+            //順番決め終了検知してテキスト表示
+            if (EndDice && manager.Ordering == false)
+            {
+                isInput = true;
+                EndDice = false;
+                imgTextSpace.gameObject.SetActive(true);
+                txtMessage.gameObject.SetActive(true);
+                imgEventChara.gameObject.SetActive(true);
+                StartCoroutine("Novel", RuleText[i]);
+            }
             if (!FeedInFlg && !FeedOutFlg && isInput&&Input.GetKeyDown(KeyCode.Return) || !FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
             {
                 if(NextTextFlg)
@@ -303,17 +346,32 @@ public class SpuareAction : MonoBehaviour
                         imgTextSpace.gameObject.SetActive(false);
                         txtMessage.gameObject.SetActive(false);
                         imgEventChara.gameObject.SetActive(false);
-                        Debug.Log("aaa");
+                    }
+                    else if (i == 10)
+                    {
+                        BGMManager.Instance.Stop();
+                        SEManager.Instance.Play(SEPath.LETS_HALLOWIN);
+                        FeedInFlg = true;
                     }
                     else
                     {
                         SEManager.Instance.Play(SEPath.PUSH_B);
                         NextTextFlg = false;
                         i++;
+                        if(i == 9)
+                        {
+                            Debug.Log("9");
+                            int No1 = manager.OrderArray[0] + 1;
+                            int No2 = manager.OrderArray[1] + 1;
+                            int No3 = manager.OrderArray[2] + 1;
+                            int No4 = manager.OrderArray[3] + 1;
+                            RuleText[i] = "1番 プレイヤー" + No1.ToString() + "さん。2番 プレイヤー" + No2.ToString() + "さん。\n3番 プレイヤー" + No3.ToString() + "さん。4番 プレイヤー" + No4.ToString() + "さん。";
+                        }
                         StartCoroutine("Novel", RuleText[i]);
                     }
                 }
-                
+               
+
                 else
                 {
                     txtMessage.text = RuleText[i];
@@ -325,7 +383,7 @@ public class SpuareAction : MonoBehaviour
 
         }
             //プラスイベント処理
-            if (PlusFlg)
+        if (PlusFlg)
         {
             if (!FeedInFlg && !FeedOutFlg && Input.GetKeyDown(KeyCode.Return) || !FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
             {
@@ -731,6 +789,7 @@ public class SpuareAction : MonoBehaviour
     {
         if (!PlusFlg)
         {
+            BGMManager.Instance.Stop();
             CharaNo = MyNo + 1;
             EventRand = Random.Range(0, plusEvent.Count);
             imgEventChara.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
@@ -742,6 +801,7 @@ public class SpuareAction : MonoBehaviour
     {
         if (!MinusFlg)
         {
+            BGMManager.Instance.Stop();
             CharaNo = MyNo + 1;
             EventRand = Random.Range(0, minusEvent.Count);
             imgEventChara.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
@@ -753,6 +813,7 @@ public class SpuareAction : MonoBehaviour
     {
         if (!QuizFlg)
         {
+            BGMManager.Instance.Stop();
             CharaNo = MyNo + 1;
             EventRand = Random.Range(0, quizEvent.Count);
             imgEventChara.transform.localPosition = new Vector3(500.0f, 0.0f, 0.0f);
@@ -764,6 +825,7 @@ public class SpuareAction : MonoBehaviour
     {
         if (!HalloweenFlg)
         {
+            BGMManager.Instance.Stop();
             CharaNo = MyNo + 1;
             EventRand = Random.Range(0, halloweenEvent.Count);
             imgEventChara.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
@@ -776,7 +838,8 @@ public class SpuareAction : MonoBehaviour
     {
         //プレイヤー側の終了関数
         manager.EndEvent();
-
+        BGMManager.Instance.Stop();
+        BGMManager.Instance.Play(BGMPath.MAIN_BGM);
         PlusFlg = false;
         MinusFlg = false;
         QuizFlg = false;
