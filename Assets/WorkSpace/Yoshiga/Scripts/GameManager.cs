@@ -64,6 +64,8 @@ public class GameManager : MonoBehaviour
     [Header("CharactorUICanvas : オブジェクト")]
     public SetCharacerUI CharacerUI;
     private bool statusUIActive;    //キャラクターのステータスUIが表示されているかのフラグ
+    [Header("EventController : オブジェクト")]
+    [SerializeField] private GameObject eventController;
     private SpuareAction eventScript;
 
     // Start is called before the first frame update
@@ -81,8 +83,13 @@ public class GameManager : MonoBehaviour
             characters[i].MyNo = i + 1;
             playerScript[i] = CharacterObj[i].GetComponent<PlayerAction>();
         }
-        eventScript = this.gameObject.GetComponent<SpuareAction>();
+        eventScript = eventController.GetComponent<SpuareAction>();
         SpawnDice();
+    }
+
+    public void SetMove()
+    {
+        playerScript[OrderArray[NowPlayerNo]].SetMoveFlg(true);
     }
 
     //キャラクターがマスに止まってイベントを行う時の処理
@@ -115,7 +122,7 @@ public class GameManager : MonoBehaviour
         //同じマスに何人いるのか確認する処理
         for (int i = 0; i < characters.Length; ++i)
         {
-            if (playerScript[OrderArray[NowPlayerNo]].NowMassNo == playerScript[OrderArray[i]].NowMassNo)
+            if (playerScript[OrderArray[NowPlayerNo]].nowMassNo == playerScript[OrderArray[i]].nowMassNo)
             {
                 Samesquare++;
             }
@@ -174,11 +181,7 @@ public class GameManager : MonoBehaviour
             OrderjudgeNo[NowPlayerNo] = No;
             OrderArray[NowPlayerNo] = No;
         }
-        else
-        {
-            playerScript[OrderArray[NowPlayerNo]].SetMoveFlg(true);
-        }
-
+       
         FinishDiceFlg = true;       
     }
 
@@ -218,7 +221,7 @@ public class GameManager : MonoBehaviour
             //カメラの位置と角度の調整
             transform.position = NewPos;
             
-            if(playerScript[OrderArray[NowPlayerNo]].MoveFlg == true)
+            if(playerScript[OrderArray[NowPlayerNo]].moveFlg == true)
             {
                 transform.position = new Vector3(CharacterObj[OrderArray[NowPlayerNo]].transform.position.x, NewPos.y, NewPos.z);
             }
@@ -250,7 +253,7 @@ public class GameManager : MonoBehaviour
             //順番決めのターン終了
             Ordering = false;
             NowPlayerNo = 0;
-            SpawnDice();
+            Invoke("SpawnDice", 2);
             gameStatus = GameSTS.Play;
             transform.rotation = Quaternion.Euler(CameraXaxis, 0, 0);
         }

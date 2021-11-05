@@ -145,7 +145,7 @@ namespace KanKikuchi.AudioManager
         }
         IEnumerator StartFeedIn()
         {
-            yield return new WaitForSeconds(2.0f);
+            yield return new WaitForSeconds(1.0f);
             BGMManager.Instance.FadeOut(2.0f);
             FeedInFlg = true;
         }

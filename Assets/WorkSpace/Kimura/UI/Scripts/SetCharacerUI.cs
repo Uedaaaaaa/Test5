@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using KanKikuchi.AudioManager;
 public class SetCharacerUI : MonoBehaviour
 {
     //実際に表示するプレイヤーターンUI
@@ -32,6 +33,9 @@ public class SetCharacerUI : MonoBehaviour
     [SerializeField] Text[] Candytxt = new Text[4];
     [SerializeField] Text[] Yarukitxt = new Text[4];
 
+    //ゲーム終了UI
+    [SerializeField] Image GameSetUI;
+
     //ゲームマネージャー
     GameManager manager;
     // Start is called before the first frame update
@@ -42,6 +46,7 @@ public class SetCharacerUI : MonoBehaviour
         PlayerTurnBbuttonUI.enabled = false;
         DiceStopUI.enabled = false;
         DiceImage.enabled = false;
+        GameSetUI.enabled = false;
         for (int i = 0; i < PlayerStatusUI.Length; i++)
         {
             PlayerStatusUI[i].enabled = false;
@@ -113,5 +118,17 @@ public class SetCharacerUI : MonoBehaviour
             Candytxt[i].text = manager.characters[i].Candy.ToString();
             Yarukitxt[i].text = manager.characters[i].Yaruki.ToString();
         }
+    }
+
+    //ゲーム終了UIの表示非表示
+    public void GameEndUISet()
+    {
+        GameSetUI.enabled = true;
+        PlayerTurnBbuttonUI.enabled = true;
+    }
+    public void GameEndUIDestroy()
+    {
+        GameSetUI.enabled = false;
+        PlayerTurnBbuttonUI.enabled = false;
     }
 }
