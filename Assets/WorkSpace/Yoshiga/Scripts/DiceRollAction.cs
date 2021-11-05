@@ -61,6 +61,7 @@ public class DiceRollAction : MonoBehaviour
             }
             else //ダイスロールを止める
             {
+                SEManager.Instance.Stop(SEPath.DICE_SPINE);
                 SEManager.Instance.Play(SEPath.DICE_STOP);
                 DiceDecisionFlg = true;
                 manager.CharacerUI.DiceStopUIDestroy();
