@@ -228,7 +228,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void FinishOrdering()
+    public void Sort()
     {
         //順番決めの配列をソート
         Array.Sort(OrderArray);
@@ -245,7 +245,11 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+    }
 
+
+    public void FinishOrdering()
+    {
         //順番決めのターン終了
         Ordering = false;
         NowPlayerNo = 0;
@@ -257,6 +261,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Ordering == true && NowPlayerNo == 3 && characters[3].MyDiceNo != 0)
+        {
+
+        }
+
         //ダイスを出現させるための処理
         if (FinishDiceFlg == true)
         {
