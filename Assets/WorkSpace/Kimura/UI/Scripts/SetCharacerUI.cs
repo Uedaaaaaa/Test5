@@ -45,6 +45,8 @@ public class SetCharacerUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //ダイスの数字UIの高さを変更
+        DiceImagePos.y = 100;
         //UIの表示をオフにする
         ImagePlayerTurnUI.enabled = false;
         PlayerTurnBbuttonUI.enabled = false;
