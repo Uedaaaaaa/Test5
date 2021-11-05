@@ -62,7 +62,7 @@ public class SetCharacerUI : MonoBehaviour
     {
         ImagePlayerTurnUI.enabled = true;
         ImagePlayerTurnUI.sprite = PlayerTurnUI[PlayerNum].sprite;
-
+        SEManager.Instance.Play(SEPath.TURN_CHANGE);
         PlayerTurnBbuttonUI.enabled = true;
     }
     public void PlayerTurnUIDestroy()
@@ -125,6 +125,7 @@ public class SetCharacerUI : MonoBehaviour
     {
         GameSetUI.enabled = true;
         PlayerTurnBbuttonUI.enabled = true;
+        SEManager.Instance.Play(SEPath.GAME_END);
     }
     public void GameEndUIDestroy()
     {
