@@ -17,11 +17,11 @@ public class SetCharacerUI : MonoBehaviour
     [SerializeField] Image PlayerTurnBbuttonUI;
 
     //ダイスを振るを書かれたUI
-    [SerializeField] Image DiceStartUI;
+    [SerializeField] Image[] DiceStartUI = new Image[4];
 
     //ダイスを止めると書かれたUI
     [SerializeField] Image DiceStopUI;
-
+    [SerializeField] Image[] DiceStopUI_Order = new Image[4];
     //実際に表示するダイスの数字UI
     [SerializeField] Image DiceImage;
 
@@ -62,10 +62,11 @@ public class SetCharacerUI : MonoBehaviour
         DiceStopUI.enabled = false;
         DiceImage.enabled = false;
         GameSetUI.enabled = false;
-        DiceStartUI.enabled = false;
         //プレイヤー関係のUIの非表示
         for (int i = 0; i < PlayerStatusUI.Length; i++)
         {
+            DiceStopUI_Order[i].enabled = false;
+            DiceStartUI[i].enabled = false;
             PlayerStatusUI[i].enabled = false;
             Candytxt[i].text = "";
             Yarukitxt[i].text = "";
@@ -93,41 +94,15 @@ public class SetCharacerUI : MonoBehaviour
     //ダイスを振るUIの表示非表示
     public void DiceStartUISet()
     {
-        //UIの位置を変更
-        //UIの位置を変更する
-        if (manager.gameStatus == GameSTS.OrderJudge)
-        {
-            switch (manager.NowPlayerNo)
-            {
-                case 0:
-                    DiceStartUI.gameObject.transform.position =
-                       this.gameObject.transform.position + new Vector3(-430, 0, 0);
-                    break;
-                case 1:
-                    DiceStartUI.gameObject.transform.position =
-                        this.gameObject.transform.position + new Vector3(-270, 0, 0);
-                    break;
-                case 2:
-                    DiceStartUI.rectTransform.position =
-                        this.gameObject.transform.position + new Vector3(-110, 0, 0);
-                    break;
-                case 3:
-                    DiceStartUI.rectTransform.position =
-                        this.gameObject.transform.position + new Vector3(50, 0, 0);
-                    break;
-            }
-        }
-        else
-        {
-            DiceStartUI.rectTransform.position =
-                this.gameObject.transform.position + new Vector3(0, 0, 0);
-        }
         //ダイスを振るのUIの表示
-        DiceStartUI.enabled = true;
+        DiceStartUI[manager.NowPlayerNo].enabled = true;
     }
     public void DiceStartUIDestroy()
     {
-        DiceStartUI.enabled = false;
+        for(int i = 0; i< DiceStartUI.Length; i++)
+        {
+            DiceStartUI[i].enabled = false;
+        }
     }
 
     //ダイスを止めるUIの表示非表示
@@ -136,36 +111,20 @@ public class SetCharacerUI : MonoBehaviour
         //UIの位置を変更する
         if(manager.gameStatus == GameSTS.OrderJudge)
         {
-            switch(manager.NowPlayerNo)
-            {
-                case 0:
-                    DiceStopUI.gameObject.transform.position = 
-                       this.gameObject.transform.position + new Vector3(-430,0,0);
-                    break;
-                case 1:
-                    DiceStopUI.gameObject.transform.position = 
-                        this.gameObject.transform.position + new Vector3(-270,0,0);
-                    break;
-                case 2:
-                    DiceStopUI.rectTransform.position = 
-                        this.gameObject.transform.position + new Vector3(-110, 0, 0);
-                    break;
-                case 3:
-                    DiceStopUI.rectTransform.position = 
-                        this.gameObject.transform.position + new Vector3(50, 0, 0);
-                    break;
-            }
+            DiceStopUI_Order[manager.NowPlayerNo].enabled = true;
         }
         else
         {
-            DiceStopUI.rectTransform.position = 
-                this.gameObject.transform.position + new Vector3(0, 0, 0);
+            //ダイスを止めるUIの表示
+            DiceStopUI.enabled = true;
         }
-        //ダイスを止めるUIの表示
-        DiceStopUI.enabled = true;
     }
     public void DiceStopUIDestroy()
     {
+        for(int i = 0; i < DiceStopUI_Order.Length;i++)
+        {
+            DiceStopUI_Order[i].enabled = false;
+        }
         DiceStopUI.enabled = false;
     }
 

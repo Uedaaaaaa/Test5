@@ -427,6 +427,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 553028827}
     m_Modifications:
+    - target: {fileID: 37492760921655878, guid: 1cdbb424e5c8f0b48846b029e3e834e3, type: 3}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1015518037908729749, guid: 1cdbb424e5c8f0b48846b029e3e834e3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -450
+      objectReference: {fileID: 0}
+    - target: {fileID: 1611052751745982894, guid: 1cdbb424e5c8f0b48846b029e3e834e3, type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2328170697795398450, guid: 1cdbb424e5c8f0b48846b029e3e834e3, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920176694977012281, guid: 1cdbb424e5c8f0b48846b029e3e834e3, type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5218208112376314217, guid: 1cdbb424e5c8f0b48846b029e3e834e3, type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7482170533089459086, guid: 1cdbb424e5c8f0b48846b029e3e834e3, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 7815465574779487432, guid: 1cdbb424e5c8f0b48846b029e3e834e3, type: 3}
       propertyPath: m_Name
       value: UICamera
@@ -474,6 +502,10 @@ PrefabInstance:
     - target: {fileID: 7815465574779487435, guid: 1cdbb424e5c8f0b48846b029e3e834e3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8265392069495894982, guid: 1cdbb424e5c8f0b48846b029e3e834e3, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cdbb424e5c8f0b48846b029e3e834e3, type: 3}
