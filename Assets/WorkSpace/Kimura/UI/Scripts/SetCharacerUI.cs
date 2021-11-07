@@ -95,7 +95,6 @@ public class SetCharacerUI : MonoBehaviour
     //ダイスの数のUIの表示非表示
     public void DiceNumUISet(int DiceNum)
     {
-        SEManager.Instance.Play(SEPath.DICE_COUNT_MINUS);
         DiceImage.transform.position = this.gameObject.transform.position + DiceImagePos;
         DiceImage.enabled = true;
         DiceImage.sprite = DiceNumSprite[DiceNum - 1];
