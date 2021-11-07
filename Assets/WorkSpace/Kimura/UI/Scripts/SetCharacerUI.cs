@@ -55,7 +55,7 @@ public class SetCharacerUI : MonoBehaviour
     {
         GameSetflg = false;
         //ダイスの数字UIの高さを変更
-        DiceImagePos.y = 145;
+        //DiceImagePos.y = 145;
         //プレイヤー以外のUI表示をオフにする
         ImagePlayerTurnUI.enabled = false;
         PlayerTurnBbuttonUI.enabled = false;
