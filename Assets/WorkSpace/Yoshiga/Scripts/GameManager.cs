@@ -360,5 +360,13 @@ public class GameManager : MonoBehaviour
             }
             FinishDiceFlg = false;
         }
+
+        if(Input.GetButtonDown("BtnB"))
+        {
+            if(gameStatus == GameSTS.Ranking)
+            {
+                CharacerUI.GameEndUIDestroy();
+            }
+        }
     }
 }

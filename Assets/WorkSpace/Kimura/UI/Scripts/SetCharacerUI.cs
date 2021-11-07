@@ -183,7 +183,6 @@ public class SetCharacerUI : MonoBehaviour
     public void GameEndUISet()
     {
         GameSetUI.enabled = true;
-        PlayerTurnBbuttonUI.enabled = true;
         SEManager.Instance.Play(SEPath.GAME_END);
     }
     public void GameEndUIDestroy()
@@ -193,6 +192,5 @@ public class SetCharacerUI : MonoBehaviour
         feed.FeedInFlg =true;
         feed.isResult = true;
         GameSetUI.enabled = false;
-        PlayerTurnBbuttonUI.enabled = false;
     }
 }
