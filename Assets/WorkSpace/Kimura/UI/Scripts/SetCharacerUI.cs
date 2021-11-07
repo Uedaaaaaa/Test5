@@ -44,12 +44,16 @@ public class SetCharacerUI : MonoBehaviour
     //ゲームマネージャー
     GameManager manager;
 
+    //ゲーム終了を獲得するフラグ
+    private bool GameSetflg;
+
     //スクエアアクション
     SpuareAction feed;
     private GameObject feedobj;
     // Start is called before the first frame update
     void Start()
     {
+        GameSetflg = false;
         //ダイスの数字UIの高さを変更
         DiceImagePos.y = 145;
         //プレイヤー以外のUI表示をオフにする
@@ -89,11 +93,41 @@ public class SetCharacerUI : MonoBehaviour
     //ダイスを振るUIの表示非表示
     public void DiceStartUISet()
     {
+        //UIの位置を変更
+        //UIの位置を変更する
+        if (manager.gameStatus == GameSTS.OrderJudge)
+        {
+            switch (manager.NowPlayerNo)
+            {
+                case 0:
+                    DiceStartUI.gameObject.transform.position =
+                       this.gameObject.transform.position + new Vector3(-430, 0, 0);
+                    break;
+                case 1:
+                    DiceStartUI.gameObject.transform.position =
+                        this.gameObject.transform.position + new Vector3(-270, 0, 0);
+                    break;
+                case 2:
+                    DiceStartUI.rectTransform.position =
+                        this.gameObject.transform.position + new Vector3(-110, 0, 0);
+                    break;
+                case 3:
+                    DiceStartUI.rectTransform.position =
+                        this.gameObject.transform.position + new Vector3(50, 0, 0);
+                    break;
+            }
+        }
+        else
+        {
+            DiceStartUI.rectTransform.position =
+                this.gameObject.transform.position + new Vector3(0, 0, 0);
+        }
+        //ダイスを振るのUIの表示
         DiceStartUI.enabled = true;
     }
     public void DiceStartUIDestroy()
     {
-        DiceStopUI.enabled = false;
+        DiceStartUI.enabled = false;
     }
 
     //ダイスを止めるUIの表示非表示
@@ -183,6 +217,7 @@ public class SetCharacerUI : MonoBehaviour
     public void GameEndUISet()
     {
         GameSetUI.enabled = true;
+        GameSetflg = true;
         SEManager.Instance.Play(SEPath.GAME_END);
     }
     public void GameEndUIDestroy()
@@ -192,5 +227,20 @@ public class SetCharacerUI : MonoBehaviour
         feed.FeedInFlg =true;
         feed.isResult = true;
         GameSetUI.enabled = false;
+    }
+
+    private void Update()
+    {
+        if(manager.gameStatus == GameSTS.Ranking)
+        {
+            if(Input.GetButtonDown("BtnB"))
+            {
+                if(GameSetflg)
+                {
+                    GameEndUIDestroy();
+                    GameSetflg = false;
+                }
+            }
+        }
     }
 }

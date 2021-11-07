@@ -1067,12 +1067,12 @@ MonoBehaviour:
   DiceStopUI: {fileID: 7815465575782195646}
   DiceImage: {fileID: 7815465575282212583}
   DiceNumSprite:
-  - {fileID: 21300000, guid: 95f39942ad3a9c442bcb1f5cf1c7e07b, type: 3}
-  - {fileID: 21300000, guid: eabb3d097411f814aa9aceac5cea4b5f, type: 3}
-  - {fileID: 21300000, guid: 41d5bc10e789974469cec63fb954e1fb, type: 3}
-  - {fileID: 21300000, guid: 702a3636ea2b7aa4da2d5d45377c3028, type: 3}
-  - {fileID: 21300000, guid: a920f19f3b9321d4aac6d25783c6b32b, type: 3}
-  - {fileID: 21300000, guid: 3d69f6f2468cc6847bbfc1d140c2e41d, type: 3}
+  - {fileID: 21300000, guid: dbbffb1ed4b711547952413a8312d399, type: 3}
+  - {fileID: 21300000, guid: af62a257cd9efa44d8aabf458d53bb3f, type: 3}
+  - {fileID: 21300000, guid: 37f8d5fd595bec8449cef458320a6917, type: 3}
+  - {fileID: 21300000, guid: b1af9d8ca904d2943a660b8c3a522e95, type: 3}
+  - {fileID: 21300000, guid: 4167a7ef3b8654d4e907f03634d2b8d8, type: 3}
+  - {fileID: 21300000, guid: c7cac2a3f238aec43a5411e5c22e3b47, type: 3}
   DiceImagePos: {x: 0, y: 100, z: 0}
   PlayerStatusUI:
   - {fileID: 7815465575324367616}
@@ -1106,7 +1106,7 @@ GameObject:
   - component: {fileID: 7815465574779487435}
   - component: {fileID: 7815465574779487434}
   m_Layer: 0
-  m_Name: UICamera 1
+  m_Name: UICamera
   m_TagString: UICamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
