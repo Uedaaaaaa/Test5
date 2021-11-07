@@ -37,7 +37,7 @@ public class Character
         this.yaruki = 5;
         this.myDiceNo = 0;
         this.eventFlg = false;
-        this.rank = 0;
+        this.rank = 1;
     }
 }
 
@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
             characters[i].myNo = i + 1;
             playerScript[i] = CharacterObj[i].GetComponent<PlayerAction>();
         }
-        eventScript = eventController.GetComponent<SpuareAction>();
+        eventScript = eventController.GetComponent<SpuareAction>();       
     }
 
     public void CanMove()
@@ -186,12 +186,15 @@ public class GameManager : MonoBehaviour
         this.gameObject.transform.position = new Vector3(0.5f, 5.0f, -35.0f);
         transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
 
+        // 最終順位を計算
         for(int i = 0; i < 4; ++i)
         {
             for(int j = 0; j < 4; ++j)
             {
-                //if(characters[i].Candy > )
-                //int Stored;
+                if (characters[i].candy < characters[j].candy)
+                {
+                    characters[i].rank++;
+                }                 
             }
         }
     }
