@@ -147,7 +147,8 @@ public class SetCharacerUI : MonoBehaviour
     {
         feedobj = GameObject.Find("EventController");
         feed = feedobj.GetComponent<SpuareAction>();
-        feed.FeedIn();
+        feed.FeedInFlg =true;
+        feed.isResult = true;
         GameSetUI.enabled = false;
         PlayerTurnBbuttonUI.enabled = false;
     }
