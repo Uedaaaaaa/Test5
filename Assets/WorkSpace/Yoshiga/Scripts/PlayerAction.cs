@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using KanKikuchi.AudioManager;
 
 public class PlayerAction : MonoBehaviour
 {    
@@ -36,6 +37,10 @@ public class PlayerAction : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // SEを鳴らす
+        SEManager.Instance.Stop(SEPath.DICE_COUNT_MINUS);
+        SEManager.Instance.Play(SEPath.DICE_COUNT_MINUS);
+
         if(myNo == manager.OrderArray[manager.NowPlayerNo])
         {
             //プレイヤーが１マス進んだ時の処理
