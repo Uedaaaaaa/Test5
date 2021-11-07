@@ -78,7 +78,7 @@ public class PlayerAction : MonoBehaviour
             }
 
             //止まりたいマスについた時
-            if (manager.characters[manager.OrderArray[manager.NowPlayerNo]].MyDiceNo == 0)
+            if (manager.characters[manager.OrderArray[manager.NowPlayerNo]].myDiceNo == 0)
             {
                 manager.CharacerUI.DiceNumUIDestroy();
                 SetMoveFlg(false);
@@ -103,7 +103,7 @@ public class PlayerAction : MonoBehaviour
         //キャラクターが動いていい時の処理
         if(moveFlg == true && myNo == manager.OrderArray[manager.NowPlayerNo] && manager.gameStatus == GameSTS.Play)
         {
-            manager.CharacerUI.DiceNumUISet(manager.characters[manager.OrderArray[manager.NowPlayerNo]].MyDiceNo);
+            manager.CharacerUI.DiceNumUISet(manager.characters[manager.OrderArray[manager.NowPlayerNo]].myDiceNo);
 
             //キャラクターを動かす処理
             if (startFlg == true)
