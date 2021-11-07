@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
     [Header("EventController : オブジェクト")]
     [SerializeField] private GameObject eventController;
     private SpuareAction eventScript;
-    private int[] Ranking = new int[4]; // ランキングを入れる配列
+    private int[] ranking = new int[4]; // ランキングを入れる配列
 
     // Start is called before the first frame update
     void Start()
@@ -146,7 +146,10 @@ public class GameManager : MonoBehaviour
 
         characters[OrderArray[NowPlayerNo]].EventFlg = false;
         ChangeNowPlayerNo();
-        
+        if(gameStatus == GameSTS.Play)
+        {
+            SpawnDice();
+        }    
     }
 
     //現在のターンで何番目の人のターンかの変数を変える
@@ -155,7 +158,6 @@ public class GameManager : MonoBehaviour
         if (NowPlayerNo < 3)
         {
             NowPlayerNo++;
-            SpawnDice();
         }
         else if(NowPlayerNo >= 3)
         {
@@ -169,7 +171,6 @@ public class GameManager : MonoBehaviour
                 return;
             }
             NowPlayerNo = 0;
-            SpawnDice();
         }
     }
 
@@ -178,10 +179,19 @@ public class GameManager : MonoBehaviour
     {
         for(int i = 0; i < 4; ++i)
         {
-            CharacterObj[i].transform.position = new Vector3((i * 7) - 10, 0.0f, -20.0f);
+            CharacterObj[i].transform.position = new Vector3((i * 7.0f) - 10.0f, 0.0f, -20.0f);
         }
 
-        this.gameObject.transform.position = new Vector3(0.5f, 5, -35);
+        this.gameObject.transform.position = new Vector3(0.5f, 5.0f, -35.0f);
+        transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+
+        //for(int i = 0;i < 4; ++i)
+        //{
+        //    for(int j = 0; j < 4; ++j)
+        //    {
+        //        if()
+        //    }
+        //}
     }
 
     //プレイヤーが進んだ時に進める回数を減らす処理
