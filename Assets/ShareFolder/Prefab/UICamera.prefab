@@ -1464,7 +1464,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b1af9d8ca904d2943a660b8c3a522e95, type: 3}
   - {fileID: 21300000, guid: 4167a7ef3b8654d4e907f03634d2b8d8, type: 3}
   - {fileID: 21300000, guid: c7cac2a3f238aec43a5411e5c22e3b47, type: 3}
-  DiceImagePos: {x: 0, y: 100, z: 0}
+  DiceImagePos: {x: 0, y: 160, z: 0}
   PlayerStatusUI:
   - {fileID: 7815465575324367616}
   - {fileID: 7815465575580255720}
@@ -2288,7 +2288,7 @@ RectTransform:
   m_GameObject: {fileID: 7815465575868589828}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 0.38, y: 0.38, z: 1}
   m_Children: []
   m_Father: {fileID: 7815465575113351742}
   m_RootOrder: 0
