@@ -405,7 +405,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameStatus: 0
   DiceObj: {fileID: 6074541189656972468, guid: 3422033834799ad428708b39c7b95f51, type: 3}
-  CharacterSpeed: 10
+  CharacterSpeed: 20
   CharacterObj:
   - {fileID: 7718318516049553528}
   - {fileID: 277500826280910524}
