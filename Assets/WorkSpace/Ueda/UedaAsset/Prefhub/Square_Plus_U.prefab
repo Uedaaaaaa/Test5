@@ -19554,7 +19554,7 @@ GameObject:
   - component: {fileID: 6742287770240927728}
   - component: {fileID: 6742287770240927731}
   m_Layer: 0
-  m_Name: Square_Plus
+  m_Name: Square_Plus_U
   m_TagString: Plus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19605,7 +19605,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e3ac6e215bbcdb542810db4af1499d26, type: 2}
+  - {fileID: 2100000, guid: 7b10a170119e28d4d8a7e36cd9c1c10a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
