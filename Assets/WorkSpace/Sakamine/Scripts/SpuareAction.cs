@@ -225,6 +225,7 @@ public class SpuareAction : MonoBehaviour
                     imgEventChara.sprite = Pumpkin;
                     imgEventChara.gameObject.SetActive(true);
                     imgTextSpace.gameObject.SetActive(true);
+                    manager.GameFinish();
                 }
                 //イベント終了時
                 else
@@ -343,7 +344,7 @@ public class SpuareAction : MonoBehaviour
                 txtTextName.gameObject.SetActive(true);
                 StartCoroutine("Novel", RuleText[i]);
             }
-            if (!FeedInFlg && !FeedOutFlg && isInput&&Input.GetKeyDown(KeyCode.Return) || !FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
+            if (!FeedInFlg && !FeedOutFlg && isInput&&Input.GetKeyDown(KeyCode.Return) || !FeedInFlg && !FeedOutFlg && isInput && Input.GetButtonDown("BtnB"))
             {
                 if(NextTextFlg)
                 {
