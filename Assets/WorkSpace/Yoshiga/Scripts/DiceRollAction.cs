@@ -91,6 +91,10 @@ public class DiceRollAction : MonoBehaviour
             {
                 Instantiate(CloudEffect, this.gameObject.transform.position, gameObject.transform.rotation);
                 Instantiate(ConfettiEffect, this.gameObject.transform.position, gameObject.transform.rotation);
+                if (manager.gameStatus == GameSTS.Play)
+                {
+                    manager.CanMove();
+                }
                 Destroy(this.gameObject);
             }
         }
@@ -119,10 +123,6 @@ public class DiceRollAction : MonoBehaviour
                     }
                 }               
                 manager.SetDiceNo(DiceNo);
-                if (manager.gameStatus == GameSTS.Play)
-                {
-                    manager.CanMove();
-                }
                 for (int i = 0;i < 6; ++i)
                 {
                     DiceSideRenderers[i].material = DiceMats[DiceNo - 1];
