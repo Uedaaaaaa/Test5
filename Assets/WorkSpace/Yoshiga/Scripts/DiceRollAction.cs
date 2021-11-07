@@ -49,7 +49,7 @@ public class DiceRollAction : MonoBehaviour
         //乱数調整用
         ransuchousei = Random.Range(1, 7);
 
-        if (Input.GetButtonDown("BtnB") && JumpFlg == false)
+        if (Input.GetButtonDown("BtnA") && JumpFlg == false)
         {
             //ダイスロールを開始
             if (DiceRollFlg == false)
