@@ -333,6 +333,8 @@ public class SpuareAction : MonoBehaviour
         //ルール説明中
         if(isRule)
         {
+            Debug.Log(i);
+
             //順番決め終了検知してテキスト表示
             if (EndDice && manager.Ordering == false)
             {
@@ -344,7 +346,7 @@ public class SpuareAction : MonoBehaviour
                 txtTextName.gameObject.SetActive(true);
                 StartCoroutine("Novel", RuleText[i]);
             }
-            if (!FeedInFlg && !FeedOutFlg && isInput&&Input.GetKeyDown(KeyCode.Return) || !FeedInFlg && !FeedOutFlg && isInput && Input.GetButtonDown("BtnB"))
+            if (!FeedInFlg && !FeedOutFlg && isInput&&Input.GetKeyDown(KeyCode.Return) || !FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
             {
                 if(NextTextFlg)
                 {
