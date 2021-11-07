@@ -105,7 +105,7 @@ public class SetCharacerUI : MonoBehaviour
             switch(manager.NowPlayerNo)
             {
                 case 0:
-                    DiceStopUI.gameObject.transform.position = new Vector3(-1175,0,0);
+                    DiceStopUI.gameObject.transform.position = new Vector3(-1175,500,0);
                     break;
                 case 1:
                     DiceStopUI.gameObject.transform.position = new Vector3(-740, 0, 0);
