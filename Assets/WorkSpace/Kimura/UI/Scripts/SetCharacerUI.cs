@@ -16,6 +16,9 @@ public class SetCharacerUI : MonoBehaviour
     //プレイヤーターンUI表示と同時にセットするBボタンUI
     [SerializeField] Image PlayerTurnBbuttonUI;
 
+    //ダイスを振るを書かれたUI
+    [SerializeField] Image DiceStartUI;
+
     //ダイスを止めると書かれたUI
     [SerializeField] Image DiceStopUI;
 
@@ -55,6 +58,7 @@ public class SetCharacerUI : MonoBehaviour
         DiceStopUI.enabled = false;
         DiceImage.enabled = false;
         GameSetUI.enabled = false;
+        DiceStartUI.enabled = false;
         //プレイヤー関係のUIの非表示
         for (int i = 0; i < PlayerStatusUI.Length; i++)
         {
@@ -80,6 +84,16 @@ public class SetCharacerUI : MonoBehaviour
         SEManager.Instance.Play(SEPath.PUSH_B);
         ImagePlayerTurnUI.enabled = false;
         PlayerTurnBbuttonUI.enabled = false;
+    }
+
+    //ダイスを振るUIの表示非表示
+    public void DiceStartUISet()
+    {
+        DiceStartUI.enabled = true;
+    }
+    public void DiceStartUIDestroy()
+    {
+        DiceStopUI.enabled = false;
     }
 
     //ダイスを止めるUIの表示非表示
