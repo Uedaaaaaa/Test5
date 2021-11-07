@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour
     [Header("EventController : オブジェクト")]
     [SerializeField] private GameObject eventController;
     private SpuareAction eventScript;
+    private int[] Ranking = new int[4]; // ランキングを入れる配列
 
     // Start is called before the first frame update
     void Start()
@@ -179,6 +180,8 @@ public class GameManager : MonoBehaviour
         {
             CharacterObj[i].transform.position = new Vector3((i * 7) - 10, 0.0f, -20.0f);
         }
+
+        this.gameObject.transform.position = new Vector3(0.5f, 5, -35);
     }
 
     //プレイヤーが進んだ時に進める回数を減らす処理
