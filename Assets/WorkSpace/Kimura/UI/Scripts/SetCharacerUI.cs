@@ -112,7 +112,7 @@ public class SetCharacerUI : MonoBehaviour
         for (int i = 0; i < PlayerStatusUI.Length; i++)
         {
             PlayerStatusUI[i].enabled = true;
-            PlayerNametxt[i].text = "Player" + (i + 1).ToString();
+            PlayerNametxt[i].text = "プレイヤー" + (i + 1).ToString();
         }
         PlayerStatusChange();
     }
