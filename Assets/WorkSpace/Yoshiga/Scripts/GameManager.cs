@@ -145,7 +145,7 @@ public class GameManager : MonoBehaviour
 
         characters[OrderArray[NowPlayerNo]].EventFlg = false;
         ChangeNowPlayerNo();
-        SpawnDice();
+        
     }
 
     //現在のターンで何番目の人のターンかの変数を変える
@@ -154,12 +154,30 @@ public class GameManager : MonoBehaviour
         if (NowPlayerNo < 3)
         {
             NowPlayerNo++;
+            SpawnDice();
         }
         else if(NowPlayerNo >= 3)
         {
             //全員が終わったらゲームの残りターンを減らす
-            NowPlayerNo = 0;
             GameTurn--;
+            //もしターンが0以下になった時ゲームを終わる
+            if(GameTurn <= 0)
+            {
+                gameStatus = GameSTS.Ranking;
+                CharacerUI.GameEndUISet();
+                return;
+            }
+            NowPlayerNo = 0;
+            SpawnDice();
+        }
+    }
+
+    //ゲーム終了関数
+    public void GameFinish()
+    {
+        for(int i = 0; i < 4; ++i)
+        {
+            CharacterObj[i].transform.position = new Vector3((i * 7) - 10, 0.0f, -20.0f);
         }
     }
 
