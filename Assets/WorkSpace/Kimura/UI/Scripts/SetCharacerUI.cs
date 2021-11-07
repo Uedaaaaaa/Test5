@@ -105,22 +105,27 @@ public class SetCharacerUI : MonoBehaviour
             switch(manager.NowPlayerNo)
             {
                 case 0:
-                    DiceStopUI.gameObject.transform.position = new Vector3(-1175,500,0);
+                    DiceStopUI.gameObject.transform.position = 
+                       this.gameObject.transform.position + new Vector3(-430,0,0);
                     break;
                 case 1:
-                    DiceStopUI.gameObject.transform.position = new Vector3(-740, 0, 0);
+                    DiceStopUI.gameObject.transform.position = 
+                        this.gameObject.transform.position + new Vector3(-270,0,0);
                     break;
                 case 2:
-                    DiceStopUI.rectTransform.position = new Vector3(-310, 0, 0);
+                    DiceStopUI.rectTransform.position = 
+                        this.gameObject.transform.position + new Vector3(-110, 0, 0);
                     break;
                 case 3:
-                    DiceStopUI.rectTransform.position = new Vector3(100, 0, 0);
+                    DiceStopUI.rectTransform.position = 
+                        this.gameObject.transform.position + new Vector3(50, 0, 0);
                     break;
             }
         }
         else
         {
-            DiceStopUI.rectTransform.position = new Vector3(0, 0, 0);
+            DiceStopUI.rectTransform.position = 
+                this.gameObject.transform.position + new Vector3(0, 0, 0);
         }
         //ダイスを止めるUIの表示
         DiceStopUI.enabled = true;
