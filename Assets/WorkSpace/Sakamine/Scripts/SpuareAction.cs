@@ -626,8 +626,8 @@ public class SpuareAction : MonoBehaviour
                     {
                         EventCount++;
                         SEManager.Instance.Play(SEPath.YARUKI_UP);
-                        manager.characters[CharaNo - 1].Yaruki += 5;
-                        txtYaruki.text = manager.characters[CharaNo - 1].Yaruki.ToString();
+                        manager.characters[CharaNo - 1].yaruki += 5;
+                        txtYaruki.text = manager.characters[CharaNo - 1].yaruki.ToString();
 
                         SetNextText(quizEvent[EventRand].eventData, null, null);
                     }
@@ -696,7 +696,7 @@ public class SpuareAction : MonoBehaviour
                 }
                 if (Input.GetKeyDown(KeyCode.UpArrow))
                 {
-                    if (UseYaruki < manager.characters[CharaNo - 1].Yaruki)
+                    if (UseYaruki < manager.characters[CharaNo - 1].yaruki)
                     {
                         SEManager.Instance.Play(SEPath.CURSOR_CAHAGE);
                         UseYaruki++;
@@ -729,7 +729,7 @@ public class SpuareAction : MonoBehaviour
                         FeedInFlg = true;
                     }
                     //やる気が0なら
-                    else if (manager.characters[CharaNo - 1].Yaruki == 0 && !NoYaruki)
+                    else if (manager.characters[CharaNo - 1].yaruki == 0 && !NoYaruki)
                     {
                         SEManager.Instance.Play(SEPath.PUSH_B);
                         Debug.Log("Yaruki");
@@ -982,8 +982,8 @@ public class SpuareAction : MonoBehaviour
         imgBack.gameObject.SetActive(true);
 
         txtPlayerName.text = "プレイヤー" + CharaNo.ToString();
-        txtCandy.text = manager.characters[CharaNo - 1].Candy.ToString();
-        txtYaruki.text = manager.characters[CharaNo - 1].Yaruki.ToString();
+        txtCandy.text = manager.characters[CharaNo - 1].candy.ToString();
+        txtYaruki.text = manager.characters[CharaNo - 1].yaruki.ToString();
 
         if (PlusFlg)
         {

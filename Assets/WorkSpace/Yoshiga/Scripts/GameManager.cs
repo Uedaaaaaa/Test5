@@ -23,19 +23,21 @@ public enum GameSTS
 //キャラクタークラス
 public class Character
 {
-    public int MyNo;        //キャラクターの番号                    
-    public int Candy;       //キャラクターが持っている飴の個数    
-    public int Yaruki;      //キャラクターのやる気   
-    public int MyDiceNo;    //現在のターンに自身が出したダイスの目
-    public bool EventFlg;   //キャラクターがマスのイベントを行っているかのフラグ
+    public int myNo;        //キャラクターの番号                    
+    public int candy;       //キャラクターが持っている飴の個数    
+    public int yaruki;      //キャラクターのやる気   
+    public int myDiceNo;    //現在のターンに自身が出したダイスの目
+    public bool eventFlg;   //キャラクターがマスのイベントを行っているかのフラグ
+    public int rank;        //最終ランキング
 
     //キャラクターの初期値設定の関数
     public Character()
     {
-        this.Candy = 0;
-        this.Yaruki = 5;
-        this.MyDiceNo = 0;
-        this.EventFlg = false;
+        this.candy = 0;
+        this.yaruki = 5;
+        this.myDiceNo = 0;
+        this.eventFlg = false;
+        this.rank = 0;
     }
 }
 
@@ -80,7 +82,7 @@ public class GameManager : MonoBehaviour
         {
             characters[i] = new Character();
             OrderArray[i] = i;
-            characters[i].MyNo = i + 1;
+            characters[i].myNo = i + 1;
             playerScript[i] = CharacterObj[i].GetComponent<PlayerAction>();
         }
         eventScript = eventController.GetComponent<SpuareAction>();
@@ -94,7 +96,7 @@ public class GameManager : MonoBehaviour
     //キャラクターがマスに止まってイベントを行う時の処理
     public void PlayEvent(MassType EventType)
     {
-        characters[OrderArray[NowPlayerNo]].EventFlg = true;
+        characters[OrderArray[NowPlayerNo]].eventFlg = true;
 
         switch(EventType)
         {
@@ -143,7 +145,7 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
-        characters[OrderArray[NowPlayerNo]].EventFlg = false;
+        characters[OrderArray[NowPlayerNo]].eventFlg = false;
         ChangeNowPlayerNo();
         if(gameStatus == GameSTS.Play)
         {
@@ -183,18 +185,27 @@ public class GameManager : MonoBehaviour
 
         this.gameObject.transform.position = new Vector3(0.5f, 5.0f, -35.0f);
         transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+
+        for(int i = 0; i < 4; ++i)
+        {
+            for(int j = 0; j < 4; ++j)
+            {
+                //if(characters[i].Candy > )
+                //int Stored;
+            }
+        }
     }
 
     //プレイヤーが進んだ時に進める回数を減らす処理
     public void MinusDiceNo()
     {
-        characters[OrderArray[NowPlayerNo]].MyDiceNo--;
+        characters[OrderArray[NowPlayerNo]].myDiceNo--;
     }
 
     //ダイスの目を保存する処理
     public void SetDiceNo(int No)
     {        
-        characters[OrderArray[NowPlayerNo]].MyDiceNo = No;
+        characters[OrderArray[NowPlayerNo]].myDiceNo = No;
 
         //順番決めの時
         if(Ordering == true)
@@ -261,7 +272,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //順番決めのダイスを全員が振り終わった時
-        if(Ordering == true && NowPlayerNo == 3 && characters[3].MyDiceNo != 0)
+        if(Ordering == true && NowPlayerNo == 3 && characters[3].myDiceNo != 0)
         {
             //順番決めの配列をソート
             Array.Sort(OrderArray);
@@ -271,7 +282,7 @@ public class GameManager : MonoBehaviour
             {                
                 for (int j = 0;j < 4; ++j)
                 {
-                    if(OrderArray[i] == characters[j].MyDiceNo)
+                    if(OrderArray[i] == characters[j].myDiceNo)
                     {
                         OrderArray[i] = j;
                         break;

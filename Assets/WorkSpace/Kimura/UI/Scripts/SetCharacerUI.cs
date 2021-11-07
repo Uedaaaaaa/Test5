@@ -169,8 +169,8 @@ public class SetCharacerUI : MonoBehaviour
     {
         for (int i = 0; i < manager.characters.Length; i++)
         {
-            Candytxt[i].text = manager.characters[i].Candy.ToString();
-            Yarukitxt[i].text = manager.characters[i].Yaruki.ToString();
+            Candytxt[i].text = manager.characters[i].candy.ToString();
+            Yarukitxt[i].text = manager.characters[i].yaruki.ToString();
         }
     }
 
