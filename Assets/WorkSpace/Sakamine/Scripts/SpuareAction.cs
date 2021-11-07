@@ -12,7 +12,7 @@ public class EventData
 {
     [Tooltip("SE")] public string SEPath;
     [Tooltip("イベントのキャラ画像")] public Sprite SpriteEventChara;
-    [TextArea(1, 3), Tooltip("テキスト内容")] public string Message;
+    [TextArea(1, 4), Tooltip("テキスト内容")] public string Message;
     [Tooltip("名前テキスト")] public string TextName;
 }
 //イベント内容にクイズが出てくるタイミングフラグ、正解テキストかどうかの判断フラグを追加
@@ -395,40 +395,39 @@ public class SpuareAction : MonoBehaviour
                 {
                     SEManager.Instance.Play(SEPath.PUSH_B);
                     NextTextFlg = false;
-                    if (i == 2)
+                    if (i >= 2)
                     {
-                        switch(ResultText[2][0])
+                        i++;
+                        switch(i)
                         {
-                            case '4':
-                                ResultText[2] = "3位　プレイヤー〇さん！";
-                                StartCoroutine("Novel", ResultText[2]);
-                                break;
-                            case '3':
-                                ResultText[2] = "2位　プレイヤー〇さん！";
-                                StartCoroutine("Novel", ResultText[2]);
-                                break;
-                            case '2':
-                                ResultText[2] = "1位　プレイヤー〇さん！";
-                                StartCoroutine("Novel", ResultText[2]);
-                                break;
-                            case '1':
-                                ResultText[2] = "ということで優勝は○○さんになります！　おめでとうございます！";
-                                StartCoroutine("Novel", ResultText[2]);
-                                break;
-                            case 'と':
-                                i++;
+                            case 3:
+                                ResultText[i] = "4位　プレイヤー〇さん！";
                                 StartCoroutine("Novel", ResultText[i]);
                                 break;
+                            case 4:
+                                ResultText[i] = "3位　プレイヤー〇さん！";
+                                StartCoroutine("Novel", ResultText[i]);
+                                break;
+                            case 5:
+                                ResultText[i] = "2位　プレイヤー〇さん！";
+                                StartCoroutine("Novel", ResultText[i]);
+                                break;
+                            case 6:
+                                ResultText[i] = "1位　プレイヤー〇さん！";
+                                StartCoroutine("Novel", ResultText[i]);
+                                break;
+                            case 7:
+                                ResultText[i] = "ということで優勝は○○さんになります！\nおめでとうございます！";
+                                StartCoroutine("Novel", ResultText[i]);
+                                break;
+                            case 12:
+                                BGMManager.Instance.Stop();
+                                FeedInFlg = true;
+                                break;
                             default:
-                                ResultText[2] = "4位　プレイヤー〇さん！";
-                                StartCoroutine("Novel", ResultText[2]);
+                                StartCoroutine("Novel", ResultText[i]);
                                 break;                          
                         }
-                    }
-                    else if (i == 6)
-                    {
-                        BGMManager.Instance.Stop();
-                        FeedInFlg = true;
                     }
                     else
                     {
@@ -615,6 +614,16 @@ public class SpuareAction : MonoBehaviour
                         isCorrect = false;
                         imgSel.gameObject.SetActive(false);
                         NowQuizFlg = false;
+                        SetNextText(quizEvent[EventRand].eventData, null, null);
+                    }
+                    //次がやるき上昇テキストなら
+                    else if(quizEvent[EventRand].eventData[EventCount + 1].Message[0] == '【')
+                    {
+                        EventCount++;
+                        SEManager.Instance.Play(SEPath.YARUKI_UP);
+                        manager.characters[CharaNo - 1].Yaruki += 5;
+                        txtYaruki.text = manager.characters[CharaNo - 1].Yaruki.ToString();
+
                         SetNextText(quizEvent[EventRand].eventData, null, null);
                     }
                     else
