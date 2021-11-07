@@ -99,6 +99,30 @@ public class SetCharacerUI : MonoBehaviour
     //ダイスを止めるUIの表示非表示
     public void DiceStopUISet()
     {
+        //UIの位置を変更する
+        if(manager.gameStatus == GameSTS.OrderJudge)
+        {
+            switch(manager.NowPlayerNo)
+            {
+                case 0:
+                    DiceStopUI.gameObject.transform.position = new Vector3(-1175,0,0);
+                    break;
+                case 1:
+                    DiceStopUI.gameObject.transform.position = new Vector3(-740, 0, 0);
+                    break;
+                case 2:
+                    DiceStopUI.rectTransform.position = new Vector3(-310, 0, 0);
+                    break;
+                case 3:
+                    DiceStopUI.rectTransform.position = new Vector3(100, 0, 0);
+                    break;
+            }
+        }
+        else
+        {
+            DiceStopUI.rectTransform.position = new Vector3(0, 0, 0);
+        }
+        //ダイスを止めるUIの表示
         DiceStopUI.enabled = true;
     }
     public void DiceStopUIDestroy()
