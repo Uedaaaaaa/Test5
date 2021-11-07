@@ -119,10 +119,12 @@ public class SpuareAction : MonoBehaviour
     private int Sel;
     private bool NowQuizFlg;
     private bool isCorrect;
-    private bool FeedInFlg = false;
+    [HideInInspector]
+    public bool FeedInFlg = false;
     private bool FeedOutFlg = true;
     private bool isRule = true;
-    private bool isResult = false;
+    [HideInInspector]
+    public bool isResult = false;
 
     private bool NanimoSinai;
     private bool NoYaruki;

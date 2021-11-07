@@ -54,7 +54,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: cca49d29838371441ab85e0db8d495ab, type: 3}
   - {fileID: 21300000, guid: 14100d135ff204a41a7acdebc053e127, type: 3}
   - {fileID: 21300000, guid: c58b77357d39c584e8cd20fdec626b4c, type: 3}
-  - {fileID: 21300000, guid: d2f60eedbdcaba2419d8b36b762340cf, type: 3}
+  - {fileID: 21300000, guid: a241f697bc063694ebe76b08f7f1ee5b, type: 3}
   Pumpkin: {fileID: 21300000, guid: c92c96b1c3d827840986414620c474fc, type: 3}
   Feed: {fileID: 0}
   imgEventChara: {fileID: 0}
@@ -89,9 +89,9 @@ MonoBehaviour:
   - "\u3007\u30BF\u30FC\u30F3\u304C\u7D42\u4E86\u3057\u305F\u6642\u70B9\u3067\u30011\u756A\u3010\u304A\u83D3\u5B50\u3011\u3092\u6301\u3063\u3066\u3044\u308B\u4EBA\u304C\u512A\u52DD\u3067\u3059\u306E\u3067\u9811\u5F35\u3063\u3066\u3044\u304D\u307E\u3057\u3087\u3046\uFF01"
   - "\u305D\u308C\u3067\u306F\u3001\u9806\u756A\u3092\u6C7A\u3081\u3066\u3044\u304D\u307E\u3057\u3087\u3046\uFF01\n\u307E\u305A\u306F\u30D7\u30EC\u30A4\u30E4\u30FC\uFF11\u3055\u3093\u304B\u3089\u3067\u3059\uFF01"
   - "\u5168\u54E1\u306E\u6570\u5B57\u304C\u6C7A\u307E\u308A\u307E\u3057\u305F\u306D\uFF01"
-  - "\u307F\u306A\u3055\u3093\u306E\u9806\u4F4D\u306F\u3053\u3046\u306A\u308A\u307E\u3057\u305F\uFF01"
+  - "\u307F\u306A\u3055\u3093\u306E\u9806\u756A\u306F\u3053\u3046\u306A\u308A\u307E\u3057\u305F\uFF01"
   - "\u4E00\u756A\u76EE\u3060\u308C\u3060\u308C"
-  - "\u305D\u308C\u3067\u306F\u65E9\u901F\u30D7\u30EC\u30A4\u3057\u3066\u3044\u304D\u307E\u3057\u3087\u3046\uFF01\u30EC\u30C3\u30C4\u30CF\u30ED\u30A6\u30A3\u30F3\uFF5E\uFF01"
+  - "\u305D\u308C\u3067\u306F\u65E9\u901F\u30D7\u30EC\u30A4\u3057\u3066\u3044\u304D\u307E\u3057\u3087\u3046\uFF01\n\u30EC\u30C3\u30C4\u30CF\u30ED\u30A6\u30A3\u30F3\uFF5E\uFF01"
   ResultText:
   - "\u7686\u3055\u3093\u304A\u75B2\u308C\u69D8\u3067\u3057\u305F\uFF01"
   - "\u305F\u304F\u3055\u3093\u306E\u304A\u83D3\u5B50\u3092\u96C6\u3081\u3089\u308C\u307E\u3057\u305F\u304B\uFF1F"
@@ -203,7 +203,7 @@ MonoBehaviour:
     - SEPath: 
       SpriteEventChara: {fileID: 0}
       Message: "\u3010\u3084\u308B\u6C17\u3011\u304C\u30105\u3011\u4E0A\u6607\u3057\u305F\u3002"
-      TextName: TAKESUE
+      TextName: 
       QuizSet: 0
       AnswerText: 0
     - SEPath: 
@@ -212,7 +212,7 @@ MonoBehaviour:
       TextName: TAKESUE
       QuizSet: 0
       AnswerText: 1
-  - EventName: " \u4E0A\u7530\u3055\u30931"
+  - EventName: "\u4E0A\u7530\u3055\u30931"
     ChangeYaruki: 5
     Answer:
     - "\u738B\u5B50"
@@ -240,7 +240,7 @@ MonoBehaviour:
     - SEPath: 
       SpriteEventChara: {fileID: 0}
       Message: "\u3010\u3084\u308B\u6C17\u3011\u304C\u30105\u3011\u4E0A\u6607\u3057\u305F\u3002"
-      TextName: "\u4E0A\u7530\u3055\u3093"
+      TextName: 
       QuizSet: 0
       AnswerText: 0
     - SEPath: 
@@ -277,7 +277,7 @@ MonoBehaviour:
     - SEPath: 
       SpriteEventChara: {fileID: 0}
       Message: "\u3010\u3084\u308B\u6C17\u3011\u304C\u30105\u3011\u4E0A\u6607\u3057\u305F\u3002"
-      TextName: OYAMA
+      TextName: 
       QuizSet: 0
       AnswerText: 0
     - SEPath: 
@@ -314,7 +314,7 @@ MonoBehaviour:
     - SEPath: 
       SpriteEventChara: {fileID: 0}
       Message: "\u3010\u3084\u308B\u6C17\u3011\u304C\u30105\u3011\u4E0A\u6607\u3057\u305F\u3002"
-      TextName: "\u5927\u6A4B\u3055\u3093"
+      TextName: 
       QuizSet: 0
       AnswerText: 0
     - SEPath: 
@@ -323,35 +323,41 @@ MonoBehaviour:
       TextName: "\u5927\u6A4B\u3055\u3093"
       QuizSet: 0
       AnswerText: 1
-  - EventName: a
-    ChangeYaruki: 0
+  - EventName: "\u53CD\u7701\u3092\u4FC3\u3057\u305D\u3046\u306A\u4EBA"
+    ChangeYaruki: 5
     Answer:
-    - "\u30C6\u30B9\u30C81-1"
-    - "\u30C6\u30B9\u30C81-2"
-    - "\u30C6\u30B9\u30C81-3"
+    - "\u30B8\u30E3\u30C3\u30AF\u30AA\u30FC\u30E9\u30F3\u30BF\u30F3"
+    - "\u30BF\u30FC\u30CB\u30AF\u30B9\u30FB\u30E9\u30F3\u30BF\u30F3"
+    - "\u30D1\u30F3\u30D7\u30AD\u30F3\u30E9\u30F3\u30BF\u30F3"
     eventData:
     - SEPath: 
-      SpriteEventChara: {fileID: 0}
-      Message: "\u554F\u984C"
+      SpriteEventChara: {fileID: 21300000, guid: 2122c23cc6892c94fad0b783de7ac509, type: 3}
+      Message: "\u653F\u5E9C\u306B\u53CD\u7701\u3092\u4FC3\u3057\u305D\u3046\u306A\u30B3\u30B9\u30D7\u30EC\u306E\u4EBA\u3068\u51FA\u4F1A\u3063\u305F\u3002"
       TextName: 
       QuizSet: 0
       AnswerText: 0
     - SEPath: 
       SpriteEventChara: {fileID: 0}
-      Message: "\u7B54\u3048\u306F\u4F55"
-      TextName: 
+      Message: "\u30AB\u30DC\u30C1\u30E3\u3067\u4F5C\u3063\u305F\u63D0\u706F\u306E\u540D\u524D\u306F\u306A\u306B\u304B\uFF1F\r\n\u7B54\u3048\u3066\u898B\u305B\u308D\u3088\u3001\u30D7\u30EC\u30A4\u30E4\u30FC\uFF01"
+      TextName: "\u53CD\u7701\u3092\u4FC3\u3057\u305D\u3046\u306A\u4EBA"
       QuizSet: 1
       AnswerText: 0
     - SEPath: 
       SpriteEventChara: {fileID: 0}
-      Message: "\u6B63\u89E3"
+      Message: "\u6B63\u89E3\uFF01\r\n\u304A\u524D\u306A\u3089\u306A\u3093\u3068\u3067\u3082\u306A\u308B\u306F\u305A\u3060\uFF01"
+      TextName: "\u53CD\u7701\u3092\u4FC3\u3057\u305D\u3046\u306A\u4EBA"
+      QuizSet: 0
+      AnswerText: 0
+    - SEPath: 
+      SpriteEventChara: {fileID: 0}
+      Message: "\u3010\u3084\u308B\u6C17\u3011\u304C\u30105\u3011\u4E0A\u6607\u3057\u305F\u3002"
       TextName: 
       QuizSet: 0
       AnswerText: 0
     - SEPath: 
       SpriteEventChara: {fileID: 0}
-      Message: "\u4E0D\u6B63\u89E3"
-      TextName: 
+      Message: "\u6614\u30CF\u30ED\u30A6\u30A3\u30F3\u306E\u65E5\u306B\u60AA\u970A\u306B\u53D6\u308A\u3064\u304B\u308C\u305F\n\u300C\u30B8\u30E3\u30C3\u30AF\u300D\u3068\u3044\u3046\u7537\u304C\u7531\u6765\u3060\u305D\u3046\u3060\u3002"
+      TextName: "\u53CD\u7701\u3092\u4FC3\u3057\u305D\u3046\u306A\u4EBA"
       QuizSet: 0
       AnswerText: 1
   - EventName: "\u967D\u6C17\u306A\u9752\u5E74"
@@ -362,7 +368,7 @@ MonoBehaviour:
     - "\u4EEE\u88C5\u3092\u697D\u3057\u3080\u304A\u796D\u308A\u3060\u304B\u3089"
     eventData:
     - SEPath: 
-      SpriteEventChara: {fileID: 0}
+      SpriteEventChara: {fileID: 21300000, guid: 047a3d97f4613d84b8dc3aa3e99e35d4, type: 3}
       Message: "\u30CF\u30ED\u30A6\u30A3\u30F3\u3092\u697D\u3057\u3080\u967D\u6C17\u306A\u9752\u5E74\u3068\u51FA\u4F1A\u3063\u305F\u3002"
       TextName: 
       QuizSet: 0
@@ -382,7 +388,7 @@ MonoBehaviour:
     - SEPath: 
       SpriteEventChara: {fileID: 0}
       Message: "\u3010\u3084\u308B\u6C17\u3011\u304C\u30105\u3011\u4E0A\u6607\u3057\u305F\u3002"
-      TextName: "\u967D\u6C17\u306A\u9752\u5E74"
+      TextName: 
       QuizSet: 0
       AnswerText: 0
     - SEPath: 
@@ -399,7 +405,7 @@ MonoBehaviour:
     - "\u767D\u83DC"
     eventData:
     - SEPath: 
-      SpriteEventChara: {fileID: 0}
+      SpriteEventChara: {fileID: 21300000, guid: 00783c12940ed004992b40b0139fda66, type: 3}
       Message: "\u30A4\u30D9\u30F3\u30C8\u3092\u697D\u3057\u3080\u5927\u4EBA\u306A\u5973\u6027\u306B\u51FA\u4F1A\u3063\u305F\u3002"
       TextName: 
       QuizSet: 0
@@ -419,7 +425,7 @@ MonoBehaviour:
     - SEPath: 
       SpriteEventChara: {fileID: 0}
       Message: "\u3010\u3084\u308B\u6C17\u3011\u304C\u30105\u3011\u4E0A\u6607\u3057\u305F\u3002"
-      TextName: "\u5927\u4EBA\u306A\u5973\u6027"
+      TextName: 
       QuizSet: 0
       AnswerText: 0
     - SEPath: 
