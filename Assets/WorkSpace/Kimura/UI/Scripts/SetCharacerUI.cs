@@ -33,6 +33,8 @@ public class SetCharacerUI : MonoBehaviour
     [SerializeField] Text[] Candytxt = new Text[4];
     [SerializeField] Text[] Yarukitxt = new Text[4];
 
+    //プレイヤーの名前テキストUI
+    [SerializeField] Text[] PlayerNametxt = new Text[4];
     //ゲーム終了UI
     [SerializeField] Image GameSetUI;
 
@@ -47,17 +49,19 @@ public class SetCharacerUI : MonoBehaviour
     {
         //ダイスの数字UIの高さを変更
         DiceImagePos.y = 100;
-        //UIの表示をオフにする
+        //プレイヤー以外のUI表示をオフにする
         ImagePlayerTurnUI.enabled = false;
         PlayerTurnBbuttonUI.enabled = false;
         DiceStopUI.enabled = false;
         DiceImage.enabled = false;
         GameSetUI.enabled = false;
+        //プレイヤー関係のUIの非表示
         for (int i = 0; i < PlayerStatusUI.Length; i++)
         {
             PlayerStatusUI[i].enabled = false;
             Candytxt[i].text = "";
             Yarukitxt[i].text = "";
+            PlayerNametxt[i].text = "";
         }
         //ゲームマネージャーを獲得
         manager = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameManager>();
@@ -91,7 +95,6 @@ public class SetCharacerUI : MonoBehaviour
     //ダイスの数のUIの表示非表示
     public void DiceNumUISet(int DiceNum)
     {
-        SEManager.Instance.Play(SEPath.DICE_COUNT_MINUS);
         DiceImage.transform.position = this.gameObject.transform.position + DiceImagePos;
         DiceImage.enabled = true;
         DiceImage.sprite = DiceNumSprite[DiceNum - 1];
@@ -109,6 +112,7 @@ public class SetCharacerUI : MonoBehaviour
         for (int i = 0; i < PlayerStatusUI.Length; i++)
         {
             PlayerStatusUI[i].enabled = true;
+            PlayerNametxt[i].text = "Player" + (i + 1).ToString();
         }
         PlayerStatusChange();
     }
@@ -119,6 +123,7 @@ public class SetCharacerUI : MonoBehaviour
             PlayerStatusUI[i].enabled = false;
             Candytxt[i].text = "";
             Yarukitxt[i].text = "";
+            PlayerNametxt[i].text = "";
         }
     }
     //プレイヤーのステータスUIの更新
