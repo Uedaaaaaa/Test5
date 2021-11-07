@@ -1399,7 +1399,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7815465573804961618, guid: 1cdbb424e5c8f0b48846b029e3e834e3, type: 3}
       propertyPath: DiceImagePos.y
-      value: 145
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 7815465574779487432, guid: 1cdbb424e5c8f0b48846b029e3e834e3, type: 3}
       propertyPath: m_Name
