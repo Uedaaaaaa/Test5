@@ -84,6 +84,18 @@ public class GameManager : MonoBehaviour
             playerScript[i] = CharacterObj[i].GetComponent<PlayerAction>();
         }
         eventScript = eventController.GetComponent<SpuareAction>();
+
+        // デバッグ用
+        characters[0].candy = 4;
+        characters[1].candy = 3;
+        characters[2].candy = 2;
+        characters[3].candy = 2;
+
+        GameFinish();
+        for(int i = 0; i < 4; ++i)
+        {
+            Debug.Log((i + 1) + "さんの順位　：　" + characters[i].rank);
+        }
     }
 
     public void CanMove()
@@ -187,8 +199,9 @@ public class GameManager : MonoBehaviour
 
         this.gameObject.transform.position = new Vector3(0.5f, 5.0f, -35.0f);
         transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
-
-        for(int i = 0; i < 4; ++i)
+        bool fourthFlg = false;      //四位がいるかのフラグ
+        bool thirdFlg = false;     //三位がいるかのフラグ
+        for (int i = 0; i < 4; ++i)
         {
             for(int j = 0; j < 4; ++j)
             {
@@ -197,16 +210,14 @@ public class GameManager : MonoBehaviour
                     characters[i].rank++;
                 }
             }
-        }
 
-        bool fourthFlg = false;      //四位がいるかのフラグ
-        bool thirdFlg = false;     //三位がいるかのフラグ
-        for(int i = 0; i < 4; ++i)
-        {
-            if(characters[i].rank == 4)
+            // 四位がいるか調べる
+            if (characters[i].rank == 4)
             {
                 fourthFlg = true;
             }
+
+            // 三位がいるか調べる
             if (characters[i].rank == 3)
             {
                 thirdFlg = true;
