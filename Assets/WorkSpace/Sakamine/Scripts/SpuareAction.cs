@@ -37,7 +37,7 @@ public class HalloweenEventData : EventData
 public class SpuareEvent
 {
     [SerializeField, Tooltip("イベントの名前")] string EventName;
-    [SerializeField, Tooltip("やる気の増減")] int ChangeYaruki;
+    [SerializeField, Tooltip("やる気の増減")] public int ChangeYaruki;
 
     [Tooltip("Sizeにテキストの数を入力")] public List<EventData> eventData;
 }
@@ -46,7 +46,7 @@ public class SpuareEvent
 public class QuizEvent
 {
     [SerializeField, Tooltip("イベントの名前")] string EventName;
-    [SerializeField, Tooltip("やる気の増減")] int ChangeYaruki;
+    [SerializeField, Tooltip("やる気の増減")] public int ChangeYaruki;
     [Tooltip("クイズの選択肢　一番上に答えを入力")]public string[] Answer = new string[3] { "","",""};
 
     [Tooltip("Sizeにテキストの数を入力")] public List<QuizEventData> eventData;
@@ -58,7 +58,7 @@ public class HalloweenEvent
 {
     [SerializeField, Tooltip("イベントの名前")] string EventName;
     [Tooltip("補正値")] public int Correction;
-    [SerializeField, Tooltip("やる気の増減")] int ChangeYaruki;
+    [SerializeField, Tooltip("やる気の増減")] public int ChangeYaruki;
 
     [Tooltip("Sizeにテキストの数を入力")] public List<HalloweenEventData> eventData;
 }
@@ -132,11 +132,14 @@ public class SpuareAction : MonoBehaviour
     private bool FalseTrick;
     private bool isInput;
     private bool EndDice;
+    private bool DoSort;
 
     private int CharaNo;
     private int UseYaruki;
     private int SuccessRate;
     private int SuccessRand;
+    int[] PlayerRankNum = new int[4];
+
     private int i;
 
     private GameManager manager;
@@ -189,6 +192,13 @@ public class SpuareAction : MonoBehaviour
         green = Feed.color.g;
         blue = Feed.color.b;
         alfa = 1.0f;
+
+        manager.characters[0].candy = 4;
+        manager.characters[1].candy = 2;
+        manager.characters[2].candy = 1;
+        manager.characters[3].candy = 1;
+
+
     }
     // Update is called once per frame
     void Update()
@@ -226,10 +236,12 @@ public class SpuareAction : MonoBehaviour
                     imgEventChara.gameObject.SetActive(true);
                     imgTextSpace.gameObject.SetActive(true);
                     manager.GameFinish();
+                    DoSort = true;
                 }
                 //イベント終了時
                 else
                 {
+                    manager.ChangePos();
                     CharacerUI.PlayerStatusUISet();
                     HideUI();
                 }
@@ -283,9 +295,9 @@ public class SpuareAction : MonoBehaviour
                     txtTextName.gameObject.SetActive(true);
                     StartCoroutine("Novel",RuleText[0]);
                 }
-                else if (isResult&&i == 6)
+                else if (isResult&&i == 11)
                 {
-                    SceneManager.LoadScene("Main");
+                    SceneManager.LoadScene("Title");
                 }
 
                 else if (isResult)
@@ -294,7 +306,7 @@ public class SpuareAction : MonoBehaviour
                     txtTextName.text = "カボチャ";
                     txtMessage.gameObject.SetActive(true);
                     txtTextName.gameObject.SetActive(true);
-                    StartCoroutine("Novel", RuleText[0]);
+                    StartCoroutine("Novel", ResultText[0]);
                 }
                 else
                 {
@@ -333,7 +345,6 @@ public class SpuareAction : MonoBehaviour
         //ルール説明中
         if(isRule)
         {
-            Debug.Log(i);
 
             //順番決め終了検知してテキスト表示
             if (EndDice && manager.Ordering == false)
@@ -394,45 +405,295 @@ public class SpuareAction : MonoBehaviour
         //結果発表
         if (isResult)
         {
+            int[] src = { manager.characters[0].rank, manager.characters[1].rank, manager.characters[2].rank, manager.characters[3].rank };
+            var list = new List<int>();
+
+            if (DoSort)
+            {
+                list.AddRange(src);
+                //int[] Rank
+                list.Sort();
+                Debug.Log(PlayerRankNum[0]);
+                Debug.Log(PlayerRankNum[1]);
+                Debug.Log(PlayerRankNum[2]);
+                Debug.Log(PlayerRankNum[3]);
+
+                for (int i = 0; i < 4; i++)
+                {
+                    //1位のランクがプレイヤーi
+                    if (list[0] == manager.characters[i].rank)
+                    {
+                        i = i + 1;
+                        for (int j = 0; j < 4; j++)
+                        {
+                            if (list[1] == manager.characters[j].rank)
+                                PlayerRankNum[1] = j + 1;
+                            for (int k = 0; k < 4; k++)
+                            {
+                                if (list[2] == manager.characters[k].rank)
+                                {
+                                    PlayerRankNum[2] = k + 1;
+                                    for (int l = 0; l < 4; l++)
+                                    {
+                                        if (list[3] == manager.characters[l].rank)
+                                        {
+                                            PlayerRankNum[3] = l + 1;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             if (!FeedInFlg && !FeedOutFlg && isInput && Input.GetKeyDown(KeyCode.Return) || !FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
             {
                 if (NextTextFlg)
                 {
                     SEManager.Instance.Play(SEPath.PUSH_B);
                     NextTextFlg = false;
-                    if (i >= 2)
+                    if (i >= 2&&i < 8)
                     {
-                        i++;
-                        switch(i)
+                        i = 3;
+                        //1224
+                        if(list[0] == 1&&list[1] == 2&&list[2] == 4&&list[3] == 4)
                         {
-                            case 3:
-                                ResultText[i] = "4位　プレイヤー〇さん！";
+                            if(ResultText[3][0] == '4')
+                            {
+                                ResultText[3] = "2位　プレイヤー" + PlayerRankNum[1].ToString() + "さん！";
+                                StartCoroutine("Novel", ResultText[3]);
+                            }
+                            else if(ResultText[3][0] == '2')
+                            {
+                                ResultText[3] = "1位　プレイヤー" + PlayerRankNum[0].ToString() + "さん！";
+                                StartCoroutine("Novel", ResultText[3]);
+                            }
+                            else if(ResultText[3][0] == '1')
+                            {
+                                ResultText[3] = "ということで優勝はプレイヤー" + PlayerRankNum[0].ToString() + "さんになります！\nおめでとうございます！";
+                                StartCoroutine("Novel", ResultText[3]);
+                            }
+                            else if(ResultText[3][0] == 'と')
+                            {
+                                i = 8;
                                 StartCoroutine("Novel", ResultText[i]);
-                                break;
-                            case 4:
-                                ResultText[i] = "3位　プレイヤー〇さん！";
-                                StartCoroutine("Novel", ResultText[i]);
-                                break;
-                            case 5:
-                                ResultText[i] = "2位　プレイヤー〇さん！";
-                                StartCoroutine("Novel", ResultText[i]);
-                                break;
-                            case 6:
-                                ResultText[i] = "1位　プレイヤー〇さん！";
-                                StartCoroutine("Novel", ResultText[i]);
-                                break;
-                            case 7:
-                                ResultText[i] = "ということで優勝は○○さんになります！\nおめでとうございます！";
-                                StartCoroutine("Novel", ResultText[i]);
-                                break;
-                            case 12:
-                                BGMManager.Instance.Stop();
-                                FeedInFlg = true;
-                                break;
-                            default:
-                                StartCoroutine("Novel", ResultText[i]);
-                                break;                          
+                            }
+                            else
+                            {
+                                ResultText[3] = "4位　プレイヤー" + PlayerRankNum[2].ToString() + "さんとプレイヤー" + PlayerRankNum[3].ToString() + "さん！";
+                                StartCoroutine("Novel", ResultText[3]);
+                            }
                         }
+                        //1224
+                        else if (list[0] == 1 && list[1] == 2 && list[2] == 2 && list[3] == 4)
+                        {
+                            if (ResultText[3][0] == '4')
+                            {
+                                ResultText[3] = "2位　プレイヤー" + PlayerRankNum[1].ToString() + "さんとプレイヤー" + PlayerRankNum[2].ToString() + "さん！";
+                                StartCoroutine("Novel", ResultText[3]);
+                            }
+                            else if (ResultText[3][0] == '2')
+                            {
+                                ResultText[3] = "1位　プレイヤー" + PlayerRankNum[0].ToString() + "さん！";
+                                StartCoroutine("Novel", ResultText[3]);
+                            }
+                            else if (ResultText[3][0] == '1')
+                            {
+                                ResultText[3] = "ということで優勝はプレイヤー" + PlayerRankNum[0].ToString() + "さんになります！\nおめでとうございます！";
+                                StartCoroutine("Novel", ResultText[3]);
+                            }
+                            else if (ResultText[3][0] == 'と')
+                            {
+                                i = 8;
+                                StartCoroutine("Novel", ResultText[i]);
+                            }
+                            else
+                            {
+                                ResultText[3] = "4位　プレイヤー" + PlayerRankNum[3].ToString() + "さん！";
+                                StartCoroutine("Novel", ResultText[3]);
+                            }
+
+                        }
+                        //1134
+                        else if (list[0] == 1 && list[1] == 1 && list[2] == 3 && list[3] == 4)
+                        {
+                            if (ResultText[3][0] == '4')
+                            {
+                                ResultText[3] = "3位　プレイヤー" + PlayerRankNum[2].ToString() + "さん！";
+                                StartCoroutine("Novel", ResultText[3]);
+                            }
+                            else if (ResultText[3][0] == '3')
+                            {
+                                ResultText[3] = "1位　プレイヤー" + PlayerRankNum[0].ToString() + "さんとプレイヤー" + PlayerRankNum[1].ToString() + "さん！";
+                                StartCoroutine("Novel", ResultText[3]);
+                            }
+                            else if (ResultText[3][0] == '1')
+                            {
+                                ResultText[3] = "ということで優勝はプレイヤー" + PlayerRankNum[0].ToString() + "さんと\nプレイヤー" + PlayerRankNum[1].ToString() + "なります！おめでとうございます！";
+                                StartCoroutine("Novel", ResultText[3]);
+                            }
+                            else if (ResultText[3][0] == 'と')
+                            {
+                                i = 8;
+                                StartCoroutine("Novel", ResultText[i]);
+                            }
+                            else
+                            {
+                                ResultText[3] = "4位　プレイヤー" + PlayerRankNum[3].ToString() + "さん！";
+                                StartCoroutine("Novel", ResultText[3]);
+                            }
+
+                        }
+                        //1444
+                        else if (list[0] == 1 && list[1] == 4 && list[2] == 4 && list[3] == 4)
+                        {
+                            if (ResultText[3][0] == '4')
+                            {
+                                ResultText[3] = "1位　プレイヤー" + PlayerRankNum[0].ToString() + "さん！";
+                                StartCoroutine("Novel", ResultText[3]);
+                            }
+                            else if (ResultText[3][0] == '1')
+                            {
+                                ResultText[3] = "ということで優勝はプレイヤー" + PlayerRankNum[0].ToString() + "さんになります！\nおめでとうございます！";
+                                StartCoroutine("Novel", ResultText[3]);
+                            }
+                            else if (ResultText[3][0] == 'と')
+                            {
+                                i = 8;
+                                StartCoroutine("Novel", ResultText[i]);
+                            }
+                            else
+                            {
+                                ResultText[3] = "4位　プレイヤー" + PlayerRankNum[3].ToString() + "さんとプレイヤー" + PlayerRankNum[2].ToString() + "さんと\nプレイヤー" + PlayerRankNum[1].ToString() + "さん！";
+                                StartCoroutine("Novel", ResultText[3]);
+                            }
+
+                        }
+                        //1114
+                        else if (list[0] == 1 && list[1] == 1 && list[2] == 1 && list[3] == 4)
+                        {
+                            if (ResultText[3][0] == '4')
+                            {
+                                ResultText[3] = "1位　プレイヤー" + PlayerRankNum[0].ToString() + "さんとプレイヤー" + PlayerRankNum[1].ToString() + "さんと\nプレイヤー" + PlayerRankNum[2].ToString() + "さん！";
+                                StartCoroutine("Novel", ResultText[3]);
+                            }
+                            else if (ResultText[3][0] == '1')
+                            {
+                                ResultText[3] = "ということで優勝はプレイヤー" + PlayerRankNum[0].ToString() + "さんと\nプレイヤー" + PlayerRankNum[1].ToString() + "さんとプレイヤー" + PlayerRankNum[2].ToString() + "さんになります！";
+                                StartCoroutine("Novel", ResultText[3]);
+                            }
+                            else if (ResultText[3][0] == 'と')
+                            {
+                                ResultText[3] = "おめでとうございます！";
+                                StartCoroutine("Novel", ResultText[i]);
+                            }
+                            else if (ResultText[3][0] == 'お')
+                            {
+                                i = 8;
+                                StartCoroutine("Novel", ResultText[i]);
+                            }
+
+                            else
+                            {
+                                ResultText[3] = "4位　プレイヤー" + PlayerRankNum[3].ToString() + "さん！";
+                                StartCoroutine("Novel", ResultText[3]);
+                            }
+
+                        }
+                        //1144
+                        else if (list[0] == 1 && list[1] == 1 && list[2] == 4 && list[3] == 4)
+                        {
+                            if (ResultText[3][0] == '4')
+                            {
+                                ResultText[3] = "1位　プレイヤー" + PlayerRankNum[0].ToString() + "さんとプレイヤー" + PlayerRankNum[1].ToString() + "さん！";
+                                StartCoroutine("Novel", ResultText[3]);
+                            }
+                            else if (ResultText[3][0] == '1')
+                            {
+                                ResultText[3] = "ということで優勝はプレイヤー" + PlayerRankNum[0].ToString() + "さんとプレイヤー" + PlayerRankNum[1].ToString() + "さんになります！\nおめでとうございます！";
+                                StartCoroutine("Novel", ResultText[3]);
+                            }
+                            else if (ResultText[3][0] == 'と')
+                            {
+                                i = 8;
+                                StartCoroutine("Novel", ResultText[i]);
+                            }
+                            else
+                            {
+                                ResultText[3] = "4位　プレイヤー" + PlayerRankNum[3].ToString() + "さんとプレイヤー" + PlayerRankNum[2].ToString() + "さん！";
+                                StartCoroutine("Novel", ResultText[3]);
+                            }
+
+                        }
+                        //1111
+                        else if (list[0] == 1 && list[1] == 1 && list[2] == 1 && list[3] == 1)
+                        {
+                            if (ResultText[3][0] == '4')
+                            {
+                                ResultText[3] = "2位　プレイヤー" + PlayerRankNum[1].ToString() + "さんとプレイヤー" + PlayerRankNum[2].ToString() + "さん！";
+                                StartCoroutine("Novel", ResultText[3]);
+                            }
+                            else if (ResultText[3][0] == '2')
+                            {
+                                ResultText[3] = "1位　プレイヤー" + PlayerRankNum[0].ToString() + "さん！";
+                                StartCoroutine("Novel", ResultText[3]);
+                            }
+                            else if (ResultText[3][0] == '1')
+                            {
+                                ResultText[3] = "ということで優勝はプレイヤー" + PlayerRankNum[0].ToString() + "さんになります！\nおめでとうございます！";
+                                StartCoroutine("Novel", ResultText[3]);
+                            }
+                            else if (ResultText[3][0] == 'と')
+                            {
+                                i = 8;
+                                StartCoroutine("Novel", ResultText[i]);
+                            }
+                            else
+                            {
+                                ResultText[3] = "4位　プレイヤー" + PlayerRankNum[3].ToString() + "さん！";
+                                StartCoroutine("Novel", ResultText[3]);
+                            }
+
+                        }
+                        else
+                        {
+                            if (ResultText[3][0] == '4')
+                            {
+                                ResultText[3] = "3位　プレイヤー" + PlayerRankNum[2].ToString() + "さん！";
+                                StartCoroutine("Novel", ResultText[3]);
+                            }
+                            else if (ResultText[3][0] == '3')
+                            {
+                                ResultText[3] = "2位　プレイヤー" + PlayerRankNum[1].ToString() + "さん！";
+                                StartCoroutine("Novel", ResultText[3]);
+                            }
+                            else if (ResultText[3][0] == '2')
+                            {
+                                ResultText[3] = "1位　プレイヤー" + PlayerRankNum[0].ToString() + "さん！";
+                                StartCoroutine("Novel", ResultText[3]);
+                            }
+                            else if (ResultText[3][0] == '1')
+                            {
+                                ResultText[3] = "ということで優勝はプレイヤー" + PlayerRankNum[0].ToString() + "さんになります！\nおめでとうございます！";
+                                StartCoroutine("Novel", ResultText[3]);
+                            }
+                            else if (ResultText[3][0] == 'と')
+                            {
+                                i = 8;
+                                StartCoroutine("Novel", ResultText[i]);
+                            }
+                            else
+                            {
+                                ResultText[3] = "4位　プレイヤー" + PlayerRankNum[3].ToString() + "さん！";
+                                StartCoroutine("Novel", ResultText[3]);
+                            }
+
+                        }
+
+                    }
+                    else if(i == 11)
+                    {
+                        FeedInFlg = true;
                     }
                     else
                     {
@@ -468,6 +729,16 @@ public class SpuareAction : MonoBehaviour
                         //フェード開始してイベ終了
                         FeedInFlg = true;
                     }
+                    //次がやるき上昇テキスト = やる気テキストが最後なので2個先のテキストがない
+                    else if (EventCount + 2 == plusEvent[EventRand].eventData.Count)
+                    {
+                        EventCount++;
+                        SEManager.Instance.Play(SEPath.YARUKI_UP);
+                        manager.characters[CharaNo - 1].yaruki += plusEvent[EventRand].ChangeYaruki;
+                        txtYaruki.text = manager.characters[CharaNo - 1].yaruki.ToString();
+
+                        SetNextText(null, plusEvent[EventRand].eventData, null);
+                    }
                     else
                     {
                         EventCount++;
@@ -501,6 +772,16 @@ public class SpuareAction : MonoBehaviour
                         //フェード開始してイベ終了
                         FeedInFlg = true;
 
+                    }
+                    //次がやるき減少テキスト = やる気テキストが最後なので2個先のテキストがない
+                    else if (EventCount + 2 == minusEvent[EventRand].eventData.Count)
+                    {
+                        EventCount++;
+                        SEManager.Instance.Play(SEPath.YARUKI_MINUS);
+                        manager.characters[CharaNo - 1].yaruki -= minusEvent[EventRand].ChangeYaruki;
+                        txtYaruki.text = manager.characters[CharaNo - 1].yaruki.ToString();
+
+                        SetNextText(null, minusEvent[EventRand].eventData, null);
                     }
                     else
                     {
@@ -626,7 +907,7 @@ public class SpuareAction : MonoBehaviour
                     {
                         EventCount++;
                         SEManager.Instance.Play(SEPath.YARUKI_UP);
-                        manager.characters[CharaNo - 1].yaruki += 5;
+                        manager.characters[CharaNo - 1].yaruki += quizEvent[EventRand].ChangeYaruki;
                         txtYaruki.text = manager.characters[CharaNo - 1].yaruki.ToString();
 
                         SetNextText(quizEvent[EventRand].eventData, null, null);
