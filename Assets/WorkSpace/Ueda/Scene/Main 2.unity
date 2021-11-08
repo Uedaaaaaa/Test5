@@ -135,6 +135,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2746295631052394820, guid: 4ff7fd543bcb651418b49f2227985c63, type: 3}
+      propertyPath: HalloweenPrefab
+      value: 
+      objectReference: {fileID: 6548487647507046521, guid: e7691f41540997245b4c2893125b13f0, type: 3}
     - target: {fileID: 2746295631052394821, guid: 4ff7fd543bcb651418b49f2227985c63, type: 3}
       propertyPath: m_Name
       value: ProtoMap_NOScript
@@ -413,7 +417,6 @@ MonoBehaviour:
   - {fileID: 1575913497672476699}
   GameTurn: 10
   NowPlayerNo: 0
-  Ordering: 0
   OrderArray: 00000000000000000000000000000000
   OrderjudgeNo: 00000000000000000000000000000000
   PlayerCameraPos: {x: 0, y: 10, z: -10}
@@ -1401,6 +1404,10 @@ PrefabInstance:
       propertyPath: DiceImagePos.y
       value: 160
       objectReference: {fileID: 0}
+    - target: {fileID: 7815465574141359746, guid: 1cdbb424e5c8f0b48846b029e3e834e3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7b84effcab599ad44a8a74afcdb39384, type: 3}
     - target: {fileID: 7815465574779487432, guid: 1cdbb424e5c8f0b48846b029e3e834e3, type: 3}
       propertyPath: m_Name
       value: UICamera
@@ -1453,6 +1460,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7815465575148384934, guid: 1cdbb424e5c8f0b48846b029e3e834e3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1a1e62403aeab734e83f14943fd9a59e, type: 3}
+    - target: {fileID: 7815465575324367616, guid: 1cdbb424e5c8f0b48846b029e3e834e3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 479164c821062584097e53559c86a100, type: 3}
+    - target: {fileID: 7815465575580255720, guid: 1cdbb424e5c8f0b48846b029e3e834e3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 30069164eaf66a0488185391634b9035, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cdbb424e5c8f0b48846b029e3e834e3, type: 3}
 --- !u!1001 &5706615075615672590
