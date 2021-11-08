@@ -181,7 +181,7 @@ public class SpuareAction : MonoBehaviour
         UseYaruki = 1;
         NextTextFlg = false;
         isInput = true;
-        EndDice = true;
+        EndDice = false;
         //最初は非表示
         HideUI();
         //キャラとテキストスペースは表示
@@ -199,6 +199,10 @@ public class SpuareAction : MonoBehaviour
         manager.characters[3].candy = 1;
 
 
+    }
+    public void ChangeEndDice()
+    {
+        EndDice = true;
     }
     // Update is called once per frame
     void Update()
