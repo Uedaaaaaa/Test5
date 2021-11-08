@@ -275,7 +275,6 @@ public class GameManager : MonoBehaviour
     //サイコロ生成処理
     public void SpawnDice()
     {
-        CharacerUI.DiceStartUISet();
         if(Ordering == false)
         {
             playerScript[OrderArray[NowPlayerNo]].SetStartPos();

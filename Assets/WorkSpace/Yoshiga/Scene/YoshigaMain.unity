@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 187c15a21fc7f2346a831d66b7b247cb, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.48919213, g: 0.5275507, b: 0.673112, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -411,7 +411,7 @@ MonoBehaviour:
   - {fileID: 277500826280910524}
   - {fileID: 743840185535297159}
   - {fileID: 1575913497672476699}
-  GameTurn: 1
+  GameTurn: 10
   NowPlayerNo: 0
   Ordering: 0
   OrderArray: 00000000000000000000000000000000
@@ -783,6 +783,38 @@ PrefabInstance:
     - target: {fileID: 312670219246625496, guid: 3604a99e13ef65d4ebc0b120498266a1, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 373422886038958316, guid: 3604a99e13ef65d4ebc0b120498266a1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 373422886038958316, guid: 3604a99e13ef65d4ebc0b120498266a1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.276
+      objectReference: {fileID: 0}
+    - target: {fileID: 373422886038958316, guid: 3604a99e13ef65d4ebc0b120498266a1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.011
+      objectReference: {fileID: 0}
+    - target: {fileID: 373422886038958316, guid: 3604a99e13ef65d4ebc0b120498266a1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9897263
+      objectReference: {fileID: 0}
+    - target: {fileID: 373422886038958316, guid: 3604a99e13ef65d4ebc0b120498266a1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.1429753
+      objectReference: {fileID: 0}
+    - target: {fileID: 373422886038958316, guid: 3604a99e13ef65d4ebc0b120498266a1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.0000000010999059
+      objectReference: {fileID: 0}
+    - target: {fileID: 373422886038958316, guid: 3604a99e13ef65d4ebc0b120498266a1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.000000019219048
+      objectReference: {fileID: 0}
+    - target: {fileID: 373422886038958316, guid: 3604a99e13ef65d4ebc0b120498266a1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -16.44
       objectReference: {fileID: 0}
     - target: {fileID: 373422886039186636, guid: 3604a99e13ef65d4ebc0b120498266a1, type: 3}
       propertyPath: m_Layer
@@ -1367,11 +1399,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7815465573804961618, guid: 1cdbb424e5c8f0b48846b029e3e834e3, type: 3}
       propertyPath: DiceImagePos.y
-      value: 145
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 7815465574779487432, guid: 1cdbb424e5c8f0b48846b029e3e834e3, type: 3}
       propertyPath: m_Name
       value: UICamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815465574779487432, guid: 1cdbb424e5c8f0b48846b029e3e834e3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7815465574779487435, guid: 1cdbb424e5c8f0b48846b029e3e834e3, type: 3}
       propertyPath: m_RootOrder

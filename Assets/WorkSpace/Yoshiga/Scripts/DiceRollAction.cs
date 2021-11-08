@@ -56,7 +56,6 @@ public class DiceRollAction : MonoBehaviour
             {
                 SEManager.Instance.Play(SEPath.DICE_SPINE, 1, 0, 1, true);
                 DiceRollFlg = true;
-                manager.CharacerUI.DiceStartUIDestroy();
                 manager.CharacerUI.DiceStopUISet();
                 manager.CharacerUI.PlayerTurnUIDestroy();
             }
