@@ -187,68 +187,34 @@ public class GameManager : MonoBehaviour
 
         this.gameObject.transform.position = new Vector3(0.5f, 5.0f, -35.0f);
         transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
-
-        for(int i = 0; i < 4; ++i)
+        int LowestRank = 1; // 最低順位が何位か 
+        for (int i = 0; i < 4; ++i)
         {
             for(int j = 0; j < 4; ++j)
             {
                 if (characters[i].candy < characters[j].candy && i != j)
                 {
                     characters[i].rank++;
-                }
-            }
-        }
-
-        bool fourthFlg = false;      //四位がいるかのフラグ
-        bool thirdFlg = false;     //三位がいるかのフラグ
-        for(int i = 0; i < 4; ++i)
-        {
-            if(characters[i].rank == 4)
-            {
-                fourthFlg = true;
-            }
-            if (characters[i].rank == 3)
-            {
-                thirdFlg = true;
-            }
-        }
-
-        if (fourthFlg == false)
-        {
-            if(thirdFlg == true)
-            {
-                for (int i = 0; i < 4; ++i)
-                {
-                    // 三位を繰り下げ
-                    if (characters[i].rank == 3)
+                    // 最低順位を更新
+                    if(characters[i].rank > LowestRank)
                     {
-                        characters[i].rank = 4;
+                        LowestRank = characters[i].rank;
                     }
                 }
             }
-            else
-            {
-                for (int i = 0; i < 4; ++i)
-                {
-                    // 二位を繰り下げ
-                    if (characters[i].rank == 2)
-                    {
-                        characters[i].rank = 4;
-                    }
-                }
-            }
+
             
         }
 
-        // 全員が４位の時全員を１位にする
-        if (characters[0].rank == 4 &&
-           characters[1].rank == 4 &&
-           characters[2].rank == 4 &&
-           characters[3].rank == 4 )
+        if(LowestRank != 1)
         {
-            for(int i = 0;i < 4; ++i)
+            for (int i = 0; i < 4; ++i)
             {
-                characters[i].rank = 1;
+                // 自身のランクが最低順位と同じなら四位にする
+                if (characters[i].rank == LowestRank)
+                {
+                    characters[i].rank = 4;
+                }
             }
         }
     }

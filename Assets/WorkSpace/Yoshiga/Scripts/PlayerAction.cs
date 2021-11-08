@@ -39,7 +39,7 @@ public class PlayerAction : MonoBehaviour
     {
         // SEを鳴らす
         SEManager.Instance.Stop(SEPath.DICE_COUNT_MINUS);
-        SEManager.Instance.Play(SEPath.DICE_COUNT_MINUS);
+        SEManager.Instance.Play(SEPath.DICE_COUNT_MINUS,1.2f);
 
         if(myNo == manager.OrderArray[manager.NowPlayerNo])
         {
