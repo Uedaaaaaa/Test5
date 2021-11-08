@@ -138,7 +138,7 @@ PrefabInstance:
     - target: {fileID: 2746295631052394820, guid: 4ff7fd543bcb651418b49f2227985c63, type: 3}
       propertyPath: HalloweenPrefab
       value: 
-      objectReference: {fileID: 6548487647507046521, guid: e7691f41540997245b4c2893125b13f0, type: 3}
+      objectReference: {fileID: 3464114044674534445, guid: 9827cafcdb6a3bf4f9c9a2ab4a43e23e, type: 3}
     - target: {fileID: 2746295631052394821, guid: 4ff7fd543bcb651418b49f2227985c63, type: 3}
       propertyPath: m_Name
       value: ProtoMap_NOScript
