@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour
     [Header("EventController : オブジェクト")]
     [SerializeField] private GameObject eventController;
     private SpuareAction eventScript;
+    private bool sortFlg = false;
 
     // Start is called before the first frame update
     void Start()
@@ -201,9 +202,7 @@ public class GameManager : MonoBehaviour
                         LowestRank = characters[i].rank;
                     }
                 }
-            }
-
-            
+            }  
         }
 
         if(LowestRank != 1)
@@ -304,6 +303,7 @@ public class GameManager : MonoBehaviour
             //順番決めの配列をソート
             Array.Sort(OrderArray);
             Array.Reverse(OrderArray);
+            sortFlg = true;
 
             for (int i = 0; i < 4; ++i)
             {                
@@ -323,12 +323,13 @@ public class GameManager : MonoBehaviour
         }
 
         //ダイスを出現させるための処理
-        if(FinishDiceFlg == true)
+        if (FinishDiceFlg == true && sortFlg == false)
         {
             if(gameStatus == GameSTS.OrderJudge)
             {
                 Invoke("SpawnDice", 2);
                 ChangeNowPlayerNo();
+                Debug.Log("1");
             }
             FinishDiceFlg = false;
         }
