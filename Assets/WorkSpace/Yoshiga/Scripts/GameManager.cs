@@ -86,16 +86,16 @@ public class GameManager : MonoBehaviour
         eventScript = eventController.GetComponent<SpuareAction>();
 
         // デバッグ用
-        characters[0].candy = 4;
-        characters[1].candy = 3;
-        characters[2].candy = 2;
-        characters[3].candy = 2;
+        //characters[0].candy = 4;
+        //characters[1].candy = 4;
+        //characters[2].candy = 2;
+        //characters[3].candy = 2;
 
-        GameFinish();
-        for(int i = 0; i < 4; ++i)
-        {
-            Debug.Log((i + 1) + "さんの順位　：　" + characters[i].rank);
-        }
+        //GameFinish();
+        //for(int i = 0; i < 4; ++i)
+        //{
+        //    Debug.Log((i + 1) + "さんの順位　：　" + characters[i].rank);
+        //}
     }
 
     public void CanMove()
