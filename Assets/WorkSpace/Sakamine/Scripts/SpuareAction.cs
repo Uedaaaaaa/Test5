@@ -230,7 +230,10 @@ public class SpuareAction : MonoBehaviour
                     }
                     CharacerUI.PlayerStatusUIDestroy();
                     ShowUI();
-                    if(HalloweenFlg&&manager.characters[CharaNo-1].yaruki == 0)
+                    //デバッグ
+                    manager.characters[CharaNo - 1].yaruki = 0;
+
+                    if (HalloweenFlg&&manager.characters[CharaNo-1].yaruki == 0)
                     {
                         imgEventChara.gameObject.SetActive(false);
                     }
@@ -293,10 +296,9 @@ public class SpuareAction : MonoBehaviour
                 }
                 else if (HalloweenFlg)
                 {
-                    //デバッグ
-                    //manager.characters[CharaNo].Yaruki = 0;
+                    txtTextName.text = "プレイヤー" + CharaNo.ToString();
+
                     txtMessage.gameObject.SetActive(true);
-                    txtTextName.gameObject.SetActive(true);
                     if(manager.characters[CharaNo -1].yaruki == 0)
                     {
                         StartCoroutine("Novel", "尋ねてみたが留守のようだ。\nやる気を貯めてまた来よう！");
@@ -304,6 +306,7 @@ public class SpuareAction : MonoBehaviour
                     }
                     else
                     {
+                        txtTextName.gameObject.SetActive(true);
                         StartCoroutine("Novel", halloweenEvent[EventRand].eventData[EventCount].Message);
                     }
                 }
@@ -1012,7 +1015,7 @@ public class SpuareAction : MonoBehaviour
         //ハロウィン
         if (HalloweenFlg)
         {
-            imgHalloweenSel.transform.localPosition = new Vector3(50.0f, -380 + (Sel * -90.0f), 0.0f);
+            imgHalloweenSel.transform.localPosition = new Vector3(100.0f, -380 + (Sel * -90.0f), 0.0f);
             //選択の矢印が出てるとき
             if (imgHalloweenSel.gameObject.activeSelf)
             {
