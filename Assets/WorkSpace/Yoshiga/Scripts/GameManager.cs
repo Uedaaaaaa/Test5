@@ -54,7 +54,6 @@ public class GameManager : MonoBehaviour
     [Header("ターン数 : 全員がサイコロを振って1ターン")]
     public int GameTurn;    
     [HideInInspector] public int NowPlayerNo;                   //現在のターンで何番目の人のターンかの変数
-    [HideInInspector] public bool Ordering;                     //順番決めをしているかのフラグ
     [HideInInspector] public int[] OrderArray = new int[4];     //順番を保存しておくための変数  
     private bool FinishDiceFlg = false;                         //ダイスを振ったかどうかの確認フラグ    
     [HideInInspector] public int[] OrderjudgeNo = new int[4];   //順番決めで出たダイスの目を保存する変数
@@ -73,7 +72,6 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Ordering = true;
         statusUIActive = false;
         gameStatus = GameSTS.OrderJudge;
         NowPlayerNo = 0;
@@ -267,7 +265,7 @@ public class GameManager : MonoBehaviour
         characters[OrderArray[NowPlayerNo]].myDiceNo = No;
 
         //順番決めの時
-        if(Ordering == true)
+        if(gameStatus == GameSTS.OrderJudge)
         {
             OrderjudgeNo[NowPlayerNo] = No;
             OrderArray[NowPlayerNo] = No;
@@ -279,7 +277,7 @@ public class GameManager : MonoBehaviour
     //サイコロ生成処理
     public void SpawnDice()
     {
-        if(Ordering == false)
+        if(gameStatus == GameSTS.Play)
         {
             playerScript[OrderArray[NowPlayerNo]].SetStartPos();
             if(statusUIActive == false)
@@ -289,6 +287,10 @@ public class GameManager : MonoBehaviour
             }
 
             CharacerUI.PlayerTurnUISet(OrderArray[NowPlayerNo]);
+        }
+        else
+        {
+            CharacerUI.DiceStartUISet();
         }
 
         Instantiate(DiceObj, new Vector3(CharacterObj[OrderArray[NowPlayerNo]].transform.position.x,
@@ -331,7 +333,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //順番決めのダイスを全員が振り終わった時
-        if(Ordering == true && NowPlayerNo == 3 && characters[3].myDiceNo != 0)
+        if(gameStatus == GameSTS.OrderJudge && NowPlayerNo == 3 && characters[3].myDiceNo != 0)
         {
             //順番決めの配列をソート
             Array.Sort(OrderArray);
@@ -350,14 +352,13 @@ public class GameManager : MonoBehaviour
             }
 
             //順番決めのターン終了
-            Ordering = false;
             NowPlayerNo = 0;
         }
 
         //ダイスを出現させるための処理
         if(FinishDiceFlg == true)
         {
-            if(Ordering == true)
+            if(gameStatus == GameSTS.OrderJudge)
             {
                 Invoke("SpawnDice", 2);
                 ChangeNowPlayerNo();

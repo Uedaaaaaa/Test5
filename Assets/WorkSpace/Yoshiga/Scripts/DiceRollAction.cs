@@ -56,6 +56,10 @@ public class DiceRollAction : MonoBehaviour
             {
                 SEManager.Instance.Play(SEPath.DICE_SPINE, 1, 0, 1, true);
                 DiceRollFlg = true;
+                if(manager.gameStatus == GameSTS.OrderJudge)
+                {
+                    manager.CharacerUI.DiceStartUIDestroy();
+                }
                 manager.CharacerUI.DiceStopUISet();
                 manager.CharacerUI.PlayerTurnUIDestroy();
             }
@@ -112,7 +116,7 @@ public class DiceRollAction : MonoBehaviour
                 JumpFlg = true;
                 JumpPosY = this.gameObject.transform.position.y;
                 DiceNo = Random.Range(1, 7);
-                if(manager.Ordering == true)
+                if(manager.gameStatus == GameSTS.OrderJudge)
                 {
                     while (DiceNo == manager.OrderjudgeNo[0] 
                         || DiceNo == manager.OrderjudgeNo[1] 
