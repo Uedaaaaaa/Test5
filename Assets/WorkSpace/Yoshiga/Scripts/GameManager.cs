@@ -115,8 +115,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //キャラクターがイベントを終えたときに呼ばれる関数
-    public void EndEvent()
+    // キャラクターの位置を調整
+    public void ChangePos()
     {
         int Samesquare = 0;
 
@@ -144,7 +144,11 @@ public class GameManager : MonoBehaviour
                 CharacterObj[OrderArray[NowPlayerNo]].transform.position += new Vector3(2.5f, 0.0f, 7.5f);
                 break;
         }
+    }
 
+    //キャラクターがイベントを終えたときに呼ばれる関数
+    public void EndEvent()
+    {
         characters[OrderArray[NowPlayerNo]].eventFlg = false;
         ChangeNowPlayerNo();
         if(gameStatus == GameSTS.Play)
