@@ -347,7 +347,7 @@ public class SpuareAction : MonoBehaviour
         {
 
             //順番決め終了検知してテキスト表示
-            if (EndDice && manager.Ordering == false)
+            if (EndDice && manager.gameStatus == GameSTS.OrderJudge)
             {
                 isInput = true;
                 EndDice = false;
@@ -423,7 +423,7 @@ public class SpuareAction : MonoBehaviour
                     //1位のランクがプレイヤーi
                     if (list[0] == manager.characters[i].rank)
                     {
-                        i = i + 1;
+                        PlayerRankNum[0] = i + 1;
                         for (int j = 0; j < 4; j++)
                         {
                             if (list[1] == manager.characters[j].rank)
