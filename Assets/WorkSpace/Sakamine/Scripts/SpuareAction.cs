@@ -28,7 +28,6 @@ public class HalloweenEventData : EventData
     [Tooltip("何もしないかお菓子くださいの選択肢表示")] public bool SetSelect;
     [Tooltip("やるき選択の選択肢表示")] public bool SetYaruki;
     [Tooltip("何もしないかった")] public bool NanimoSinai;
-    [Tooltip("やる気0ならこのテキストに飛ぶ")] public bool NoYaruki;
     [Tooltip("トリックオアトリート成功時")] public bool TrueTrick;
     [Tooltip("トリックオアトリート失敗時")] public bool FalseTrick;
 }
@@ -58,7 +57,7 @@ public class HalloweenEvent
 {
     [SerializeField, Tooltip("イベントの名前")] string EventName;
     [Tooltip("補正値")] public int Correction;
-    [SerializeField, Tooltip("やる気の増減")] public int ChangeYaruki;
+    [SerializeField, Tooltip("やる気の増減")] public int ChangeCandy;
 
     [Tooltip("Sizeにテキストの数を入力")] public List<HalloweenEventData> eventData;
 }
@@ -231,6 +230,10 @@ public class SpuareAction : MonoBehaviour
                     }
                     CharacerUI.PlayerStatusUIDestroy();
                     ShowUI();
+                    if(HalloweenFlg&&manager.characters[CharaNo-1].yaruki == 0)
+                    {
+                        imgEventChara.gameObject.SetActive(false);
+                    }
                 }
                 //ルール説明終了時
                 else if (isRule)
@@ -290,10 +293,19 @@ public class SpuareAction : MonoBehaviour
                 }
                 else if (HalloweenFlg)
                 {
+                    //デバッグ
                     //manager.characters[CharaNo].Yaruki = 0;
                     txtMessage.gameObject.SetActive(true);
                     txtTextName.gameObject.SetActive(true);
-                    StartCoroutine("Novel", halloweenEvent[EventRand].eventData[EventCount].Message);
+                    if(manager.characters[CharaNo -1].yaruki == 0)
+                    {
+                        StartCoroutine("Novel", "尋ねてみたが留守のようだ。\nやる気を貯めてまた来よう！");
+                        NoYaruki = true;
+                    }
+                    else
+                    {
+                        StartCoroutine("Novel", halloweenEvent[EventRand].eventData[EventCount].Message);
+                    }
                 }
                 else if (isRule && !EndDice && i > 0)
                 {
@@ -955,7 +967,7 @@ public class SpuareAction : MonoBehaviour
                         SetNextText(quizEvent[EventRand].eventData, null, null);
                     }
                     //次がやるき上昇テキストなら
-                    else if(quizEvent[EventRand].eventData[EventCount + 1].Message[0] == '【')
+                    else if(quizEvent[EventRand].eventData[EventCount + 1].Message[0] == '正')
                     {
                         EventCount++;
                         SEManager.Instance.Play(SEPath.YARUKI_UP);
@@ -1066,16 +1078,16 @@ public class SpuareAction : MonoBehaviour
                         FeedInFlg = true;
                     }
                     //やる気が0なら
-                    else if (manager.characters[CharaNo - 1].yaruki == 0 && !NoYaruki)
+                    else if (NoYaruki)
                     {
                         SEManager.Instance.Play(SEPath.PUSH_B);
-                        Debug.Log("Yaruki");
-                        NoYaruki = true;
-                        while (!halloweenEvent[EventRand].eventData[EventCount].NoYaruki)
-                        {
-                            EventCount++;
-                        }
-                        SetNextText(null, null, halloweenEvent[EventRand].eventData);
+                        //イベント終了
+                        txtMessage.gameObject.SetActive(false);
+                        txtTextName.gameObject.SetActive(false);
+                        HalloweenFlg = false;
+                        NoYaruki = false;
+                        //フェード開始してイベ終了
+                        FeedInFlg = true;
                     }
                     //最初の選択肢表示したいタイミングに来た時
                     else if (halloweenEvent[EventRand].eventData[EventCount].SetSelect == true && !imgHalloweenSel.gameObject.activeSelf)
@@ -1142,6 +1154,13 @@ public class SpuareAction : MonoBehaviour
                     else if (SuccessRand <= SuccessRate && imgYaruki.gameObject.activeSelf)
                     {
                         SEManager.Instance.Play(SEPath.CANDY_GET);
+                        manager.characters[CharaNo - 1].yaruki -= UseYaruki;
+                        if(manager.characters[CharaNo-1].yaruki < 0)
+                        {
+                            manager.characters[CharaNo - 1].yaruki = 0;
+                        }
+                        txtYaruki.text = manager.characters[CharaNo - 1].yaruki.ToString();
+
                         TrueTrick = true;
                         imgYaruki.gameObject.SetActive(false);
                         txtTrick.gameObject.SetActive(false);
@@ -1157,6 +1176,13 @@ public class SpuareAction : MonoBehaviour
                     else if (SuccessRand > SuccessRate && imgYaruki.gameObject.activeSelf)
                     {
                         SEManager.Instance.Play(SEPath.CANDY_NO_GET);
+                        manager.characters[CharaNo - 1].yaruki -= UseYaruki;
+                        if (manager.characters[CharaNo - 1].yaruki < 0)
+                        {
+                            manager.characters[CharaNo - 1].yaruki = 0;
+                        }
+                        txtYaruki.text = manager.characters[CharaNo - 1].yaruki.ToString();
+
                         FalseTrick = true;
                         imgYaruki.gameObject.SetActive(false);
                         txtTrick.gameObject.SetActive(false);
@@ -1168,6 +1194,16 @@ public class SpuareAction : MonoBehaviour
                         }
                         SetNextText(null, null, halloweenEvent[EventRand].eventData);
                     }
+                    //次がお菓子増量テキストなら
+                    else if(halloweenEvent[EventRand].eventData[EventCount + 1].Message[1] == '菓')
+                    {
+                        EventCount++;
+                        SEManager.Instance.Play(SEPath.CANDY_PLUS);
+                        manager.characters[CharaNo - 1].candy += halloweenEvent[EventRand].ChangeCandy;
+                        txtCandy.text = manager.characters[CharaNo - 1].candy.ToString();
+
+                        SetNextText(null, null, halloweenEvent[EventRand].eventData);
+                    }
                     else
                     {
                         EventCount++;
@@ -1177,15 +1213,6 @@ public class SpuareAction : MonoBehaviour
                         if (NanimoSinai && !halloweenEvent[EventRand].eventData[EventCount].NanimoSinai)
                         {
                             NanimoSinai = false;
-                            txtMessage.gameObject.SetActive(false);
-                            txtTextName.gameObject.SetActive(false);
-                            HalloweenFlg = false;
-                            //フェード開始してイベ終了
-                            FeedInFlg = true;
-                        }
-                        else if (NoYaruki && !halloweenEvent[EventRand].eventData[EventCount].NoYaruki)
-                        {
-                            NoYaruki = false;
                             txtMessage.gameObject.SetActive(false);
                             txtTextName.gameObject.SetActive(false);
                             HalloweenFlg = false;
