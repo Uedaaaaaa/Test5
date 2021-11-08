@@ -284,7 +284,7 @@ public class SpuareAction : MonoBehaviour
                     txtTextName.gameObject.SetActive(true);
                     StartCoroutine("Novel", halloweenEvent[EventRand].eventData[EventCount].Message);
                 }
-                else if (isRule && !EndDice)
+                else if (isRule && !EndDice && i > 0)
                 {
                     isRule = false;
                     i = 0;
@@ -421,34 +421,6 @@ public class SpuareAction : MonoBehaviour
                 Debug.Log(PlayerRankNum[1]);
                 Debug.Log(PlayerRankNum[2]);
                 Debug.Log(PlayerRankNum[3]);
-
-                for (int i = 0; i < 4; i++)
-                {
-                    //1位のランクがプレイヤーi
-                    if (list[0] == manager.characters[i].rank)
-                    {
-                        PlayerRankNum[0] = i + 1;
-                        for (int j = 0; j < 4; j++)
-                        {
-                            if (list[1] == manager.characters[j].rank)
-                                PlayerRankNum[1] = j + 1;
-                            for (int k = 0; k < 4; k++)
-                            {
-                                if (list[2] == manager.characters[k].rank)
-                                {
-                                    PlayerRankNum[2] = k + 1;
-                                    for (int l = 0; l < 4; l++)
-                                    {
-                                        if (list[3] == manager.characters[l].rank)
-                                        {
-                                            PlayerRankNum[3] = l + 1;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
             }
             if (!FeedInFlg && !FeedOutFlg && isInput && Input.GetKeyDown(KeyCode.Return) || !FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
             {
