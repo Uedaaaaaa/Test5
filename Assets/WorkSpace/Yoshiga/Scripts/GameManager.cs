@@ -352,6 +352,7 @@ public class GameManager : MonoBehaviour
             }
 
             //順番決めのターン終了
+            eventScript.ChangeEndDice();
             NowPlayerNo = 0;
         }
 
