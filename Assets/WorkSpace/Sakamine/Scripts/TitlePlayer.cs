@@ -90,11 +90,12 @@ namespace KanKikuchi.AudioManager
                 }
             }
             BeforeAxis = v;
-            if (!FeedOutFlg && Input.GetKeyDown(KeyCode.Return))
+
+            if (!FeedOutFlg && isMove && Input.GetKeyDown(KeyCode.Return))
             {
                 if (Sel == 0)
                 {
-                    SEManager.Instance.Play(SEPath.PUSH_B);
+                    SEManager.Instance.Play(SEPath.LETS_HALLOWIN);
                     MyAnim.SetTrigger("Start");
                     isMove = false;
                     //2秒後にFeed
