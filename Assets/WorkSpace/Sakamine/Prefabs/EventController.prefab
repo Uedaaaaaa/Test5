@@ -272,38 +272,170 @@ MonoBehaviour:
       Message: "\r\u5B09\u3057\u304F\u3066\u3084\u308B\u6C17\u304C\uFF13\u4E0A\u6607\u3057\u305F\u3002"
       TextName: 
   minusEvent:
-  - EventName: a
-    ChangeYaruki: 0
+  - EventName: 1
+    ChangeYaruki: 5
     eventData:
     - SEPath: 
-      SpriteEventChara: {fileID: 0}
-      Message: "\u30DE\u30A4\u30CA\u30B91-1"
+      SpriteEventChara: {fileID: 21300000, guid: 998c3f637b3735f46b8a6ebaab4ec047, type: 3}
+      Message: "\u3053\u306E\u4E16\u306E\u3059\u3079\u3066\u3092\u546A\u3044\u3057\u60AA\u970A\u306B\u51FA\u4F1A\u3063\u305F\u3002"
       TextName: 
     - SEPath: 
       SpriteEventChara: {fileID: 0}
-      Message: "\u30DE\u30A4\u30CA\u30B91-2"
+      Message: "\u3042\u307E\u308A\u306E\u6016\u3055\u306B\u3084\u308B\u6C17\u304C\uFF15\u6E1B\u5C11\u3057\u305F\u3002"
       TextName: 
-  - EventName: b
-    ChangeYaruki: 0
+  - EventName: 2
+    ChangeYaruki: 3
     eventData:
     - SEPath: 
-      SpriteEventChara: {fileID: 0}
-      Message: "\u30DE\u30A4\u30CA\u30B92-2"
+      SpriteEventChara: {fileID: 21300000, guid: a375d94d1b26f1b41a68210b90544e54, type: 3}
+      Message: "\u6C17\u306B\u306A\u308B\u3042\u306E\u4EBA\u306B\u9001\u4FE1\u3057\u305F\u306F\u305A\u306E\u6587\u7AE0\u304C\n\u5BB6\u65CF\u30B0\u30EB\u30FC\u30D7\u306B\u9001\u4FE1\u3055\u308C\u3066\u3044\u305F\u3002"
       TextName: 
     - SEPath: 
       SpriteEventChara: {fileID: 0}
-      Message: "\u30DE\u30A4\u30CA\u30B92-1"
+      Message: "\u3042\u307E\u308A\u306E\u7F9E\u6065\u306B\u3084\u308B\u6C17\u304C\uFF13\u6E1B\u5C11\u3057\u305F\u3002"
       TextName: 
-  - EventName: c
-    ChangeYaruki: 0
+  - EventName: 3
+    ChangeYaruki: 3
     eventData:
     - SEPath: 
-      SpriteEventChara: {fileID: 0}
-      Message: "\u30DE\u30A4\u30CA\u30B93-1"
+      SpriteEventChara: {fileID: 21300000, guid: 7ee43a15134c4d446ae18fa63ca00808, type: 3}
+      Message: "\u30CF\u30ED\u30A6\u30A3\u30F3\u306B\u7D1B\u308C\u305F\u672C\u7269\u306E\u5E7D\u970A\u306B\u8FFD\u3044\u304B\u3051\u3089\u308C\u305F\u3002"
       TextName: 
     - SEPath: 
       SpriteEventChara: {fileID: 0}
-      Message: "\u30DE\u30A4\u30CA\u30B93-2"
+      Message: "\u4E88\u60F3\u5916\u306E\u51FA\u6765\u4E8B\u306B\u75B2\u308C\u679C\u3066\u3066\u3001\u3084\u308B\u6C17\u304C\uFF13\u6E1B\u5C11\u3057\u305F\u3002"
+      TextName: 
+  - EventName: 4
+    ChangeYaruki: 3
+    eventData:
+    - SEPath: 
+      SpriteEventChara: {fileID: 21300000, guid: e92af0c5647466942a2c9e6fe0013ebc, type: 3}
+      Message: "\u9996\u8F2A\u306E\u5916\u308C\u305F\u72AC\u306B\u8FFD\u3044\u304B\u3051\u3089\u308C\u305F\u3002"
+      TextName: 
+    - SEPath: 
+      SpriteEventChara: {fileID: 0}
+      Message: "\u4F53\u529B\u3092\u4F7F\u3044\u679C\u305F\u3057\u3001\u3084\u308B\u6C17\u304C\uFF13\u6E1B\u5C11\u3057\u305F\u3002"
+      TextName: 
+  - EventName: 5
+    ChangeYaruki: 3
+    eventData:
+    - SEPath: 
+      SpriteEventChara: {fileID: 21300000, guid: e3621c0b749cde045b7841c7f5a389b8, type: 3}
+      Message: "\u8CA1\u5E03\u3092\u898B\u3088\u3046\u3068\u3057\u305F\u3089\u3001\u5C0F\u92AD\u304C\u6E9D\u306B\u843D\u3061\u3066\u3057\u307E\u3063\u305F\u3002"
+      TextName: 
+    - SEPath: 
+      SpriteEventChara: {fileID: 0}
+      Message: "\r\u7A81\u7136\u306E\u30A2\u30F3\u30E9\u30C3\u30AD\u30FC\u306B\u3084\u308B\u6C17\u304C\uFF13\u6E1B\u5C11\u3057\u305F\u3002"
+      TextName: 
+  - EventName: 6
+    ChangeYaruki: 3
+    eventData:
+    - SEPath: 
+      SpriteEventChara: {fileID: 21300000, guid: 46037f18a0002ae46a435d9165b93c99, type: 3}
+      Message: "\u3053\u306E\u9593\u8CB7\u3063\u305F\u670D\u304C\u30CF\u30ED\u30A6\u30A3\u30F3\u30BB\u30FC\u30EB\u3067\n50%\u30AA\u30D5\u306B\u306A\u3063\u3066\u3044\u305F\u3002"
+      TextName: 
+    - SEPath: 
+      SpriteEventChara: {fileID: 0}
+      Message: "\u640D\u3092\u3057\u305F\u6C17\u5206\u306B\u306A\u308A\u3084\u308B\u6C17\u304C\uFF13\u6E1B\u5C11\u3057\u305F\u3002"
+      TextName: 
+  - EventName: 7
+    ChangeYaruki: 3
+    eventData:
+    - SEPath: 
+      SpriteEventChara: {fileID: 21300000, guid: 6cb126435bfd3ff4198fcb8c915e88e3, type: 3}
+      Message: "\r\u8CB7\u3063\u305F\u70AD\u9178\u98F2\u6599\u304C\u52E2\u3044\u3088\u304F\u3042\u3075\u308C\u51FA\u3066\u3057\u307E\u3063\u305F\u3002"
+      TextName: 
+    - SEPath: 
+      SpriteEventChara: {fileID: 0}
+      Message: "\u70AD\u9178\u304C\u76EE\u306B\u5165\u308A\u3084\u308B\u6C17\u304C3\u6E1B\u5C11\u3057\u305F\u3002"
+      TextName: 
+  - EventName: 8
+    ChangeYaruki: 3
+    eventData:
+    - SEPath: 
+      SpriteEventChara: {fileID: 21300000, guid: b641806fe146f2b41a950b166aecedf3, type: 3}
+      Message: "\u305D\u3046\u3060\uFF01\u3042\u306E\u5E97\u3067\u3054\u98EF\u98DF\u3079\u3088\u3046\uFF01\n\u3068\u601D\u3063\u305F\u3089\u5B9A\u4F11\u65E5\u3060\u3063\u305F\u3002"
+      TextName: 
+    - SEPath: 
+      SpriteEventChara: {fileID: 0}
+      Message: "\r\u5B8C\u5168\u306B\u305D\u306E\u5E97\u306E\u53E3\u306B\u306A\u3063\u3066\u3044\u305F\u306E\u3067\r\n\u3084\u308B\u6C17\u304C3\u6E1B\u5C11\u3057\u305F\u3002"
+      TextName: 
+  - EventName: 9
+    ChangeYaruki: 3
+    eventData:
+    - SEPath: 
+      SpriteEventChara: {fileID: 21300000, guid: 92a2291ca730b7a42ae68a849c42f812, type: 3}
+      Message: "\u30B3\u30F3\u30D3\u30CB\u3067\u4E26\u3093\u3067\u3044\u308B\u3068\u524D\u306E\u4EBA\u304C\u516C\u5171\u6599\u91D1\u3092\u5927\u91CF\u306B\u652F\u6255\u3044\u59CB\u3081\u305F\u3002"
+      TextName: 
+    - SEPath: 
+      SpriteEventChara: {fileID: 0}
+      Message: "\u8CAC\u3081\u308B\u308F\u3051\u306B\u306F\u3044\u304B\u306A\u3044\u304C\n\u3042\u307E\u308A\u306E\u9577\u3055\u306B\u3084\u308B\u6C17\u304C3\u6E1B\u5C11\u3057\u305F\u3002"
+      TextName: 
+  - EventName: 10
+    ChangeYaruki: 3
+    eventData:
+    - SEPath: 
+      SpriteEventChara: {fileID: 21300000, guid: 99855816c70544f4ca613d55bbbbaa5a, type: 3}
+      Message: "\u304A\u4F1A\u8A08\u3092\u3057\u305F\u5F8C\u306B\u304A\u5F97\u306A\u30AF\u30FC\u30DD\u30F3\u306E\u5B58\u5728\u306B\u6C17\u4ED8\u3044\u305F\u3002"
+      TextName: 
+    - SEPath: 
+      SpriteEventChara: {fileID: 0}
+      Message: "\u3082\u3046\u623B\u308C\u306A\u3044\u60B2\u3057\u307F\u306B\u3084\u308B\u6C17\u304C\uFF13\u6E1B\u5C11\u3057\u305F\u3002"
+      TextName: 
+  - EventName: 11
+    ChangeYaruki: 3
+    eventData:
+    - SEPath: 
+      SpriteEventChara: {fileID: 21300000, guid: 6c5cc6f1d9ab6104e8ec19afad90cf8c, type: 3}
+      Message: "\u30A4\u30E4\u30DB\u30F3\u304C\u7E4B\u304C\u3063\u3066\u3044\u306A\u3044\u4E8B\u306B\u6C17\u304C\u4ED8\u3044\u305F\u3002"
+      TextName: 
+    - SEPath: 
+      SpriteEventChara: {fileID: 0}
+      Message: "\u8840\u306E\u6C17\u304C\u3055\u3063\u3068\u5F15\u304D\u3001\u3084\u308B\u6C17\u304C\uFF13\u6E1B\u5C11\u3057\u305F\u3002"
+      TextName: 
+  - EventName: 12
+    ChangeYaruki: 3
+    eventData:
+    - SEPath: 
+      SpriteEventChara: {fileID: 21300000, guid: 6d79fa7c9833c9b4ea6e87280b1fcf57, type: 3}
+      Message: "\u99C4\u83D3\u5B50\u3092\u958B\u3051\u305F\u3089\u52E2\u3044\u3088\u304F\u98DB\u3093\u3067\u884C\u3063\u305F\u3002"
+      TextName: 
+    - SEPath: 
+      SpriteEventChara: {fileID: 0}
+      Message: "\u4F55\u3068\u3082\u8A00\u3048\u306A\u3044\u55AA\u5931\u611F\u3067\u3084\u308B\u6C17\u304C\uFF13\u6E1B\u5C11\u3057\u305F\u3002"
+      TextName: 
+  - EventName: 13
+    ChangeYaruki: 3
+    eventData:
+    - SEPath: 
+      SpriteEventChara: {fileID: 21300000, guid: 75c9a1e1bb897954aa01949f04103153, type: 3}
+      Message: "\u5E97\u5185\u3067\u52D5\u753B\u898B\u3066\u305F\u3089Wi-Fi\u304C\u7E4B\u304C\u3063\u3066\u3044\u306A\u3044\u3053\u3068\u306B\u6C17\u304C\u4ED8\u3044\u305F\u3002"
+      TextName: 
+    - SEPath: 
+      SpriteEventChara: {fileID: 0}
+      Message: "\u901A\u4FE1\u6B8B\u91CF\u304C\u7121\u304F\u306A\u3063\u305F\u3053\u3068\u306B\u6C17\u4ED8\u304D\u3001\u3084\u308B\u6C17\u304C\uFF13\u6E1B\u5C11\u3057\u305F\u3002"
+      TextName: 
+  - EventName: 14
+    ChangeYaruki: 3
+    eventData:
+    - SEPath: 
+      SpriteEventChara: {fileID: 21300000, guid: daae4cf13b8a29343bbb98b1c0de31af, type: 3}
+      Message: "\u81EA\u8CA9\u6A5F\u3067\uFF15\uFF10\uFF10\u5186\u3092\u6295\u5165\u3057\u305F\u3089\n\uFF14\uFF10\uFF10\u5186\u5206\u306E\u304A\u3064\u308A\u304C\u5168\u306610\u5186\u3067\u8FD4\u3063\u3066\u304D\u305F"
+      TextName: 
+    - SEPath: 
+      SpriteEventChara: {fileID: 0}
+      Message: "\u306A\u306B\u304B\u3084\u308B\u305B\u306A\u3044\u6C17\u6301\u3061\u306B\u306A\u308A\u3001\u3084\u308B\u6C17\u304C\uFF13\u6E1B\u5C11\u3057\u305F\u3002"
+      TextName: 
+  - EventName: 15
+    ChangeYaruki: 3
+    eventData:
+    - SEPath: 
+      SpriteEventChara: {fileID: 21300000, guid: ef55368673405494a881cfda43ed5d0d, type: 3}
+      Message: "\u30B9\u30DE\u30DB\u3067\u5360\u3044\u3092\u898B\u305F\u3089\u6700\u4E0B\u4F4D\u3060\u3063\u305F\u3002"
+      TextName: 
+    - SEPath: 
+      SpriteEventChara: {fileID: 0}
+      Message: "\u3059\u3053\u3057\u30C6\u30F3\u30B7\u30E7\u30F3\u304C\u4E0B\u304C\u3063\u305F\u306E\u3067\u3001\r\n\u3084\u308B\u6C17\u304C\uFF13\u6E1B\u5C11\u3057\u305F\u3002"
       TextName: 
   quizEvent:
   - EventName: TAKESUE1
@@ -884,7 +1016,7 @@ MonoBehaviour:
     - SEPath: 
       SpriteEventChara: {fileID: 0}
       Message: "\u304A\u3084\u304A\u3084\u3001\u3069\u3046\u3057\u305F\u3093\u3060\u3044\uFF1F"
-      TextName: 
+      TextName: "\u304A\u3058\u3044\u3055\u3093"
       SetSelect: 1
       SetYaruki: 0
       NanimoSinai: 0
@@ -895,14 +1027,14 @@ MonoBehaviour:
       Message: "\u3069\u308C\u304F\u3089\u3044\u3084\u308B\u6C17\u3092\u8FBC\u3081\u308B\uFF1F"
       TextName: 
       SetSelect: 0
-      SetYaruki: 1
+      SetYaruki: 0
       NanimoSinai: 0
       TrueTrick: 0
       FalseTrick: 0
     - SEPath: 
       SpriteEventChara: {fileID: 0}
       Message: "\u307B\u307B\u2026\u6C17\u3092\u4ED8\u3051\u3066\u5E30\u308B\u3093\u3060\u3088\u3002"
-      TextName: 
+      TextName: "\u304A\u3058\u3044\u3055\u3093"
       SetSelect: 0
       SetYaruki: 0
       NanimoSinai: 1
@@ -911,7 +1043,7 @@ MonoBehaviour:
     - SEPath: 
       SpriteEventChara: {fileID: 0}
       Message: "\u305D\u3046\u3044\u3048\u3070\u4ECA\u65E5\u306F\u30CF\u30ED\u30A6\u30A3\u30F3\u3060\u3063\u305F\u306D\u3002\r\n\u307B\u3089\u3001\u304A\u83D3\u5B50\u3092\u4E0A\u3052\u3088\u3046\uFF01\u5F8C\u3067\u98DF\u3079\u306A\u3055\u3044\u3002"
-      TextName: 
+      TextName: "\u304A\u3058\u3044\u3055\u3093"
       SetSelect: 0
       SetYaruki: 0
       NanimoSinai: 0
@@ -929,7 +1061,7 @@ MonoBehaviour:
     - SEPath: 
       SpriteEventChara: {fileID: 0}
       Message: "\u307E\u305F\u3044\u3064\u3067\u3082\u6765\u3066\u3044\u3044\u304B\u3089\u306D\uFF01\r\n\u6C17\u3092\u4ED8\u3051\u3066\u5E30\u308B\u3093\u3060\u3088\u3002"
-      TextName: 
+      TextName: "\u304A\u3058\u3044\u3055\u3093"
       SetSelect: 0
       SetYaruki: 0
       NanimoSinai: 0
@@ -938,7 +1070,235 @@ MonoBehaviour:
     - SEPath: 
       SpriteEventChara: {fileID: 0}
       Message: "\u306F\u3066\u3001\u82E5\u8005\u306E\u8A00\u8449\u306F\u5206\u304B\u3089\u3093\u306E\u3046\u2026\u3002\r\n\u6C17\u3092\u4ED8\u3051\u3066\u5E30\u308B\u3093\u3060\u3088\u3002"
+      TextName: "\u304A\u3058\u3044\u3055\u3093"
+      SetSelect: 0
+      SetYaruki: 0
+      NanimoSinai: 0
+      TrueTrick: 0
+      FalseTrick: 1
+  - EventName: "\u304A\u3070\u3042\u3055\u3093"
+    Correction: 60
+    ChangeCandy: 10
+    eventData:
+    - SEPath: 
+      SpriteEventChara: {fileID: 21300000, guid: be55fee7f5963ae488b55bf908eadacb, type: 3}
+      Message: "\u3053\u3093\u306B\u3061\u306F\u30FC"
+      TextName: "\u30D7\u30EC\u30A4\u30E4\u30FC"
+      SetSelect: 0
+      SetYaruki: 0
+      NanimoSinai: 0
+      TrueTrick: 0
+      FalseTrick: 0
+    - SEPath: 
+      SpriteEventChara: {fileID: 0}
+      Message: "\u3042\u3089\u3042\u3089\u3001\u3069\u3046\u3057\u305F\u306E\uFF1F"
+      TextName: "\u304A\u3070\u3042\u3055\u3093"
+      SetSelect: 1
+      SetYaruki: 0
+      NanimoSinai: 0
+      TrueTrick: 0
+      FalseTrick: 0
+    - SEPath: 
+      SpriteEventChara: {fileID: 0}
+      Message: "\u3069\u308C\u304F\u3089\u3044\u3084\u308B\u6C17\u3092\u8FBC\u3081\u308B\uFF1F"
       TextName: 
+      SetSelect: 0
+      SetYaruki: 1
+      NanimoSinai: 0
+      TrueTrick: 0
+      FalseTrick: 0
+    - SEPath: 
+      SpriteEventChara: {fileID: 0}
+      Message: "\u9593\u9055\u3044\u3060\u3063\u305F\u306E\u304B\u3044\uFF1F\r\n\u6C17\u3092\u4ED8\u3051\u3066\u5E30\u308B\u306E\u3088\uFF5E\u3002"
+      TextName: "\u304A\u3070\u3042\u3055\u3093"
+      SetSelect: 0
+      SetYaruki: 0
+      NanimoSinai: 1
+      TrueTrick: 0
+      FalseTrick: 0
+    - SEPath: 
+      SpriteEventChara: {fileID: 0}
+      Message: "\u3042\u3089\u3042\u3089\u3001\u53EF\u611B\u3089\u3057\u3044\u5B50\u3060\u3053\u3068\uFF01\r\n\u304A\u83D3\u5B50\u3092\u4E0A\u3052\u308B\u304B\u3089\u30A4\u30A4\u5B50\u3067\u3044\u308B\u306E\u3088\u3002"
+      TextName: "\u304A\u3070\u3042\u3055\u3093"
+      SetSelect: 0
+      SetYaruki: 0
+      NanimoSinai: 0
+      TrueTrick: 1
+      FalseTrick: 0
+    - SEPath: 
+      SpriteEventChara: {fileID: 0}
+      Message: "\u304A\u83D3\u5B50\u3092\uFF11\uFF10\u500B\u3082\u3089\u3063\u305F\u3002"
+      TextName: 
+      SetSelect: 0
+      SetYaruki: 0
+      NanimoSinai: 0
+      TrueTrick: 1
+      FalseTrick: 0
+    - SEPath: 
+      SpriteEventChara: {fileID: 0}
+      Message: "\u307E\u305F\u3044\u3089\u3063\u3057\u3083\u3044\u306D\uFF01\r\n\u6C17\u3092\u4ED8\u3051\u3066\u5E30\u308B\u306E\u3088\uFF5E\uFF01"
+      TextName: "\u304A\u3070\u3042\u3055\u3093"
+      SetSelect: 0
+      SetYaruki: 0
+      NanimoSinai: 0
+      TrueTrick: 1
+      FalseTrick: 0
+    - SEPath: 
+      SpriteEventChara: {fileID: 0}
+      Message: "\u3068\u308A\u3063\u304F\u3001\u304A\u3042\u3001\u3068\u308A\u30FC\u3068\uFF1F\r\n\u304A\u3070\u3042\u3061\u3083\u3093\u3088\u304F\u308F\u304B\u3089\u306A\u3044\u306E\u3001\u3054\u3081\u3093\u306D\uFF01"
+      TextName: "\u304A\u3070\u3042\u3055\u3093"
+      SetSelect: 0
+      SetYaruki: 0
+      NanimoSinai: 0
+      TrueTrick: 0
+      FalseTrick: 1
+  - EventName: "\u8857\u306E\u304A\u3070\u3055\u3093"
+    Correction: 60
+    ChangeCandy: 12
+    eventData:
+    - SEPath: 
+      SpriteEventChara: {fileID: 21300000, guid: 2f527067a4b547c4f9da98647da260f8, type: 3}
+      Message: "\u3053\u3093\u306B\u3061\u306F\u30FC"
+      TextName: "\u30D7\u30EC\u30A4\u30E4\u30FC"
+      SetSelect: 0
+      SetYaruki: 0
+      NanimoSinai: 0
+      TrueTrick: 0
+      FalseTrick: 0
+    - SEPath: 
+      SpriteEventChara: {fileID: 0}
+      Message: "\u3042\u3089\uFF5E\uFF01\u3044\u3089\u3063\u3057\u3083\u3044\uFF01\r\n\u3069\u3046\u3057\u305F\u306E\uFF1F"
+      TextName: "\u8857\u306E\u304A\u3070\u3055\u3093"
+      SetSelect: 1
+      SetYaruki: 0
+      NanimoSinai: 0
+      TrueTrick: 0
+      FalseTrick: 0
+    - SEPath: 
+      SpriteEventChara: {fileID: 0}
+      Message: "\u3069\u308C\u304F\u3089\u3044\u3084\u308B\u6C17\u3092\u8FBC\u3081\u308B\uFF1F"
+      TextName: 
+      SetSelect: 0
+      SetYaruki: 1
+      NanimoSinai: 0
+      TrueTrick: 0
+      FalseTrick: 0
+    - SEPath: 
+      SpriteEventChara: {fileID: 0}
+      Message: "\u3042\u3089\uFF1F\u3069\u3053\u304B\u3068\u9593\u9055\u3048\u3061\u3083\u3063\u305F\u306E\uFF1F\r\n\u6C17\u3092\u4ED8\u3051\u3066\u304A\u5BB6\u306B\u5E30\u308B\u306E\u3088\uFF5E\uFF01"
+      TextName: "\u8857\u306E\u304A\u3070\u3055\u3093"
+      SetSelect: 0
+      SetYaruki: 0
+      NanimoSinai: 1
+      TrueTrick: 0
+      FalseTrick: 0
+    - SEPath: 
+      SpriteEventChara: {fileID: 0}
+      Message: "\u305D\u3046\u3044\u3048\u3070\u4ECA\u65E5\u306F\u30CF\u30ED\u30A6\u30A3\u30F3\u3060\u3063\u305F\u308F\u306D\uFF01\r\n\u306F\u3044\u3069\u3046\u305E\uFF01\u30CF\u30ED\u30A6\u30A3\u30F3\u3092\u697D\u3057\u3093\u3067\u306D\uFF01"
+      TextName: "\u8857\u306E\u304A\u3070\u3055\u3093"
+      SetSelect: 0
+      SetYaruki: 0
+      NanimoSinai: 0
+      TrueTrick: 1
+      FalseTrick: 0
+    - SEPath: 
+      SpriteEventChara: {fileID: 0}
+      Message: "\u304A\u83D3\u5B50\u3092\uFF11\uFF12\u500B\u3082\u3089\u3063\u305F\u3002"
+      TextName: 
+      SetSelect: 0
+      SetYaruki: 0
+      NanimoSinai: 0
+      TrueTrick: 1
+      FalseTrick: 0
+    - SEPath: 
+      SpriteEventChara: {fileID: 0}
+      Message: "\u98DF\u3079\u305F\u3089\u6B6F\u3092\u78E8\u304F\u306E\u3092\u5FD8\u308C\u305A\u306B\u306D\uFF01\r\n\u307E\u305F\u3044\u3089\u3063\u3057\u3083\u3044\uFF5E\uFF01"
+      TextName: "\u8857\u306E\u304A\u3070\u3055\u3093"
+      SetSelect: 0
+      SetYaruki: 0
+      NanimoSinai: 0
+      TrueTrick: 1
+      FalseTrick: 0
+    - SEPath: 
+      SpriteEventChara: {fileID: 0}
+      Message: "\u3042\u3001\u3054\u3081\u3093\u306D\uFF5E\uFF01\u304A\u83D3\u5B50\u3092\u304D\u3089\u3057\u3061\u3083\u3063\u305F\u306E\uFF01\r\n\u51FA\u6765\u308B\u3060\u3051\u65E9\u304F\u7528\u610F\u3057\u3066\u304A\u304F\u308F\u306D\uFF01"
+      TextName: "\u8857\u306E\u304A\u3070\u3055\u3093"
+      SetSelect: 0
+      SetYaruki: 0
+      NanimoSinai: 0
+      TrueTrick: 0
+      FalseTrick: 1
+  - EventName: "\u8857\u306E\u304A\u3058\u3055\u3093"
+    Correction: 60
+    ChangeCandy: 13
+    eventData:
+    - SEPath: 
+      SpriteEventChara: {fileID: 21300000, guid: d25b00082d4fa24458f29b7d4ef1e328, type: 3}
+      Message: "\u3053\u3093\u306B\u3061\u306F\u30FC"
+      TextName: "\u30D7\u30EC\u30A4\u30E4\u30FC"
+      SetSelect: 0
+      SetYaruki: 0
+      NanimoSinai: 0
+      TrueTrick: 0
+      FalseTrick: 0
+    - SEPath: 
+      SpriteEventChara: {fileID: 0}
+      Message: "\r\u304A\u3084\uFF01\u3044\u3089\u3063\u3057\u3083\u3044\u3002\r\n\u3069\u3046\u3057\u305F\u3093\u3060\u3044\uFF1F"
+      TextName: "\u8857\u306E\u304A\u3058\u3055\u3093"
+      SetSelect: 1
+      SetYaruki: 0
+      NanimoSinai: 0
+      TrueTrick: 0
+      FalseTrick: 0
+    - SEPath: 
+      SpriteEventChara: {fileID: 0}
+      Message: "\u3069\u308C\u304F\u3089\u3044\u3084\u308B\u6C17\u3092\u8FBC\u3081\u308B\uFF1F"
+      TextName: 
+      SetSelect: 0
+      SetYaruki: 1
+      NanimoSinai: 0
+      TrueTrick: 0
+      FalseTrick: 0
+    - SEPath: 
+      SpriteEventChara: {fileID: 0}
+      Message: "\r\u304A\u3063\u3068\u9593\u9055\u3044\u3060\u3063\u305F\u306E\u304B\u3044\uFF1F\r\n\u8FF7\u308F\u306A\u3044\u3088\u3046\u306B\u6C17\u3092\u4ED8\u3051\u3066\u5E30\u3063\u3066\u306D\uFF01"
+      TextName: "\u8857\u306E\u304A\u3058\u3055\u3093"
+      SetSelect: 0
+      SetYaruki: 0
+      NanimoSinai: 1
+      TrueTrick: 0
+      FalseTrick: 0
+    - SEPath: 
+      SpriteEventChara: {fileID: 0}
+      Message: "\r\u305D\u3046\u304B\uFF01\u4ECA\u65E5\u306F\u30CF\u30ED\u30A6\u30A3\u30F3\u3060\u3063\u305F\u306D\uFF01\r\n\u3053\u308C\u3092\u3042\u3052\u308B\u304B\u3089\u30A4\u30A4\u5B50\u3067\u3044\u3066\u306D\uFF01"
+      TextName: "\u8857\u306E\u304A\u3058\u3055\u3093"
+      SetSelect: 0
+      SetYaruki: 0
+      NanimoSinai: 0
+      TrueTrick: 1
+      FalseTrick: 0
+    - SEPath: 
+      SpriteEventChara: {fileID: 0}
+      Message: "\u304A\u83D3\u5B50\u3092\uFF11\uFF13\u500B\u3082\u3089\u3063\u305F\u3002"
+      TextName: 
+      SetSelect: 0
+      SetYaruki: 0
+      NanimoSinai: 0
+      TrueTrick: 1
+      FalseTrick: 0
+    - SEPath: 
+      SpriteEventChara: {fileID: 0}
+      Message: "\u6C17\u3092\u4ED8\u3051\u3066\u5E30\u308B\u3093\u3060\u3088\uFF01\r\n\u307E\u305F\u3044\u3064\u3067\u3082\u3044\u3089\u3063\u3057\u3083\u3044\u3002"
+      TextName: "\u8857\u306E\u304A\u3058\u3055\u3093"
+      SetSelect: 0
+      SetYaruki: 0
+      NanimoSinai: 0
+      TrueTrick: 1
+      FalseTrick: 0
+    - SEPath: 
+      SpriteEventChara: {fileID: 0}
+      Message: "\u304A\u3063\u3068\uFF01\u3059\u307E\u306A\u3044\u2026\uFF01\u304A\u83D3\u5B50\u304C\u7121\u3044\u3088\u3046\u3060\u3002\r\n\u51FA\u6765\u308B\u3060\u3051\u65E9\u304F\u7528\u610F\u3057\u3066\u304A\u304F\u3088\uFF01"
+      TextName: "\u8857\u306E\u304A\u3058\u3055\u3093"
       SetSelect: 0
       SetYaruki: 0
       NanimoSinai: 0

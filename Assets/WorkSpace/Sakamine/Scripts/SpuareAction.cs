@@ -211,6 +211,10 @@ public class SpuareAction : MonoBehaviour
     void Update()
     {
         Feed.color = new Color(red, green, blue, alfa);
+        if(PlusList.Count == 0 || MinusList.Count == 0 || QuizList.Count == 0)
+        {
+            AddEventRandList();
+        }
         //フェードイン
         if (FeedInFlg)
         {
@@ -231,7 +235,7 @@ public class SpuareAction : MonoBehaviour
                     CharacerUI.PlayerStatusUIDestroy();
                     ShowUI();
                     //デバッグ
-                    manager.characters[CharaNo - 1].yaruki = 0;
+                    //manager.characters[CharaNo - 1].yaruki = 0;
 
                     if (HalloweenFlg&&manager.characters[CharaNo-1].yaruki == 0)
                     {
@@ -245,7 +249,6 @@ public class SpuareAction : MonoBehaviour
                 }
                 else if (isResult && i == 11)
                 {
-                    Debug.Log("TitleLoad");
                     SceneManager.LoadScene("Title");
                 }
 
@@ -414,7 +417,6 @@ public class SpuareAction : MonoBehaviour
                         i++;
                         if(i == 9)
                         {
-                            Debug.Log("9");
                             int No1 = manager.OrderArray[0] + 1;
                             int No2 = manager.OrderArray[1] + 1;
                             int No3 = manager.OrderArray[2] + 1;
@@ -447,12 +449,6 @@ public class SpuareAction : MonoBehaviour
                 //int[] Rank
                 list.Sort((a, b) => a.rank - b.rank);
             }
-
-            //Debug.Log(list[0].rank);
-            //Debug.Log(list[1].rank);
-            //Debug.Log(list[2].rank);
-            //Debug.Log(list[3].rank);
-
             if (!FeedInFlg && !FeedOutFlg && isInput && Input.GetKeyDown(KeyCode.Return) || !FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
             {
                 if (NextTextFlg)
@@ -767,7 +763,7 @@ public class SpuareAction : MonoBehaviour
                 }
             }
         }
-
+        Debug.Log(manager.characters[CharaNo - 1].yaruki);
         //プラスイベント処理
         if (PlusFlg)
         {
@@ -775,12 +771,12 @@ public class SpuareAction : MonoBehaviour
             {
                 if (NextTextFlg)
                 {
-                    SEManager.Instance.Play(SEPath.PUSH_B);
                     NextTextFlg = false;
                     //次のテキストがない
                     if (EventCount + 1 == plusEvent[EventRand].eventData.Count)
                     {
                         //イベント終了
+                        SEManager.Instance.Play(SEPath.PUSH_B);
                         txtMessage.gameObject.SetActive(false);
                         txtTextName.gameObject.SetActive(false);
                         PlusFlg = false;
@@ -803,6 +799,7 @@ public class SpuareAction : MonoBehaviour
                     }
                     else
                     {
+                        SEManager.Instance.Play(SEPath.PUSH_B);
                         EventCount++;
                         SetNextText(null, plusEvent[EventRand].eventData, null);
                     }
@@ -1262,7 +1259,11 @@ public class SpuareAction : MonoBehaviour
         {
             BGMManager.Instance.Stop();
             CharaNo = MyNo + 1;
-            EventRand = Random.Range(0, plusEvent.Count);
+            //PlusListからランダムに要素を取得
+            EventRand = PlusList[Random.Range(0, PlusList.Count)];
+            //取得した番号は以降出てこない
+            PlusList.Remove(EventRand);
+
             imgEventChara.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
             PlusFlg = true;
             FeedInFlg = true;
@@ -1274,7 +1275,10 @@ public class SpuareAction : MonoBehaviour
         {
             BGMManager.Instance.Stop();
             CharaNo = MyNo + 1;
-            EventRand = Random.Range(0, minusEvent.Count);
+            //MinusListからランダムに要素を取得
+            EventRand = MinusList[Random.Range(0, MinusList.Count)];
+            //取得した番号は以降出てこない
+            MinusList.Remove(EventRand);
             imgEventChara.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
             MinusFlg = true;
             FeedInFlg = true;
@@ -1286,7 +1290,10 @@ public class SpuareAction : MonoBehaviour
         {
             BGMManager.Instance.Stop();
             CharaNo = MyNo + 1;
-            EventRand = Random.Range(0, quizEvent.Count);
+            //PlusListからランダムに要素を取得
+            EventRand = QuizList[Random.Range(0, QuizList.Count)];
+            //取得した番号は以降出てこない
+            QuizList.Remove(EventRand);
             imgEventChara.transform.localPosition = new Vector3(600.0f, 0.0f, 0.0f);
             QuizFlg = true;
             FeedInFlg = true;
@@ -1485,20 +1492,29 @@ public class SpuareAction : MonoBehaviour
 
     void AddEventRandList()
     {
-        for(int i = 0;i<plusEvent.Count;i++)
+        if (PlusList.Count == 0)
         {
-            PlusList.Add(i);
+            for (int i = 0; i < plusEvent.Count; i++)
+            {
+                PlusList.Add(i);
+            }
         }
-        for (int i = 0; i < minusEvent.Count; i++)
+        if (MinusList.Count == 0)
         {
-            MinusList.Add(i);
+            for (int i = 0; i < minusEvent.Count; i++)
+            {
+                MinusList.Add(i);
+            }
         }
-        for (int i = 0; i < quizEvent.Count; i++)
+        if (QuizList.Count == 0)
         {
-            //答えを入れておく
-            BestAnswer[i] = quizEvent[i].Answer[0];
+            for (int i = 0; i < quizEvent.Count; i++)
+            {
+                //答えを入れておく
+                BestAnswer[i] = quizEvent[i].Answer[0];
 
-            QuizList.Add(i);
+                QuizList.Add(i);
+            }
         }
 
     }
