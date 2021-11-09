@@ -330,7 +330,7 @@ public class SpuareAction : MonoBehaviour
                 }
                 else if(isRule)
                 {
-                    FirstFeed = true;
+                    FirstFeed = false;
                     txtTextName.text = "カボチャ";
                     txtMessage.gameObject.SetActive(true);
                     txtTextName.gameObject.SetActive(true);
