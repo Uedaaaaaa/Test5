@@ -769,7 +769,6 @@ public class SpuareAction : MonoBehaviour
                 }
             }
         }
-        Debug.Log(manager.characters[CharaNo - 1].yaruki);
         //プラスイベント処理
         if (PlusFlg)
         {
