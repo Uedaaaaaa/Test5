@@ -131,6 +131,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2746295631052394820, guid: 4ff7fd543bcb651418b49f2227985c63, type: 3}
+      propertyPath: MinusPrefab
+      value: 
+      objectReference: {fileID: 3734885650089437193, guid: 4f5bd4cadb9f2f446bd5875da170a3bf, type: 3}
+    - target: {fileID: 2746295631052394820, guid: 4ff7fd543bcb651418b49f2227985c63, type: 3}
       propertyPath: HalloweenPrefab
       value: 
       objectReference: {fileID: 3464114044674534445, guid: 9827cafcdb6a3bf4f9c9a2ab4a43e23e, type: 3}
@@ -410,7 +414,7 @@ MonoBehaviour:
   - {fileID: 277500826280910524}
   - {fileID: 743840185535297159}
   - {fileID: 1575913497672476699}
-  GameTurn: 1
+  GameTurn: 8
   NowPlayerNo: 0
   OrderArray: 00000000000000000000000000000000
   OrderjudgeNo: 00000000000000000000000000000000
