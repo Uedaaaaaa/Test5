@@ -79,7 +79,15 @@ public class CreateMap : MonoBehaviour
         //Minus:2
         //Plus:3
         //Quis:4
-        MapData = new[] { 3, 3, 2, 3, 4, 3, 1, 2, 4, 3, 3, 2, 3, 1, 3, 3, 4, 2, 3, 3, 2, 1, 3, 4, 3, 1, 4, 2, 3 };
+        MapData =
+            new[] { 3, 2, 1, 4, 3, 2, 4,
+                1, 3, 4, 1, 2, 4, 3,
+                1, 2, 3, 4, 1, 3, 2,
+                1, 3, 4, 3, 1, 4, 2, 3 };
+            //new[] { 3, 3, 2, 3, 4, 3, 1,
+        //2, 4, 3, 3, 2, 3, 1,
+        //3, 3, 4, 2, 3, 3, 2,
+        //1, 3, 4, 3, 1, 4, 2, 3 };
         SetPos = new Vector3(20,-0.7f,0);
         Quaternion Set;
         for (int i = 1; i < MapData.Length; i++)
