@@ -124,6 +124,7 @@ public class SpuareAction : MonoBehaviour
     private bool isRule = true;
     [HideInInspector]
     public bool isResult = false;
+    private bool FirstFeed = true;
 
     private bool NanimoSinai;
     private bool NoYaruki;
@@ -207,6 +208,7 @@ public class SpuareAction : MonoBehaviour
         manager.characters[2].candy = 4;
         manager.characters[3].candy = 4;
 
+        BGMManager.Instance.Play(BGMPath.RULE_BGM);
 
     }
     public void ChangeEndDice()
@@ -328,7 +330,7 @@ public class SpuareAction : MonoBehaviour
                 }
                 else if(isRule)
                 {
-                    BGMManager.Instance.Play(BGMPath.RULE_BGM);
+                    FirstFeed = true;
                     txtTextName.text = "カボチャ";
                     txtMessage.gameObject.SetActive(true);
                     txtTextName.gameObject.SetActive(true);
@@ -1541,7 +1543,14 @@ public class SpuareAction : MonoBehaviour
     public void FeedOut()
     {
         //if (alfa >= 1.0f) 
-        alfa -= FeedSpeed * Time.deltaTime;
+        if (FirstFeed)
+        {
+            alfa -= 0.5f * Time.deltaTime;
+        }
+        else
+        {
+            alfa -= FeedSpeed * Time.deltaTime;
+        }
     }
 
 }
