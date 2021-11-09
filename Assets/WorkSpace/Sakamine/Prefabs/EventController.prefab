@@ -431,7 +431,7 @@ MonoBehaviour:
     eventData:
     - SEPath: 
       SpriteEventChara: {fileID: 21300000, guid: ef55368673405494a881cfda43ed5d0d, type: 3}
-      Message: "\u30B9\u30DE\u30DB\u3067\u5360\u3044\u3092\u898B\u305F\u3089\u6700\u4E0B\u4F4D\u3060\u3063\u305F\u3002"
+      Message: "\u8857\u89D2\u306E\u30C6\u30EC\u30D3\u3067\u5360\u3044\u3092\u898B\u305F\u3089\u6700\u4E0B\u4F4D\u3060\u3063\u305F\u2026"
       TextName: 
     - SEPath: 
       SpriteEventChara: {fileID: 0}
@@ -934,7 +934,7 @@ MonoBehaviour:
       AnswerText: 0
     - SEPath: 
       SpriteEventChara: {fileID: 0}
-      Message: "\u30E1\u30F3\u30D0\u30FC\u306E\u307F\u306A\u3055\u3093\u3053\u3093\u306B\u3061\u306F\uFF01\r\n\u307F\u306A\u3055\u3093\u306F\u5148\u751F\u306E\u9AD8\u6821\u6642\u4EE3\u306E\r\n\u3042\u3060\u540D\u3092\u3054\u5B58\u77E5\u3067\u3059\u304B\uFF1F"
+      Message: "\u30E1\u30F3\u30D0\u30FC\u306E\u307F\u306A\u3055\u3093\u3053\u3093\u306B\u3061\u306F\uFF01\r\n\u307F\u306A\u3055\u3093\u306F\u5148\u751F\u306E\u9AD8\u6821\u6642\u4EE3\u306E\u3042\u3060\u540D\u3092\u3054\u5B58\u77E5\u3067\u3059\u304B\uFF1F"
       TextName: "\u66F4\u4E95\u3055\u3093"
       QuizSet: 1
       AnswerText: 0
@@ -962,7 +962,7 @@ MonoBehaviour:
       TextName: "\u66F4\u4E95\u3055\u3093"
       QuizSet: 0
       AnswerText: 1
-  - EventName: "\u5927\u4EBA\u306A\u5973\u60277"
+  - EventName: TAKESUE7
     ChangeYaruki: 5
     Answer:
     - "\u30AB\u30D6"
@@ -971,32 +971,44 @@ MonoBehaviour:
     eventData:
     - SEPath: 
       SpriteEventChara: {fileID: 21300000, guid: 00783c12940ed004992b40b0139fda66, type: 3}
-      Message: "\u30A4\u30D9\u30F3\u30C8\u3092\u697D\u3057\u3080\u5927\u4EBA\u306A\u5973\u6027\u306B\u51FA\u4F1A\u3063\u305F\u3002"
+      Message: "\u3084\u3070\u3044\u30AF\u30EC\u30FC\u30DE\u30FC\u98A8\u306E\u5143\u81EA\u885B\u968A\u54E1\r\nTAKESUE\u3055\u3093\u3068\u906D\u9047\u3057\u305F\u3002"
       TextName: 
       QuizSet: 0
       AnswerText: 0
     - SEPath: 
       SpriteEventChara: {fileID: 0}
-      Message: "\u554F\u984C\u3088\uFF01\u30CF\u30ED\u30A6\u30A3\u30F3\u3067\u30AB\u30DC\u30C1\u30E3\u304C\u98FE\u3089\u308C\u308B\u3088\u3046\u306B\n\u306A\u308B\u524D\u306B\u98FE\u3089\u308C\u3066\u3044\u305F\u91CE\u83DC\u306F\u4F55\u304B\u77E5\u3063\u3066\u308B\uFF1F"
-      TextName: "\u5927\u4EBA\u306A\u5973\u6027"
+      Message: "\u3053\u3061\u3089\u304C\u3000\u6FC3\u539A\u81EA\u885B\u968A\u554F\u984C\u306E\r\n\u6FC3\u539A\u554F\u984C\u6B66\u5668\u30C8\u30C3\u30D4\u30F3\u30B0\u3067\u3059\uFF01"
+      TextName: TAKESUE
+      QuizSet: 0
+      AnswerText: 0
+    - SEPath: 
+      SpriteEventChara: {fileID: 0}
+      Message: "\u79C1\u304C\u9678\u4E0A\u81EA\u885B\u968A\u306B\u6240\u5C5E\u3057\u3066\u3044\u308B\u6642\u3001\r\n\u4F7F\u7528\u3057\u3066\u3044\u305F\u9283\u306F\u3069\u308C\u3067\u3057\u3087\u3046\uFF1F"
+      TextName: TAKESUE
       QuizSet: 1
       AnswerText: 0
     - SEPath: 
       SpriteEventChara: {fileID: 0}
-      Message: "\u6B63\u89E3\uFF01\u3055\u3059\u304C\u306D\uFF01"
-      TextName: "\u5927\u4EBA\u306A\u5973\u6027"
+      Message: "\u3046\u3063\u3072\u3087\u301C\u301C\u301C\u301C\u301C\u301C\uFF01"
+      TextName: TAKESUE
       QuizSet: 0
       AnswerText: 0
     - SEPath: 
       SpriteEventChara: {fileID: 0}
-      Message: "\u3010\u3084\u308B\u6C17\u3011\u304C\u30105\u3011\u4E0A\u6607\u3057\u305F\u3002"
-      TextName: 
+      Message: "\u3053\u306E\u96E3\u3057\u3059\u304E\u308B\u554F\u984C\u306B\r\n\u6B63\u89E3\u3057\u305F\u3042\u306A\u305F\u304C\u3059\u3054\u3059\u304E\u3066\n\u8AA0\u610F\u306E\u3084\u308B\u6C17\u3092\u30B5\u30FC\u30D3\u30B9\u3057\u3061\u3083\u3044\u307E\u3057\u305F\u3041\uFF01"
+      TextName: TAKESUE
       QuizSet: 0
       AnswerText: 0
     - SEPath: 
       SpriteEventChara: {fileID: 0}
-      Message: "\u4E0D\u6B63\u89E3\u3088\uFF5E\u3002\r\u6700\u521D\u306F\u30AB\u30D6\u3060\u3063\u305F\u3051\u3069\u3001\n\u30A2\u30E1\u30EA\u30AB\u306B\u30CF\u30ED\u30A6\u30A3\u30F3\u304C\u4F1D\u308F\u3063\u305F\u969B\u306B\u30AB\u30DC\u30C1\u30E3\u306B\u306A\u3063\u305F\u306E\u3002"
-      TextName: "\u5927\u4EBA\u306A\u5973\u6027"
+      Message: "\u6B63\u89E3\u3092\u8912\u3081\u3089\u308C\u3066\u3001\u3084\u308B\u6C17\u304C\uFF15\u4E0A\u6607\u3057\u305F\u3002"
+      TextName: TAKESUE
+      QuizSet: 0
+      AnswerText: 0
+    - SEPath: 
+      SpriteEventChara: {fileID: 0}
+      Message: "\u4E0D\u6B63\u89E3\uFF5E\uFF01\u3007\u3007\u3059\u305E\uFF5E\uFF01"
+      TextName: TAKESUE
       QuizSet: 0
       AnswerText: 1
   halloweenEvent:
@@ -1005,7 +1017,7 @@ MonoBehaviour:
     ChangeCandy: 15
     eventData:
     - SEPath: 
-      SpriteEventChara: {fileID: 21300000, guid: bca6922526f2d424ab18cc26a7f35271, type: 3}
+      SpriteEventChara: {fileID: 21300000, guid: e6b7cd82b376b824eb1b51c8de5c3ac6, type: 3}
       Message: "\u3053\u3093\u306B\u3061\u306F\u30FC"
       TextName: "\u30D7\u30EC\u30A4\u30E4\u30FC"
       SetSelect: 0
@@ -1081,7 +1093,7 @@ MonoBehaviour:
     ChangeCandy: 10
     eventData:
     - SEPath: 
-      SpriteEventChara: {fileID: 21300000, guid: be55fee7f5963ae488b55bf908eadacb, type: 3}
+      SpriteEventChara: {fileID: 21300000, guid: 3fa01a9bd1eb94346945a8a6647c9b40, type: 3}
       Message: "\u3053\u3093\u306B\u3061\u306F\u30FC"
       TextName: "\u30D7\u30EC\u30A4\u30E4\u30FC"
       SetSelect: 0
@@ -1157,7 +1169,7 @@ MonoBehaviour:
     ChangeCandy: 12
     eventData:
     - SEPath: 
-      SpriteEventChara: {fileID: 21300000, guid: 2f527067a4b547c4f9da98647da260f8, type: 3}
+      SpriteEventChara: {fileID: 21300000, guid: 9152d7f825afb8145b88f64c8e4bcddf, type: 3}
       Message: "\u3053\u3093\u306B\u3061\u306F\u30FC"
       TextName: "\u30D7\u30EC\u30A4\u30E4\u30FC"
       SetSelect: 0
@@ -1233,7 +1245,7 @@ MonoBehaviour:
     ChangeCandy: 13
     eventData:
     - SEPath: 
-      SpriteEventChara: {fileID: 21300000, guid: d25b00082d4fa24458f29b7d4ef1e328, type: 3}
+      SpriteEventChara: {fileID: 21300000, guid: ef88781eddec282499b3b623d9587447, type: 3}
       Message: "\u3053\u3093\u306B\u3061\u306F\u30FC"
       TextName: "\u30D7\u30EC\u30A4\u30E4\u30FC"
       SetSelect: 0

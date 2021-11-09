@@ -177,7 +177,13 @@ public class SpuareAction : MonoBehaviour
         imgBack = Canvas.transform.Find("imgBack").GetComponent<Image>();
 
         manager = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameManager>();
-        //各リストに要素数分0から追加(答え入れるのもやる)
+        for (int i = 0; i < quizEvent.Count; i++)
+        {
+            //答えを入れておく
+            BestAnswer[i] = quizEvent[i].Answer[0];
+        }
+
+        //各リストに要素数分0から追加
         AddEventRandList();
 
         Sel = 0;
@@ -905,7 +911,7 @@ public class SpuareAction : MonoBehaviour
                     //クイズあるなら出す
                     else if (quizEvent[EventRand].eventData[EventCount].QuizSet == true && !NowQuizFlg)
                     {
-                        SEManager.Instance.Play(SEPath.QUIZ);
+                        SEManager.Instance.Play(SEPath.PUSH_B);
 
                         //配列をシャッフル
                         quizEvent[EventRand].Answer = quizEvent[EventRand].Answer.OrderBy(i => System.Guid.NewGuid()).ToArray();
@@ -983,7 +989,14 @@ public class SpuareAction : MonoBehaviour
                     else
                     {
                         EventCount++;
-                        SEManager.Instance.Play(SEPath.PUSH_B);
+                        if(quizEvent[EventRand].eventData[EventCount].QuizSet == true)
+                        {
+                            SEManager.Instance.Play(SEPath.QUIZ);
+                        }
+                        else
+                        {
+                            SEManager.Instance.Play(SEPath.PUSH_B);
+                        }
 
                         //正解テキストが終了
                         if (quizEvent[EventRand].eventData[EventCount].AnswerText && isCorrect)
@@ -1510,9 +1523,6 @@ public class SpuareAction : MonoBehaviour
         {
             for (int i = 0; i < quizEvent.Count; i++)
             {
-                //答えを入れておく
-                BestAnswer[i] = quizEvent[i].Answer[0];
-
                 QuizList.Add(i);
             }
         }
