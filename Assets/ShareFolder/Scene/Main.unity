@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2746295631052394820, guid: 4ff7fd543bcb651418b49f2227985c63, type: 3}
+      propertyPath: MinusPrefab
+      value: 
+      objectReference: {fileID: 3734885650089437193, guid: 4f5bd4cadb9f2f446bd5875da170a3bf, type: 3}
     - target: {fileID: 2746295631052394821, guid: 4ff7fd543bcb651418b49f2227985c63, type: 3}
       propertyPath: m_Name
       value: ProtoMap_NOScript
