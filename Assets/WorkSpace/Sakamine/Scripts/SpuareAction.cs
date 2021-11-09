@@ -391,7 +391,7 @@ public class SpuareAction : MonoBehaviour
                 txtTextName.gameObject.SetActive(true);
                 StartCoroutine("Novel", RuleText[i]);
             }
-            if (!FeedInFlg && !FeedOutFlg && isInput&&Input.GetKeyDown(KeyCode.Return) || !FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
+            if (isInput&&!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
             {
                 if(NextTextFlg)
                 {
@@ -455,7 +455,7 @@ public class SpuareAction : MonoBehaviour
                 //int[] Rank
                 list.Sort((a, b) => a.rank - b.rank);
             }
-            if (!FeedInFlg && !FeedOutFlg && isInput && Input.GetKeyDown(KeyCode.Return) || !FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
+            if (!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
             {
                 if (NextTextFlg)
                 {
@@ -772,7 +772,7 @@ public class SpuareAction : MonoBehaviour
         //プラスイベント処理
         if (PlusFlg)
         {
-            if (!FeedInFlg && !FeedOutFlg && Input.GetKeyDown(KeyCode.Return) || !FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
+            if (!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
             {
                 if (NextTextFlg)
                 {
@@ -820,7 +820,7 @@ public class SpuareAction : MonoBehaviour
         //マイナス
         if (MinusFlg)
         {
-            if (!FeedInFlg && !FeedOutFlg && Input.GetKeyDown(KeyCode.Return) || !FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
+            if (!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
             {
                 if (NextTextFlg)
                 {
@@ -1073,7 +1073,7 @@ public class SpuareAction : MonoBehaviour
                 }
 
             }
-            if (!FeedInFlg && !FeedOutFlg && Input.GetKeyDown(KeyCode.Return) || !FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
+            if (!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
             {
                 if (NextTextFlg)
                 {
@@ -1254,6 +1254,12 @@ public class SpuareAction : MonoBehaviour
                             SetNextText(null, null, halloweenEvent[EventRand].eventData);
                         }
                     }
+                }
+                else if(NoYaruki == true)
+                {
+                    txtMessage.text = "尋ねてみたが留守のようだ。\nやる気を貯めてまた来よう！";
+                    NextTextFlg = true;
+                    StopCoroutine("Novel");
                 }
                 else
                 {
