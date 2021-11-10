@@ -37,10 +37,13 @@ public class PlayerAction : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // SEを鳴らす
-        SEManager.Instance.Stop(SEPath.DICE_COUNT_MINUS);
-        SEManager.Instance.Play(SEPath.DICE_COUNT_MINUS,1.2f);
-
+        // マスについた時のSEを鳴らす
+        if(moveFlg == true)
+        {
+            SEManager.Instance.Stop(SEPath.DICE_COUNT_MINUS);
+            SEManager.Instance.Play(SEPath.DICE_COUNT_MINUS, 1.2f);
+        }
+       
         if(myNo == manager.OrderArray[manager.NowPlayerNo])
         {
             //プレイヤーが１マス進んだ時の処理

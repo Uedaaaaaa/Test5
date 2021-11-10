@@ -282,7 +282,9 @@ public class GameManager : MonoBehaviour
             //カメラがプレイヤーについていくようにする
             if(playerScript[OrderArray[NowPlayerNo]].moveFlg == true)
             {
-                transform.position = new Vector3(CharacterObj[OrderArray[NowPlayerNo]].transform.position.x, NewPos.y, NewPos.z);
+                transform.position = new Vector3(CharacterObj[OrderArray[NowPlayerNo]].transform.position.x, 
+                                                 NewPos.y, 
+                                                 CharacterObj[OrderArray[NowPlayerNo]].transform.position.z + PlayerCameraPos.z);
             }
         }
     }
@@ -329,7 +331,6 @@ public class GameManager : MonoBehaviour
             {
                 Invoke("SpawnDice", 2);
                 ChangeNowPlayerNo();
-                Debug.Log("1");
             }
             FinishDiceFlg = false;
         }

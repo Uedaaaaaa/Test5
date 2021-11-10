@@ -16,12 +16,19 @@ public class SetCharacerUI : MonoBehaviour
     //プレイヤーターンUI表示と同時にセットするBボタンUI
     [SerializeField] Image PlayerTurnBbuttonUI;
 
-    //ダイスを振るを書かれたUI
-    [SerializeField] Image[] DiceStartUI = new Image[4];
+    //ダイスを振る止めると書かれたTextの背景UI
+    [Header("順番決めのダイスUI")]
+    [SerializeField] Image[] DiceTextBackUI = new Image[4];
+    //ダイスを振るを書かれたText
+    [SerializeField] Text[] DiceStartText = new Text[4];
+    //ダイスを止めると書かれたText
+    [SerializeField] Text[] DiceStopText = new Text[4];
 
-    //ダイスを止めると書かれたUI
-    [SerializeField] Image DiceStopUI;
-    [SerializeField] Image[] DiceStopUI_Order = new Image[4];
+    //ダイスを止めると書かれたTextの背景UI
+    [Header("プレイ中のダイスUI")]
+    [SerializeField] Image DiceStopTextBackUI;
+    [SerializeField] Text DiceStopTextToPlaying;
+
     //実際に表示するダイスの数字UI
     [SerializeField] Image DiceImage;
 
@@ -54,18 +61,31 @@ public class SetCharacerUI : MonoBehaviour
     void Start()
     {
         GameSetflg = false;
-        //ダイスの数字UIの高さを変更
-        //プレイヤー以外のUI表示をオフにする
+        //プレイヤーのターンUIの非表示
         ImagePlayerTurnUI.enabled = false;
         PlayerTurnBbuttonUI.enabled = false;
-        DiceStopUI.enabled = false;
+
+        //ダイスを止めるUIの非表示（プレイ中の）
+        DiceStopTextBackUI.enabled = false;
+        DiceStopTextToPlaying.text = "";
+
+        //順番決めのダイス関連UIの非表示
+        for(int i=0;i<DiceTextBackUI.Length;i++)
+        {
+            DiceTextBackUI[i].enabled = false;
+            DiceStartText[i].text = "";
+            DiceStopText[i].text = "";
+        }
+       
+        //ダイスの目のUIの非表示
         DiceImage.enabled = false;
+
+        //ゲーム終了UIの非表示
         GameSetUI.enabled = false;
+
         //プレイヤー関係のUIの非表示
         for (int i = 0; i < PlayerStatusUI.Length; i++)
         {
-            DiceStopUI_Order[i].enabled = false;
-            DiceStartUI[i].enabled = false;
             PlayerStatusUI[i].enabled = false;
             Candytxt[i].text = "";
             Yarukitxt[i].text = "";
@@ -94,13 +114,15 @@ public class SetCharacerUI : MonoBehaviour
     public void DiceStartUISet()
     {
         //ダイスを振るのUIの表示
-        DiceStartUI[manager.NowPlayerNo].enabled = true;
+        DiceTextBackUI[manager.NowPlayerNo].enabled = true;
+        DiceStartText[manager.NowPlayerNo].text = "ダイスを振る";
     }
     public void DiceStartUIDestroy()
     {
-        for(int i = 0; i< DiceStartUI.Length; i++)
+        for(int i = 0; i< DiceTextBackUI.Length; i++)
         {
-            DiceStartUI[i].enabled = false;
+            DiceTextBackUI[i].enabled = false;
+            DiceStartText[i].text = "";
         }
     }
 
@@ -110,21 +132,25 @@ public class SetCharacerUI : MonoBehaviour
         //UIの位置を変更する
         if(manager.gameStatus == GameSTS.OrderJudge)
         {
-            DiceStopUI_Order[manager.NowPlayerNo].enabled = true;
+            DiceTextBackUI[manager.NowPlayerNo].enabled = true;
+            DiceStopText[manager.NowPlayerNo].text = "ダイスを止める";
         }
         else
         {
             //ダイスを止めるUIの表示
-            DiceStopUI.enabled = true;
+            DiceStopTextBackUI.enabled = true;
+            DiceStopTextToPlaying.text = "ダイスを止める";
         }
     }
     public void DiceStopUIDestroy()
     {
-        for(int i = 0; i < DiceStopUI_Order.Length;i++)
+        for(int i = 0; i < DiceTextBackUI.Length;i++)
         {
-            DiceStopUI_Order[i].enabled = false;
+            DiceTextBackUI[i].enabled = false;
+            DiceStopText[i].text = "";
         }
-        DiceStopUI.enabled = false;
+        DiceStopTextBackUI.enabled = false;
+        DiceStopTextToPlaying.text = "";
     }
 
     //ダイスの数のUIの表示非表示
