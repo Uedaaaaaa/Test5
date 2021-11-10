@@ -91,7 +91,7 @@ namespace KanKikuchi.AudioManager
             }
             BeforeAxis = v;
 
-            if (!FeedOutFlg && isMove && Input.GetKeyDown(KeyCode.Return))
+            if (!FeedOutFlg && isMove && Input.GetButtonDown("BtnB"))
             {
                 if (Sel == 0)
                 {
@@ -104,6 +104,8 @@ namespace KanKikuchi.AudioManager
                 else
                 {
                     //ゲーム終了
+                    UnityEditor.EditorApplication.isPlaying = false;
+                    UnityEngine.Application.Quit();
                 }
             }
             //回転
