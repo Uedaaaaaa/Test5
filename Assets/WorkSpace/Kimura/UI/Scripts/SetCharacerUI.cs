@@ -27,8 +27,8 @@ public class SetCharacerUI : MonoBehaviour
 
     //ダイスの数字UIのスプライト
     [SerializeField] Sprite[] DiceNumSprite = new Sprite[6];
-    [Header("ダイスUIの位置")]
-    [SerializeField] Vector3 DiceImagePos = new Vector3(0, 100, 0);
+    //[Header("ダイスUIの位置")]
+    //[SerializeField] Vector3 DiceImagePos = new Vector3(0, 100, 0);
 
     //プレイヤーのステータスUI
     [SerializeField] Image[] PlayerStatusUI = new Image[4];
@@ -55,7 +55,6 @@ public class SetCharacerUI : MonoBehaviour
     {
         GameSetflg = false;
         //ダイスの数字UIの高さを変更
-        //DiceImagePos.y = 145;
         //プレイヤー以外のUI表示をオフにする
         ImagePlayerTurnUI.enabled = false;
         PlayerTurnBbuttonUI.enabled = false;
@@ -131,7 +130,6 @@ public class SetCharacerUI : MonoBehaviour
     //ダイスの数のUIの表示非表示
     public void DiceNumUISet(int DiceNum)
     {
-        DiceImage.transform.position = this.gameObject.transform.position + DiceImagePos;
         DiceImage.enabled = true;
         DiceImage.sprite = DiceNumSprite[DiceNum - 1];
     }
