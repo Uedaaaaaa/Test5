@@ -220,7 +220,6 @@ public class SpuareAction : MonoBehaviour
     void Update()
     {
         float v = Input.GetAxis("Vertical");
-        BeforeAxis = v;
 
         Feed.color = new Color(red, green, blue, alfa);
         if(PlusList.Count == 0 || MinusList.Count == 0 || QuizList.Count == 0)
@@ -1275,6 +1274,7 @@ public class SpuareAction : MonoBehaviour
                 }
             }
         }
+        BeforeAxis = v;
 
     }
     public void PlusEvent(int MyNo)
