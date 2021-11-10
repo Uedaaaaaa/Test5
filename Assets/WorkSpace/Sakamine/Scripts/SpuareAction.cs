@@ -125,6 +125,7 @@ public class SpuareAction : MonoBehaviour
     [HideInInspector]
     public bool isResult = false;
     private bool FirstFeed = true;
+    private float BeforeAxis;
 
     private bool NanimoSinai;
     private bool NoYaruki;
@@ -218,6 +219,9 @@ public class SpuareAction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float v = Input.GetAxis("Vertical");
+        BeforeAxis = v;
+
         Feed.color = new Color(red, green, blue, alfa);
         if(PlusList.Count == 0 || MinusList.Count == 0 || QuizList.Count == 0)
         {
@@ -875,7 +879,7 @@ public class SpuareAction : MonoBehaviour
             //選択の矢印が出てるとき
             if (imgSel.gameObject.activeSelf)
             {
-                if (Input.GetKeyDown(KeyCode.UpArrow))
+                if (v > 0 && BeforeAxis == 0.0f)
                 {
                     if (Sel > 0)
                     {
@@ -883,7 +887,7 @@ public class SpuareAction : MonoBehaviour
                         Sel--;
                     }
                 }
-                if (Input.GetKeyDown(KeyCode.DownArrow))
+                if (v < 0 && BeforeAxis == 0.0f)
                 {
                     if (Sel < 2)
                     {
@@ -892,7 +896,7 @@ public class SpuareAction : MonoBehaviour
                     }
                 }
             }
-            if (!FeedInFlg && !FeedOutFlg && Input.GetKeyDown(KeyCode.Return) || !FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
+            if (!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
             {
                 if (NextTextFlg)
                 {
@@ -974,7 +978,7 @@ public class SpuareAction : MonoBehaviour
                         SetNextText(quizEvent[EventRand].eventData, null, null);
                     }
                     //次がやるき上昇テキストなら
-                    else if(quizEvent[EventRand].eventData[EventCount + 1].Message[0] == '正')
+                    else if(quizEvent[EventRand].eventData[EventCount + 1].Message[3] == '褒')
                     {
                         EventCount++;
                         SEManager.Instance.Play(SEPath.YARUKI_UP);
@@ -1030,7 +1034,7 @@ public class SpuareAction : MonoBehaviour
             //選択の矢印が出てるとき
             if (imgHalloweenSel.gameObject.activeSelf)
             {
-                if (Input.GetKeyDown(KeyCode.UpArrow))
+                if (v > 0 && BeforeAxis == 0.0f)
                 {
                     if (Sel > 0)
                     {
@@ -1038,7 +1042,7 @@ public class SpuareAction : MonoBehaviour
                         Sel--;
                     }
                 }
-                if (Input.GetKeyDown(KeyCode.DownArrow))
+                if (v < 0 && BeforeAxis == 0.0f)
                 {
                     if (Sel < 1)
                     {
@@ -1057,7 +1061,7 @@ public class SpuareAction : MonoBehaviour
                 {
                     SuccessRate = 100;
                 }
-                if (Input.GetKeyDown(KeyCode.UpArrow))
+                if (v > 0 && BeforeAxis == 0.0f)
                 {
                     if (UseYaruki < manager.characters[CharaNo - 1].yaruki)
                     {
@@ -1065,7 +1069,7 @@ public class SpuareAction : MonoBehaviour
                         UseYaruki++;
                     }
                 }
-                if (Input.GetKeyDown(KeyCode.DownArrow))
+                if (v < 0 && BeforeAxis == 0.0f)
                 {
                     if (UseYaruki > 1)
                     {
@@ -1545,7 +1549,7 @@ public class SpuareAction : MonoBehaviour
         //if (alfa >= 1.0f) 
         if (FirstFeed)
         {
-            alfa -= 0.5f * Time.deltaTime;
+            alfa -= 0.6f * Time.deltaTime;
         }
         else
         {
