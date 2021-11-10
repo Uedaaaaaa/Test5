@@ -490,7 +490,7 @@ public class SpuareAction : MonoBehaviour
                             {
                                 ResultText[3] = "ということで優勝はプレイヤー" + list[0].myNo.ToString() + "さんになります！\nおめでとうございます！";
                                 StartCoroutine("Novel", ResultText[3]);
-                                SEManager.Instance.Play(SEPath.YOUR_CHAMPION);
+                                SEManager.Instance.Play(SEPath.YOUR_CHAMPION,1.2f);
 
                             }
                             else if (ResultText[3][0] == 'と')
@@ -527,7 +527,7 @@ public class SpuareAction : MonoBehaviour
                             {
                                 ResultText[3] = "ということで優勝はプレイヤー" + list[0].myNo.ToString() + "さんになります！\nおめでとうございます！";
                                 StartCoroutine("Novel", ResultText[3]);
-                                SEManager.Instance.Play(SEPath.YOUR_CHAMPION);
+                                SEManager.Instance.Play(SEPath.YOUR_CHAMPION, 1.2f);
 
                             }
                             else if (ResultText[3][0] == 'と')
@@ -565,7 +565,7 @@ public class SpuareAction : MonoBehaviour
                             {
                                 ResultText[3] = "ということで優勝はプレイヤー" + list[0].myNo.ToString() + "さんと\nプレイヤー" + list[1].myNo.ToString() + "なります！おめでとうございます！";
                                 StartCoroutine("Novel", ResultText[3]);
-                                SEManager.Instance.Play(SEPath.YOUR_CHAMPION);
+                                SEManager.Instance.Play(SEPath.YOUR_CHAMPION, 1.2f);
 
                             }
                             else if (ResultText[3][0] == 'と')
@@ -596,7 +596,7 @@ public class SpuareAction : MonoBehaviour
                             {
                                 ResultText[3] = "ということで優勝はプレイヤー" + list[0].myNo.ToString() + "さんになります！\nおめでとうございます！";
                                 StartCoroutine("Novel", ResultText[3]);
-                                SEManager.Instance.Play(SEPath.YOUR_CHAMPION);
+                                SEManager.Instance.Play(SEPath.YOUR_CHAMPION, 1.2f);
 
                             }
                             else if (ResultText[3][0] == 'と')
@@ -627,7 +627,7 @@ public class SpuareAction : MonoBehaviour
                             {
                                 ResultText[3] = "ということで優勝はプレイヤー" + list[0].myNo.ToString() + "さんと\nプレイヤー" + list[1].myNo.ToString() + "さんとプレイヤー" + list[2].myNo.ToString() + "さんになります！";
                                 StartCoroutine("Novel", ResultText[3]);
-                                SEManager.Instance.Play(SEPath.YOUR_CHAMPION);
+                                SEManager.Instance.Play(SEPath.YOUR_CHAMPION, 1.2f);
 
                             }
                             else if (ResultText[3][0] == 'と')
@@ -664,7 +664,7 @@ public class SpuareAction : MonoBehaviour
                             {
                                 ResultText[3] = "ということで優勝はプレイヤー" + list[0].myNo.ToString() + "さんとプレイヤー" + list[1].myNo.ToString() + "さんになります！おめでとうございます！";
                                 StartCoroutine("Novel", ResultText[3]);
-                                SEManager.Instance.Play(SEPath.YOUR_CHAMPION);
+                                SEManager.Instance.Play(SEPath.YOUR_CHAMPION, 1.2f);
 
                             }
                             else if (ResultText[3][0] == 'と')
@@ -688,7 +688,7 @@ public class SpuareAction : MonoBehaviour
                             {
                                 ResultText[3] = "とてもおもしろい結果になりましたね！\n全員同率で１位とは驚きました！";
                                 StartCoroutine("Novel", ResultText[3]);
-                                SEManager.Instance.Play(SEPath.YOUR_CHAMPION);
+                                SEManager.Instance.Play(SEPath.YOUR_CHAMPION, 1.2f);
 
                             }
                             else if (ResultText[3][0] == 'と')
@@ -737,7 +737,7 @@ public class SpuareAction : MonoBehaviour
                             {
                                 ResultText[3] = "ということで優勝はプレイヤー" + list[0].myNo.ToString() + "さんになります！\nおめでとうございます！";
                                 StartCoroutine("Novel", ResultText[3]);
-                                SEManager.Instance.Play(SEPath.YOUR_CHAMPION);
+                                SEManager.Instance.Play(SEPath.YOUR_CHAMPION, 1.2f);
 
                             }
                             else if (ResultText[3][0] == 'と')
