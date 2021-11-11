@@ -125,7 +125,7 @@ public class DiceRollAction : MonoBehaviour
                     {
                         DiceNo = Random.Range(1, 7);
                     }
-                }               
+                }              
                 manager.SetDiceNo(DiceNo);
                 for (int i = 0;i < 6; ++i)
                 {
