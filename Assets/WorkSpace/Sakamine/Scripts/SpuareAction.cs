@@ -415,7 +415,7 @@ public class SpuareAction : MonoBehaviour
                 txtTextName.gameObject.SetActive(true);
                 StartCoroutine("Novel", RuleText[i]);
             }
-            if (isInput&&!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
+            if (isInput&&!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnA"))
             {
                 if(NextTextFlg)
                 {
@@ -479,7 +479,7 @@ public class SpuareAction : MonoBehaviour
                 //int[] Rank
                 list.Sort((a, b) => a.rank - b.rank);
             }
-            if (!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
+            if (!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnA"))
             {
                 if (NextTextFlg)
                 {
@@ -796,7 +796,7 @@ public class SpuareAction : MonoBehaviour
         //プラスイベント処理
         if (PlusFlg)
         {
-            if (!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
+            if (!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnA"))
             {
                 if (NextTextFlg)
                 {
@@ -844,7 +844,7 @@ public class SpuareAction : MonoBehaviour
         //マイナス
         if (MinusFlg)
         {
-            if (!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
+            if (!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnA"))
             {
                 if (NextTextFlg)
                 {
@@ -914,7 +914,7 @@ public class SpuareAction : MonoBehaviour
                     }
                 }
             }
-            if (!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
+            if (!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnA"))
             {
                 if (NextTextFlg)
                 {
@@ -1097,7 +1097,7 @@ public class SpuareAction : MonoBehaviour
                 }
 
             }
-            if (!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
+            if (!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnA"))
             {
                 if (NextTextFlg)
                 {

@@ -91,7 +91,7 @@ namespace KanKikuchi.AudioManager
             }
             BeforeAxis = v;
 
-            if (!FeedOutFlg && isMove && Input.GetButtonDown("BtnB"))
+            if (!FeedOutFlg && isMove && Input.GetButtonDown("BtnA"))
             {
                 if (Sel == 0)
                 {
