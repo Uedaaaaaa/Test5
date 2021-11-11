@@ -295,18 +295,32 @@ public class SpuareAction : MonoBehaviour
                     txtMessage.gameObject.SetActive(true);
                     txtTextName.gameObject.SetActive(true);
                     StartCoroutine("Novel", plusEvent[EventRand].eventData[EventCount].Message);
+                    if(plusEvent[EventRand].eventData[EventCount].SEPath != null)
+                    {
+                        SEManager.Instance.Play("SE/SE/" + plusEvent[EventRand].eventData[EventCount].SEPath);
+                    }
                 }
                 else if (MinusFlg)
                 {
                     txtMessage.gameObject.SetActive(true);
                     txtTextName.gameObject.SetActive(true);
                     StartCoroutine("Novel", minusEvent[EventRand].eventData[EventCount].Message);
+                    if (minusEvent[EventRand].eventData[EventCount].SEPath != null)
+                    {
+                        SEManager.Instance.Play("SE/SE/" + minusEvent[EventRand].eventData[EventCount].SEPath);
+                    }
+
                 }
                 else if (QuizFlg)
                 {
                     txtMessage.gameObject.SetActive(true);
                     txtTextName.gameObject.SetActive(true);
                     StartCoroutine("Novel", quizEvent[EventRand].eventData[EventCount].Message);
+                    if (quizEvent[EventRand].eventData[EventCount].SEPath != null)
+                    {
+                        SEManager.Instance.Play("SE/SE/" + quizEvent[EventRand].eventData[EventCount].SEPath);
+                    }
+
                 }
                 else if (HalloweenFlg)
                 {
@@ -322,6 +336,11 @@ public class SpuareAction : MonoBehaviour
                     {
                         txtTextName.gameObject.SetActive(true);
                         StartCoroutine("Novel", halloweenEvent[EventRand].eventData[EventCount].Message);
+                        if (halloweenEvent[EventRand].eventData[EventCount].SEPath != null)
+                        {
+                            SEManager.Instance.Play("SE/SE/" + halloweenEvent[EventRand].eventData[EventCount].SEPath);
+                        }
+
                     }
                 }
                 else if (isRule && !EndDice && i > 0)
@@ -1475,6 +1494,12 @@ public class SpuareAction : MonoBehaviour
             {
                 txtTextName.text = Q[EventCount].TextName;
             }
+            //音があるなら鳴らす
+            if (Q[EventCount].SEPath != null)
+            {
+                SEManager.Instance.Play("SE/SE/" + Q[EventCount].SEPath);
+            }
+
         }
         if (S != null)
         {
@@ -1493,6 +1518,12 @@ public class SpuareAction : MonoBehaviour
             {
                 txtTextName.text = S[EventCount].TextName;
             }
+            //音があるなら鳴らす
+            if (S[EventCount].SEPath != null)
+            {
+                SEManager.Instance.Play("SE/SE/" + S[EventCount].SEPath);
+            }
+
         }
         if (H != null)
         {
