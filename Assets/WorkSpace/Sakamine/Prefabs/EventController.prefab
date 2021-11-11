@@ -1259,7 +1259,7 @@ MonoBehaviour:
     eventData:
     - SEPath: 
       SpriteEventChara: {fileID: 21300000, guid: 9152d7f825afb8145b88f64c8e4bcddf, type: 3}
-      Message: "\u3053\u3093\u306B\u3061\u306F\u30FC"
+      Message: "\u3053\u3093\u306B\u3061\u306F\uFF5E"
       TextName: "\u30D7\u30EC\u30A4\u30E4\u30FC"
       SetSelect: 0
       SetYaruki: 0
@@ -1335,7 +1335,7 @@ MonoBehaviour:
     eventData:
     - SEPath: 
       SpriteEventChara: {fileID: 21300000, guid: ef88781eddec282499b3b623d9587447, type: 3}
-      Message: "\u3053\u3093\u306B\u3061\u306F\u30FC"
+      Message: "\u3053\u3093\u306B\u3061\u306F\uFF5E"
       TextName: "\u30D7\u30EC\u30A4\u30E4\u30FC"
       SetSelect: 0
       SetYaruki: 0
