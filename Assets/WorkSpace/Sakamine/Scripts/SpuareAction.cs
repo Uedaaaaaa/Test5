@@ -402,6 +402,7 @@ public class SpuareAction : MonoBehaviour
         {
             HalloweenEvent(3);
         }
+        Debug.Log(isInput);
         //ルール説明中
         if(isRule)
         {
@@ -799,7 +800,7 @@ public class SpuareAction : MonoBehaviour
         //プラスイベント処理
         if (PlusFlg)
         {
-            if (!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnA") || !FeedInFlg && !FeedOutFlg && Input.GetKeyDown(KeyCode.Return))
+            if (isInput&&!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnA") || isInput && !FeedInFlg && !FeedOutFlg && Input.GetKeyDown(KeyCode.Return))
             {
                 if (NextTextFlg)
                 {
@@ -847,7 +848,7 @@ public class SpuareAction : MonoBehaviour
         //マイナス
         if (MinusFlg)
         {
-            if (!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnA") || !FeedInFlg && !FeedOutFlg && Input.GetKeyDown(KeyCode.Return))
+            if (isInput && !FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnA") || isInput && !FeedInFlg && !FeedOutFlg && Input.GetKeyDown(KeyCode.Return))
             {
                 if (NextTextFlg)
                 {
@@ -918,7 +919,7 @@ public class SpuareAction : MonoBehaviour
                     }
                 }
             }
-            if (!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnA") || !FeedInFlg && !FeedOutFlg && Input.GetKeyDown(KeyCode.Return))
+            if (isInput && !FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnA") || isInput && !FeedInFlg && !FeedOutFlg && Input.GetKeyDown(KeyCode.Return))
             {
                 if (NextTextFlg)
                 {
@@ -1102,7 +1103,7 @@ public class SpuareAction : MonoBehaviour
                 }
 
             }
-            if (!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnA") || !FeedInFlg && !FeedOutFlg && Input.GetKeyDown(KeyCode.Return))
+            if (isInput && !FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnA") || isInput && !FeedInFlg && !FeedOutFlg && Input.GetKeyDown(KeyCode.Return))
             {
                 if (NextTextFlg)
                 {
@@ -1242,6 +1243,7 @@ public class SpuareAction : MonoBehaviour
                         SEManager.Instance.Play(SEPath.CANDY_PLUS);
                         manager.characters[CharaNo - 1].candy += halloweenEvent[EventRand].ChangeCandy;
                         txtCandy.text = manager.characters[CharaNo - 1].candy.ToString();
+                        StartCoroutine("UpDown");
 
                         SetNextText(null, null, halloweenEvent[EventRand].eventData);
                     }
@@ -1400,7 +1402,8 @@ public class SpuareAction : MonoBehaviour
 
         float A = 1.0f;
         float Y = 0.0f;
-        if(PlusFlg||QuizFlg)
+        isInput = false;
+        if(PlusFlg||QuizFlg||HalloweenFlg)
         {
             imgUpDown.sprite = Up;
         }
@@ -1412,7 +1415,7 @@ public class SpuareAction : MonoBehaviour
         while(A != 0.0f)
         {
             imgUpDown.color = new Color(R, G, B, A);
-            if (PlusFlg||QuizFlg)
+            if (PlusFlg||QuizFlg || HalloweenFlg)
             {
                 imgUpDown.transform.localPosition = new Vector3(-500.0f, 400.0f + Y, 0.0f);
                 A -= 0.01f;
@@ -1434,9 +1437,10 @@ public class SpuareAction : MonoBehaviour
                     imgUpDown.gameObject.SetActive(false);
                     A = 0.0f;
                 }
-                yield return new WaitForSeconds(0.005f);//任意の時間待つ
+                yield return new WaitForSeconds(0.001f);//任意の時間待つ
             }
         }
+        isInput = true;
         Debug.Log("Updown終了");
     }
     //UIを表示
