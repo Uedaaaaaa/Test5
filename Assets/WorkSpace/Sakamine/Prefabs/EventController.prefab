@@ -253,7 +253,7 @@ MonoBehaviour:
     ChangeYaruki: 3
     eventData:
     - SEPath: 
-      SpriteEventChara: {fileID: 0}
+      SpriteEventChara: {fileID: 21300000, guid: b4aa79cead7257d4b939f506505c2cc2, type: 3}
       Message: "\u697D\u3057\u3052\u306B\u8E0A\u308B\u4EBA\u3092\u898B\u304B\u3051\u305F\u3002"
       TextName: 
     - SEPath: 
