@@ -204,11 +204,6 @@ public class SpuareAction : MonoBehaviour
         blue = Feed.color.b;
         alfa = 1.0f;
 
-        manager.characters[0].candy = 4;
-        manager.characters[1].candy = 4;
-        manager.characters[2].candy = 4;
-        manager.characters[3].candy = 4;
-
         BGMManager.Instance.Play(BGMPath.RULE_BGM);
 
     }
@@ -266,6 +261,8 @@ public class SpuareAction : MonoBehaviour
                 else if (isResult)
                 {
                     imgEventChara.sprite = Pumpkin;
+                    imgEventChara.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+                    CharacerUI.PlayerStatusUIDestroy();
                     imgEventChara.gameObject.SetActive(true);
                     imgTextSpace.gameObject.SetActive(true);
                     manager.GameFinish();
@@ -914,7 +911,7 @@ public class SpuareAction : MonoBehaviour
                     }
                 }
             }
-            if (!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnA"))
+            if (!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnA") || !FeedInFlg && !FeedOutFlg && Input.GetKeyDown(KeyCode.Return))
             {
                 if (NextTextFlg)
                 {
