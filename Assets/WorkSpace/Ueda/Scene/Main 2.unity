@@ -260,7 +260,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5366781088709007248, guid: 354be6f2c969b524b82418315e03209f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5886006811545107946, guid: 354be6f2c969b524b82418315e03209f, type: 3}
       propertyPath: m_BoundingSphereOverride.w
@@ -418,7 +418,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2748925749205432690, guid: 9d5df328c7ee7bd47a1ba582bc957270, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2748925749205432693, guid: 9d5df328c7ee7bd47a1ba582bc957270, type: 3}
       propertyPath: m_Pivot.x
@@ -695,7 +695,7 @@ MonoBehaviour:
   - {fileID: 277500826280910524}
   - {fileID: 743840185535297159}
   - {fileID: 1575913497672476699}
-  GameTurn: 8
+  GameTurn: 1
   NowPlayerNo: 0
   OrderArray: 00000000000000000000000000000000
   OrderjudgeNo: 00000000000000000000000000000000
@@ -901,6 +901,10 @@ PrefabInstance:
     - target: {fileID: 1166127968030492068, guid: c1c593db72fd1ca4e90946c2b91a378b, type: 3}
       propertyPath: m_Name
       value: EventController
+      objectReference: {fileID: 0}
+    - target: {fileID: 1166127968030492068, guid: c1c593db72fd1ca4e90946c2b91a378b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1919939983509815275, guid: c1c593db72fd1ca4e90946c2b91a378b, type: 3}
       propertyPath: CharacerUI
@@ -1667,7 +1671,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7815465574779487432, guid: 1cdbb424e5c8f0b48846b029e3e834e3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7815465574779487435, guid: 1cdbb424e5c8f0b48846b029e3e834e3, type: 3}
       propertyPath: m_RootOrder

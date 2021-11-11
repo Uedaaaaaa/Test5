@@ -125,6 +125,7 @@ public class SpuareAction : MonoBehaviour
     [HideInInspector]
     public bool isResult = false;
     private bool FirstFeed = true;
+    private float BeforeAxis;
 
     private bool NanimoSinai;
     private bool NoYaruki;
@@ -218,6 +219,8 @@ public class SpuareAction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float v = Input.GetAxis("Vertical");
+
         Feed.color = new Color(red, green, blue, alfa);
         if(PlusList.Count == 0 || MinusList.Count == 0 || QuizList.Count == 0)
         {
@@ -292,18 +295,32 @@ public class SpuareAction : MonoBehaviour
                     txtMessage.gameObject.SetActive(true);
                     txtTextName.gameObject.SetActive(true);
                     StartCoroutine("Novel", plusEvent[EventRand].eventData[EventCount].Message);
+                    if(plusEvent[EventRand].eventData[EventCount].SEPath != null)
+                    {
+                        SEManager.Instance.Play("SE/SE/" + plusEvent[EventRand].eventData[EventCount].SEPath);
+                    }
                 }
                 else if (MinusFlg)
                 {
                     txtMessage.gameObject.SetActive(true);
                     txtTextName.gameObject.SetActive(true);
                     StartCoroutine("Novel", minusEvent[EventRand].eventData[EventCount].Message);
+                    if (minusEvent[EventRand].eventData[EventCount].SEPath != null)
+                    {
+                        SEManager.Instance.Play("SE/SE/" + minusEvent[EventRand].eventData[EventCount].SEPath);
+                    }
+
                 }
                 else if (QuizFlg)
                 {
                     txtMessage.gameObject.SetActive(true);
                     txtTextName.gameObject.SetActive(true);
                     StartCoroutine("Novel", quizEvent[EventRand].eventData[EventCount].Message);
+                    if (quizEvent[EventRand].eventData[EventCount].SEPath != null)
+                    {
+                        SEManager.Instance.Play("SE/SE/" + quizEvent[EventRand].eventData[EventCount].SEPath);
+                    }
+
                 }
                 else if (HalloweenFlg)
                 {
@@ -319,6 +336,11 @@ public class SpuareAction : MonoBehaviour
                     {
                         txtTextName.gameObject.SetActive(true);
                         StartCoroutine("Novel", halloweenEvent[EventRand].eventData[EventCount].Message);
+                        if (halloweenEvent[EventRand].eventData[EventCount].SEPath != null)
+                        {
+                            SEManager.Instance.Play("SE/SE/" + halloweenEvent[EventRand].eventData[EventCount].SEPath);
+                        }
+
                     }
                 }
                 else if (isRule && !EndDice && i > 0)
@@ -393,7 +415,7 @@ public class SpuareAction : MonoBehaviour
                 txtTextName.gameObject.SetActive(true);
                 StartCoroutine("Novel", RuleText[i]);
             }
-            if (isInput&&!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
+            if (isInput&&!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnA"))
             {
                 if(NextTextFlg)
                 {
@@ -457,7 +479,7 @@ public class SpuareAction : MonoBehaviour
                 //int[] Rank
                 list.Sort((a, b) => a.rank - b.rank);
             }
-            if (!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
+            if (!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnA"))
             {
                 if (NextTextFlg)
                 {
@@ -487,7 +509,7 @@ public class SpuareAction : MonoBehaviour
                             {
                                 ResultText[3] = "ということで優勝はプレイヤー" + list[0].myNo.ToString() + "さんになります！\nおめでとうございます！";
                                 StartCoroutine("Novel", ResultText[3]);
-                                SEManager.Instance.Play(SEPath.YOUR_CHAMPION);
+                                SEManager.Instance.Play(SEPath.YOUR_CHAMPION,1.2f);
 
                             }
                             else if (ResultText[3][0] == 'と')
@@ -524,7 +546,7 @@ public class SpuareAction : MonoBehaviour
                             {
                                 ResultText[3] = "ということで優勝はプレイヤー" + list[0].myNo.ToString() + "さんになります！\nおめでとうございます！";
                                 StartCoroutine("Novel", ResultText[3]);
-                                SEManager.Instance.Play(SEPath.YOUR_CHAMPION);
+                                SEManager.Instance.Play(SEPath.YOUR_CHAMPION, 1.2f);
 
                             }
                             else if (ResultText[3][0] == 'と')
@@ -562,7 +584,7 @@ public class SpuareAction : MonoBehaviour
                             {
                                 ResultText[3] = "ということで優勝はプレイヤー" + list[0].myNo.ToString() + "さんと\nプレイヤー" + list[1].myNo.ToString() + "なります！おめでとうございます！";
                                 StartCoroutine("Novel", ResultText[3]);
-                                SEManager.Instance.Play(SEPath.YOUR_CHAMPION);
+                                SEManager.Instance.Play(SEPath.YOUR_CHAMPION, 1.2f);
 
                             }
                             else if (ResultText[3][0] == 'と')
@@ -593,7 +615,7 @@ public class SpuareAction : MonoBehaviour
                             {
                                 ResultText[3] = "ということで優勝はプレイヤー" + list[0].myNo.ToString() + "さんになります！\nおめでとうございます！";
                                 StartCoroutine("Novel", ResultText[3]);
-                                SEManager.Instance.Play(SEPath.YOUR_CHAMPION);
+                                SEManager.Instance.Play(SEPath.YOUR_CHAMPION, 1.2f);
 
                             }
                             else if (ResultText[3][0] == 'と')
@@ -624,7 +646,7 @@ public class SpuareAction : MonoBehaviour
                             {
                                 ResultText[3] = "ということで優勝はプレイヤー" + list[0].myNo.ToString() + "さんと\nプレイヤー" + list[1].myNo.ToString() + "さんとプレイヤー" + list[2].myNo.ToString() + "さんになります！";
                                 StartCoroutine("Novel", ResultText[3]);
-                                SEManager.Instance.Play(SEPath.YOUR_CHAMPION);
+                                SEManager.Instance.Play(SEPath.YOUR_CHAMPION, 1.2f);
 
                             }
                             else if (ResultText[3][0] == 'と')
@@ -661,7 +683,7 @@ public class SpuareAction : MonoBehaviour
                             {
                                 ResultText[3] = "ということで優勝はプレイヤー" + list[0].myNo.ToString() + "さんとプレイヤー" + list[1].myNo.ToString() + "さんになります！おめでとうございます！";
                                 StartCoroutine("Novel", ResultText[3]);
-                                SEManager.Instance.Play(SEPath.YOUR_CHAMPION);
+                                SEManager.Instance.Play(SEPath.YOUR_CHAMPION, 1.2f);
 
                             }
                             else if (ResultText[3][0] == 'と')
@@ -685,7 +707,7 @@ public class SpuareAction : MonoBehaviour
                             {
                                 ResultText[3] = "とてもおもしろい結果になりましたね！\n全員同率で１位とは驚きました！";
                                 StartCoroutine("Novel", ResultText[3]);
-                                SEManager.Instance.Play(SEPath.YOUR_CHAMPION);
+                                SEManager.Instance.Play(SEPath.YOUR_CHAMPION, 1.2f);
 
                             }
                             else if (ResultText[3][0] == 'と')
@@ -734,7 +756,7 @@ public class SpuareAction : MonoBehaviour
                             {
                                 ResultText[3] = "ということで優勝はプレイヤー" + list[0].myNo.ToString() + "さんになります！\nおめでとうございます！";
                                 StartCoroutine("Novel", ResultText[3]);
-                                SEManager.Instance.Play(SEPath.YOUR_CHAMPION);
+                                SEManager.Instance.Play(SEPath.YOUR_CHAMPION, 1.2f);
 
                             }
                             else if (ResultText[3][0] == 'と')
@@ -774,7 +796,7 @@ public class SpuareAction : MonoBehaviour
         //プラスイベント処理
         if (PlusFlg)
         {
-            if (!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
+            if (!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnA"))
             {
                 if (NextTextFlg)
                 {
@@ -822,7 +844,7 @@ public class SpuareAction : MonoBehaviour
         //マイナス
         if (MinusFlg)
         {
-            if (!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
+            if (!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnA"))
             {
                 if (NextTextFlg)
                 {
@@ -875,7 +897,7 @@ public class SpuareAction : MonoBehaviour
             //選択の矢印が出てるとき
             if (imgSel.gameObject.activeSelf)
             {
-                if (Input.GetKeyDown(KeyCode.UpArrow))
+                if (v > 0 && BeforeAxis == 0.0f)
                 {
                     if (Sel > 0)
                     {
@@ -883,7 +905,7 @@ public class SpuareAction : MonoBehaviour
                         Sel--;
                     }
                 }
-                if (Input.GetKeyDown(KeyCode.DownArrow))
+                if (v < 0 && BeforeAxis == 0.0f)
                 {
                     if (Sel < 2)
                     {
@@ -892,7 +914,7 @@ public class SpuareAction : MonoBehaviour
                     }
                 }
             }
-            if (!FeedInFlg && !FeedOutFlg && Input.GetKeyDown(KeyCode.Return) || !FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
+            if (!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnA"))
             {
                 if (NextTextFlg)
                 {
@@ -974,7 +996,7 @@ public class SpuareAction : MonoBehaviour
                         SetNextText(quizEvent[EventRand].eventData, null, null);
                     }
                     //次がやるき上昇テキストなら
-                    else if(quizEvent[EventRand].eventData[EventCount + 1].Message[0] == '正')
+                    else if(quizEvent[EventRand].eventData[EventCount + 1].Message[3] == '褒')
                     {
                         EventCount++;
                         SEManager.Instance.Play(SEPath.YARUKI_UP);
@@ -1030,7 +1052,7 @@ public class SpuareAction : MonoBehaviour
             //選択の矢印が出てるとき
             if (imgHalloweenSel.gameObject.activeSelf)
             {
-                if (Input.GetKeyDown(KeyCode.UpArrow))
+                if (v > 0 && BeforeAxis == 0.0f)
                 {
                     if (Sel > 0)
                     {
@@ -1038,7 +1060,7 @@ public class SpuareAction : MonoBehaviour
                         Sel--;
                     }
                 }
-                if (Input.GetKeyDown(KeyCode.DownArrow))
+                if (v < 0 && BeforeAxis == 0.0f)
                 {
                     if (Sel < 1)
                     {
@@ -1057,7 +1079,7 @@ public class SpuareAction : MonoBehaviour
                 {
                     SuccessRate = 100;
                 }
-                if (Input.GetKeyDown(KeyCode.UpArrow))
+                if (v > 0 && BeforeAxis == 0.0f)
                 {
                     if (UseYaruki < manager.characters[CharaNo - 1].yaruki)
                     {
@@ -1065,7 +1087,7 @@ public class SpuareAction : MonoBehaviour
                         UseYaruki++;
                     }
                 }
-                if (Input.GetKeyDown(KeyCode.DownArrow))
+                if (v < 0 && BeforeAxis == 0.0f)
                 {
                     if (UseYaruki > 1)
                     {
@@ -1075,7 +1097,7 @@ public class SpuareAction : MonoBehaviour
                 }
 
             }
-            if (!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnB"))
+            if (!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnA"))
             {
                 if (NextTextFlg)
                 {
@@ -1271,6 +1293,7 @@ public class SpuareAction : MonoBehaviour
                 }
             }
         }
+        BeforeAxis = v;
 
     }
     public void PlusEvent(int MyNo)
@@ -1471,6 +1494,12 @@ public class SpuareAction : MonoBehaviour
             {
                 txtTextName.text = Q[EventCount].TextName;
             }
+            //音があるなら鳴らす
+            if (Q[EventCount].SEPath != null)
+            {
+                SEManager.Instance.Play("SE/SE/" + Q[EventCount].SEPath);
+            }
+
         }
         if (S != null)
         {
@@ -1489,6 +1518,12 @@ public class SpuareAction : MonoBehaviour
             {
                 txtTextName.text = S[EventCount].TextName;
             }
+            //音があるなら鳴らす
+            if (S[EventCount].SEPath != null)
+            {
+                SEManager.Instance.Play("SE/SE/" + S[EventCount].SEPath);
+            }
+
         }
         if (H != null)
         {
@@ -1545,7 +1580,7 @@ public class SpuareAction : MonoBehaviour
         //if (alfa >= 1.0f) 
         if (FirstFeed)
         {
-            alfa -= 0.5f * Time.deltaTime;
+            alfa -= 0.6f * Time.deltaTime;
         }
         else
         {
