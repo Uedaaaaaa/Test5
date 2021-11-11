@@ -48,6 +48,11 @@ public class SetCharacerUI : MonoBehaviour
     //ゲーム終了UI
     [SerializeField] Image GameSetUI;
 
+    //残りターン数背景UI
+    [SerializeField] Image TurnTextBackUI;
+    //残りターン数テキスト
+    [SerializeField] Text TurnCountText;
+
     //ゲームマネージャー
     GameManager manager;
 
@@ -82,6 +87,10 @@ public class SetCharacerUI : MonoBehaviour
 
         //ゲーム終了UIの非表示
         GameSetUI.enabled = false;
+
+        //残りターン関係のUIの非表示
+        TurnCountText.enabled = false;
+        TurnTextBackUI.enabled = false;
 
         //プレイヤー関係のUIの非表示
         for (int i = 0; i < PlayerStatusUI.Length; i++)
@@ -168,6 +177,8 @@ public class SetCharacerUI : MonoBehaviour
     //プレイヤーステータスUIの表示
     public void PlayerStatusUISet()
     {
+        TurnTextBackUI.enabled = true;
+        TurnCountText.enabled = true;
         //プレイヤーのキャンディ、やる気を獲得する
         for (int i = 0; i < PlayerStatusUI.Length; i++)
         {
@@ -178,6 +189,9 @@ public class SetCharacerUI : MonoBehaviour
     }
     public void PlayerStatusUIDestroy()
     {
+        TurnTextBackUI.enabled = false;
+        TurnCountText.enabled = false;
+
         for (int i = 0; i < PlayerStatusUI.Length; i++)
         {
             PlayerStatusUI[i].enabled = false;
@@ -202,6 +216,8 @@ public class SetCharacerUI : MonoBehaviour
         GameSetUI.enabled = true;
         GameSetflg = true;
         SEManager.Instance.Play(SEPath.GAME_END);
+        TurnTextBackUI.enabled = false;
+        TurnCountText.enabled = false;
     }
     public void GameEndUIDestroy()
     {
@@ -209,6 +225,7 @@ public class SetCharacerUI : MonoBehaviour
         feed = feedobj.GetComponent<SpuareAction>();
         feed.FeedInFlg =true;
         feed.isResult = true;
+        BGMManager.Instance.FadeOut(1.0f);
         GameSetUI.enabled = false;
     }
 
@@ -216,7 +233,7 @@ public class SetCharacerUI : MonoBehaviour
     {
         if(manager.gameStatus == GameSTS.Ranking)
         {
-            if(Input.GetButtonDown("BtnB"))
+            if(Input.GetButtonDown("BtnA"))
             {
                 if(GameSetflg)
                 {
@@ -224,6 +241,10 @@ public class SetCharacerUI : MonoBehaviour
                     GameSetflg = false;
                 }
             }
+        }
+        if(manager.gameStatus == GameSTS.Play)
+        {
+            TurnCountText.text = "残り" + manager.GameTurn + "ターン";
         }
     }
 }
