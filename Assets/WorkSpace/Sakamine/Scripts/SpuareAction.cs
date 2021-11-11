@@ -73,6 +73,9 @@ public class SpuareAction : MonoBehaviour
     [SerializeField] Sprite[] PlayerUI;
     [SerializeField] Sprite[] Back;
     [SerializeField] Sprite Pumpkin;
+    [SerializeField] Sprite Up;
+    [SerializeField] Sprite Down;
+
     [Space(20)]
     [SerializeField] Image Feed;
     [SerializeField] Image imgEventChara;
@@ -92,6 +95,7 @@ public class SpuareAction : MonoBehaviour
     [SerializeField] Image imgHalloweenSel;
     [SerializeField] Image imgYaruki;
     [SerializeField] Image imgBack;
+    [SerializeField] Image imgUpDown;
     [Space(20)]
 
     [SerializeField,TextArea(1, 3)] string[] RuleText;
@@ -177,6 +181,7 @@ public class SpuareAction : MonoBehaviour
         txtTrick = Canvas.transform.Find("txtTrick").GetComponent<Text>();
         txtNanimoSinai = Canvas.transform.Find("txtNanimoSinai").GetComponent<Text>();
         imgBack = Canvas.transform.Find("imgBack").GetComponent<Image>();
+        imgUpDown = Canvas.transform.Find("imgUpDown").GetComponent<Image>();
 
         manager = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<GameManager>();
         for (int i = 0; i < quizEvent.Count; i++)
@@ -775,6 +780,7 @@ public class SpuareAction : MonoBehaviour
                     else if(i == 11)
                     {
                         FeedInFlg = true;
+                        BGMManager.Instance.FadeOut(2.0f);
                     }
                     else
                     {
@@ -793,7 +799,7 @@ public class SpuareAction : MonoBehaviour
         //プラスイベント処理
         if (PlusFlg)
         {
-            if (!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnA"))
+            if (!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnA") || !FeedInFlg && !FeedOutFlg && Input.GetKeyDown(KeyCode.Return))
             {
                 if (NextTextFlg)
                 {
@@ -820,7 +826,7 @@ public class SpuareAction : MonoBehaviour
                             manager.characters[CharaNo - 1].yaruki = 10;
                         }
                         txtYaruki.text = manager.characters[CharaNo - 1].yaruki.ToString();
-
+                        StartCoroutine("UpDown");
                         SetNextText(null, plusEvent[EventRand].eventData, null);
                     }
                     else
@@ -841,7 +847,7 @@ public class SpuareAction : MonoBehaviour
         //マイナス
         if (MinusFlg)
         {
-            if (!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnA"))
+            if (!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnA") || !FeedInFlg && !FeedOutFlg && Input.GetKeyDown(KeyCode.Return))
             {
                 if (NextTextFlg)
                 {
@@ -870,6 +876,7 @@ public class SpuareAction : MonoBehaviour
                         }
 
                         txtYaruki.text = manager.characters[CharaNo - 1].yaruki.ToString();
+                        StartCoroutine("UpDown");
 
                         SetNextText(null, minusEvent[EventRand].eventData, null);
                     }
@@ -1003,6 +1010,7 @@ public class SpuareAction : MonoBehaviour
                             manager.characters[CharaNo - 1].yaruki = 10;
                         }
                         txtYaruki.text = manager.characters[CharaNo - 1].yaruki.ToString();
+                        StartCoroutine("UpDown");
 
                         SetNextText(quizEvent[EventRand].eventData, null, null);
                     }
@@ -1094,7 +1102,7 @@ public class SpuareAction : MonoBehaviour
                 }
 
             }
-            if (!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnA"))
+            if (!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnA") || !FeedInFlg && !FeedOutFlg && Input.GetKeyDown(KeyCode.Return))
             {
                 if (NextTextFlg)
                 {
@@ -1384,6 +1392,53 @@ public class SpuareAction : MonoBehaviour
         }
         NextTextFlg = true;
     }
+    IEnumerator UpDown()
+    {
+        float R = imgUpDown.color.r;
+        float G = imgUpDown.color.g;
+        float B = imgUpDown.color.b;
+
+        float A = 1.0f;
+        float Y = 0.0f;
+        if(PlusFlg||QuizFlg)
+        {
+            imgUpDown.sprite = Up;
+        }
+        else
+        {
+            imgUpDown.sprite = Down;
+        }
+        imgUpDown.gameObject.SetActive(true);
+        while(A != 0.0f)
+        {
+            imgUpDown.color = new Color(R, G, B, A);
+            if (PlusFlg||QuizFlg)
+            {
+                imgUpDown.transform.localPosition = new Vector3(-500.0f, 400.0f + Y, 0.0f);
+                A -= 0.01f;
+                Y += 1.0f;
+                if(A < 0.0f)
+                {
+                    imgUpDown.gameObject.SetActive(false);
+                    A = 0.0f;
+                }
+                yield return new WaitForSeconds(0.005f);//任意の時間待つ
+            }
+            else if(MinusFlg)
+            {
+                imgUpDown.transform.localPosition = new Vector3(-500.0f, 500.0f + Y, 0.0f);
+                A -= 0.01f;
+                Y -= 1.0f;
+                if (A < 0.0f)
+                {
+                    imgUpDown.gameObject.SetActive(false);
+                    A = 0.0f;
+                }
+                yield return new WaitForSeconds(0.005f);//任意の時間待つ
+            }
+        }
+        Debug.Log("Updown終了");
+    }
     //UIを表示
     void ShowUI()
     {
@@ -1470,6 +1525,7 @@ public class SpuareAction : MonoBehaviour
         txtNanimoSinai.gameObject.SetActive(false);
         imgYaruki.gameObject.SetActive(false);
         imgBack.gameObject.SetActive(false);
+        imgUpDown.gameObject.SetActive(false);
     }
     //次のテキストデータを表示
     void SetNextText(List<QuizEventData> Q, List<EventData> S, List<HalloweenEventData> H)
@@ -1570,7 +1626,14 @@ public class SpuareAction : MonoBehaviour
     public void FeedIn()
     {
         //if(alfa <= 1.0f) 
-        alfa += FeedSpeed * Time.deltaTime;
+        if(isResult&&i == 11)
+        {
+            alfa += 0.5f * Time.deltaTime;
+        }
+        else
+        {
+            alfa += FeedSpeed * Time.deltaTime;
+        }
     }
     public void FeedOut()
     {
