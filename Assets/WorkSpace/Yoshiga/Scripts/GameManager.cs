@@ -71,6 +71,7 @@ public class GameManager : MonoBehaviour
     private SpuareAction eventScript;
     private bool sortFlg = false;
     private int waitNo2 = 0;
+    private CreateMap mapScript;    //マップの生成script
 
     // Start is called before the first frame update
     void Start()
@@ -87,6 +88,7 @@ public class GameManager : MonoBehaviour
             playerScript[i] = CharacterObj[i].GetComponent<PlayerAction>();
         }
         eventScript = eventController.GetComponent<SpuareAction>();
+        mapScript = GameObject.FindGameObjectWithTag("Map").GetComponent<CreateMap>();
     }
 
     public void CanMove()
@@ -130,8 +132,23 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        //　待機場所に移動
-        playerScript[OrderArray[NowPlayerNo]].SetWaitPos(Samesquare);
+        for(int i = 0; i <= Samesquare; ++i)
+        {
+            if (mapScript.squares[playerScript[OrderArray[NowPlayerNo]].nowMassNo - 1].waitPosFlg[i] == false)
+            {
+                //　待機場所に移動
+                playerScript[OrderArray[NowPlayerNo]].SetWaitPos(i);
+                mapScript.SetWaitPosFlg(playerScript[OrderArray[NowPlayerNo]].nowMassNo - 1, i, true);
+                characters[OrderArray[NowPlayerNo]].waitNo = i;
+                return;
+            }
+        }
+    }
+
+    // 自身がどこの待機場所にいるのか
+    public void SetWaitNo(int No)
+    {
+        characters[OrderArray[NowPlayerNo]].waitNo = No;
     }
 
     //キャラクターがイベントを終えたときに呼ばれる関数

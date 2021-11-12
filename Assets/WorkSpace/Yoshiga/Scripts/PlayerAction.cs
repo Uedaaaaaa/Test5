@@ -97,24 +97,25 @@ public class PlayerAction : MonoBehaviour
         if(startFlg == false)
         {
             this.gameObject.transform.position = mapScript.squares[nowMassNo - 1].MyPos;
-        }
-        
+            manager.SetWaitNo(0);
+            mapScript.SetWaitPosFlg(nowMassNo - 1, manager.characters[manager.OrderArray[manager.NowPlayerNo]].waitNo, false);
+        }        
     }
 
     public void SetWaitPos(int No)
     {
         switch (No)
         {
-            case 1:
+            case 0:
                 this.gameObject.transform.position = mapScript.squares[nowMassNo - 1].MyPos + new Vector3(-7.5f, 0.0f, 7.5f);
                 break;
-            case 2:
+            case 1:
                 this.gameObject.transform.position = mapScript.squares[nowMassNo - 1].MyPos + new Vector3(7.5f, 0.0f, 7.5f);
                 break;
-            case 3:
+            case 2:
                 this.gameObject.transform.position = mapScript.squares[nowMassNo - 1].MyPos + new Vector3(-2.5f, 0.0f, 7.5f);
                 break;
-            case 4:
+            case 3:
                 this.gameObject.transform.position = mapScript.squares[nowMassNo - 1].MyPos + new Vector3(2.5f, 0.0f, 7.5f);
                 break;
         }
