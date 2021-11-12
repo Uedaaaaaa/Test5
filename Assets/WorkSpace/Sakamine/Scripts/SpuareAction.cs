@@ -245,9 +245,6 @@ public class SpuareAction : MonoBehaviour
                     }
                     CharacerUI.PlayerStatusUIDestroy();
                     ShowUI();
-                    //デバッグ
-                    //manager.characters[CharaNo - 1].yaruki = 0;
-
                     if (HalloweenFlg&&manager.characters[CharaNo-1].yaruki == 0)
                     {
                         imgEventChara.gameObject.SetActive(false);
@@ -385,24 +382,6 @@ public class SpuareAction : MonoBehaviour
         {
             imgBbtn.gameObject.SetActive(false);
         }
-        //デバッグ用
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            PlusEvent(1);
-        }
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            MinusEvent(2);
-        }
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            QuizEvent(3);
-        }
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            HalloweenEvent(3);
-        }
-        Debug.Log(isInput);
         //ルール説明中
         if(isRule)
         {
@@ -800,7 +779,7 @@ public class SpuareAction : MonoBehaviour
         //プラスイベント処理
         if (PlusFlg)
         {
-            if (isInput&&!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnA") || isInput && !FeedInFlg && !FeedOutFlg && Input.GetKeyDown(KeyCode.Return))
+            if (isInput&&!FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnA"))
             {
                 if (NextTextFlg)
                 {
@@ -848,7 +827,7 @@ public class SpuareAction : MonoBehaviour
         //マイナス
         if (MinusFlg)
         {
-            if (isInput && !FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnA") || isInput && !FeedInFlg && !FeedOutFlg && Input.GetKeyDown(KeyCode.Return))
+            if (isInput && !FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnA"))
             {
                 if (NextTextFlg)
                 {
@@ -919,7 +898,7 @@ public class SpuareAction : MonoBehaviour
                     }
                 }
             }
-            if (isInput && !FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnA") || isInput && !FeedInFlg && !FeedOutFlg && Input.GetKeyDown(KeyCode.Return))
+            if (isInput && !FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnA"))
             {
                 if (NextTextFlg)
                 {
@@ -1103,7 +1082,7 @@ public class SpuareAction : MonoBehaviour
                 }
 
             }
-            if (isInput && !FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnA") || isInput && !FeedInFlg && !FeedOutFlg && Input.GetKeyDown(KeyCode.Return))
+            if (isInput && !FeedInFlg && !FeedOutFlg && Input.GetButtonDown("BtnA"))
             {
                 if (NextTextFlg)
                 {
