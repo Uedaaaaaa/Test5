@@ -29,6 +29,7 @@ public class Character
     public int myDiceNo;    //現在のターンに自身が出したダイスの目
     public bool eventFlg;   //キャラクターがマスのイベントを行っているかのフラグ
     public int rank;        //最終ランキング
+    public int waitNo;      //待機場所の番号
 
     //キャラクターの初期値設定の関数
     public Character()
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject eventController;
     private SpuareAction eventScript;
     private bool sortFlg = false;
+    private int waitNo2 = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -128,21 +130,8 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        switch (Samesquare)
-        {
-            case 1:
-                CharacterObj[OrderArray[NowPlayerNo]].transform.position += new Vector3(-7.5f, 0.0f, 7.5f);
-                break;
-            case 2:
-                CharacterObj[OrderArray[NowPlayerNo]].transform.position += new Vector3(7.5f, 0.0f, 7.5f);
-                break;
-            case 3:
-                CharacterObj[OrderArray[NowPlayerNo]].transform.position += new Vector3(-2.5f, 0.0f, 7.5f);
-                break;
-            case 4:
-                CharacterObj[OrderArray[NowPlayerNo]].transform.position += new Vector3(2.5f, 0.0f, 7.5f);
-                break;
-        }
+        //　待機場所に移動
+        playerScript[OrderArray[NowPlayerNo]].SetWaitPos(Samesquare);
     }
 
     //キャラクターがイベントを終えたときに呼ばれる関数
