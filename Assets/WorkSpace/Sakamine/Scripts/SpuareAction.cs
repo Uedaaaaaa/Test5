@@ -1381,45 +1381,42 @@ public class SpuareAction : MonoBehaviour
 
         float A = 1.0f;
         float Y = 0.0f;
-        isInput = false;
-        if(PlusFlg||QuizFlg||HalloweenFlg)
+        if (PlusFlg || QuizFlg || HalloweenFlg)
         {
+            imgUpDown.gameObject.SetActive(true);
             imgUpDown.sprite = Up;
-        }
-        else
-        {
-            imgUpDown.sprite = Down;
-        }
-        imgUpDown.gameObject.SetActive(true);
-        while(A != 0.0f)
-        {
-            imgUpDown.color = new Color(R, G, B, A);
-            if (PlusFlg||QuizFlg || HalloweenFlg)
+            while (A != 0.0f)
             {
+                imgUpDown.color = new Color(R, G, B, A);
                 imgUpDown.transform.localPosition = new Vector3(-500.0f, 400.0f + Y, 0.0f);
-                A -= 0.01f;
-                Y += 1.0f;
-                if(A < 0.0f)
-                {
-                    imgUpDown.gameObject.SetActive(false);
-                    A = 0.0f;
-                }
-                yield return new WaitForSeconds(0.005f);//任意の時間待つ
-            }
-            else if(MinusFlg)
-            {
-                imgUpDown.transform.localPosition = new Vector3(-500.0f, 500.0f + Y, 0.0f);
-                A -= 0.01f;
-                Y -= 1.0f;
+                A -= 0.03f;
+                Y += 2.0f;
                 if (A < 0.0f)
                 {
                     imgUpDown.gameObject.SetActive(false);
                     A = 0.0f;
                 }
-                yield return new WaitForSeconds(0.001f);//任意の時間待つ
+                yield return new WaitForSeconds(0.001f * Time.deltaTime);//任意の時間待つ
             }
         }
-        isInput = true;
+        else if (MinusFlg)
+        {
+            imgUpDown.sprite = Down;
+            imgUpDown.gameObject.SetActive(true);
+            while (A != 0.0f)
+            {
+                imgUpDown.color = new Color(R, G, B, A);
+                imgUpDown.transform.localPosition = new Vector3(-500.0f, 500.0f + Y, 0.0f);
+                A -= 0.03f;
+                Y -= 2.0f;
+                if (A < 0.0f)
+                {
+                    imgUpDown.gameObject.SetActive(false);
+                    A = 0.0f;
+                }
+                yield return new WaitForSeconds(0.001f * Time.deltaTime);//任意の時間待つ
+            }
+        }
         Debug.Log("Updown終了");
     }
     //UIを表示
