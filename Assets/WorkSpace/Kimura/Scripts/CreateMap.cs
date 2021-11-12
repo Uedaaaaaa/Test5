@@ -15,7 +15,6 @@ public enum Move
 //マス目のクラス
 public class Square
 {
-    public int waitNum = 0;
     //自身の所持するID
     public int MyID;
     //プレイヤーに伝える次に進める方向
