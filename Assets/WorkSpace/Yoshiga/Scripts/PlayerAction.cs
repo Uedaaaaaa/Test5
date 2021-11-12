@@ -101,6 +101,25 @@ public class PlayerAction : MonoBehaviour
         
     }
 
+    public void SetWaitPos(int No)
+    {
+        switch (No)
+        {
+            case 1:
+                this.gameObject.transform.position = mapScript.squares[nowMassNo - 1].MyPos + new Vector3(-7.5f, 0.0f, 7.5f);
+                break;
+            case 2:
+                this.gameObject.transform.position = mapScript.squares[nowMassNo - 1].MyPos + new Vector3(7.5f, 0.0f, 7.5f);
+                break;
+            case 3:
+                this.gameObject.transform.position = mapScript.squares[nowMassNo - 1].MyPos + new Vector3(-2.5f, 0.0f, 7.5f);
+                break;
+            case 4:
+                this.gameObject.transform.position = mapScript.squares[nowMassNo - 1].MyPos + new Vector3(2.5f, 0.0f, 7.5f);
+                break;
+        }
+    }
+
     private void FixedUpdate()
     {
         //キャラクターが動いていい時の処理
