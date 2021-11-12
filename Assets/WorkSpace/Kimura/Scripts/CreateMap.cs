@@ -15,7 +15,7 @@ public enum Move
 //マス目のクラス
 public class Square
 {
-    public bool[] waitPos = new bool[4];
+    public bool[] waitPosFlg = new bool[4];
     //自身の所持するID
     public int MyID;
     //プレイヤーに伝える次に進める方向
@@ -25,9 +25,9 @@ public class Square
     {
         this.MyID = 0;
         this.MyMove = Move.None;
-        for(int i = 0;i < waitPos.Length; i++)
+        for(int i = 0;i < waitPosFlg.Length; i++)
         {
-            waitPos[i] = false;
+            waitPosFlg[i] = false;
         }
     }
     //自身のポジション
