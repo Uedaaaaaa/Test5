@@ -104,8 +104,7 @@ namespace KanKikuchi.AudioManager
                 else
                 {
                     //ゲーム終了
-                    UnityEditor.EditorApplication.isPlaying = false;
-                    UnityEngine.Application.Quit();
+                    Application.Quit();
                 }
             }
             //回転
