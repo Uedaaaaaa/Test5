@@ -190,6 +190,11 @@ public class CreateMap : MonoBehaviour
         }
     }
 
+    public void SetWaitPosFlg(int num,int waitNum,bool flg)
+    {
+        squares[num].waitPosFlg[waitNum] = flg;
+    }
+
     // Update is called once per frame
     void Update()
     {
